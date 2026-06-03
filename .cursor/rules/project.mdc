@@ -1,0 +1,37 @@
+---
+description: Toleo website architecture and design rules
+alwaysApply: true
+---
+
+# Toleo Website
+
+This is a Next.js App Router single-page website with separate legal pages.
+
+## Architecture
+
+- Keep `app/page.tsx` as a composition layer only.
+- Put large homepage sections in `components/sections/*`.
+- Put shared site chrome in `components/site/*`.
+- Put animation helpers in `components/motion/*`.
+- Put editable business content in `lib/site-content.ts`.
+- Keep Resend and secrets server-side in `app/api/contact/route.ts`.
+
+## Design
+
+The UI is based on the logo:
+
+- Ink: `#181716`
+- Blue: `#3060a8`
+- Red: `#e00810`
+- Paper: `#fffdfa`
+
+Prefer white space, fine lines, logo-derived dots/orbits/signature strokes, and restrained
+professional motion. Do not introduce a new palette unless it is intentionally derived from
+the logo.
+
+## Legal and privacy
+
+- Legal pages live at `/impressum` and `/datenschutz`.
+- Do not add tracking, analytics, marketing pixels, or non-essential cookies without updating
+  the privacy page and adding consent handling.
+- Never put `RESEND_API_KEY` or other secrets in client components.
