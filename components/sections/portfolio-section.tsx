@@ -11,8 +11,8 @@ export function PortfolioSection() {
             <p className="section-kicker">Portfolio</p>
             <h2>Beteiligungen und Beratung in spezialisierten Märkten.</h2>
             <p>
-              Bestehende Bildmotive werden hier bewusst reduziert eingesetzt: als moderne
-              Materialflächen, die von Logo-Punkten, Linien und klarer Typografie geführt werden.
+              Toleo verbindet spezialisierte Märkte mit klaren Strukturen, belastbaren Prozessen
+              und einem Netzwerk für nachhaltige Expansion.
             </p>
           </div>
         </Reveal>
