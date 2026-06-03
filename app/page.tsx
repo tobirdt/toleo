@@ -4,9 +4,10 @@ import {
   HeroSection,
   InvestmentsSection,
   PortfolioSection,
+  ProcessSection,
   ProfileSection,
   ProjectsSection,
-  ServicesSection
+  ServicesSection,
 } from "@/components/sections";
 import { Footer, Header, Ticker } from "@/components/site";
 
@@ -20,6 +21,7 @@ export default function Home() {
       <ProfileSection />
       <ServicesSection />
       <ProjectsSection />
+      <ProcessSection />
       <PortfolioSection />
       <InvestmentsSection />
       <ContactSection />

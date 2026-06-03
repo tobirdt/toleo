@@ -7,34 +7,45 @@ export function ProfileSection() {
   return (
     <section className="section profile-section" id="profil">
       <div className="section-inner profile-grid">
-        <Reveal>
-          <p className="section-kicker">Firmenprofil</p>
-          <h2>Eine Holding für Wachstum, Marktzugang und belastbare Umsetzung.</h2>
-        </Reveal>
 
-        <Reveal delay={0.08}>
-          <div className="profile-copy">
-            <p>
-              Die Toleo GmbH wurde im Juli 2019 als Familienholding sowie Dienstleistungs- und
-              Beratungsgesellschaft gegründet. Gründer und Geschäftsführer sind Nicole und Holger
-              Rumscheidt.
-            </p>
-            <p>
-              Die Gesellschaft berät, gründet, erwirbt und verwaltet Beteiligungen im In- und
-              Ausland. Der Fokus liegt auf klaren Strukturen, belastbarer Umsetzung und nachhaltigem
-              Wachstum.
-            </p>
-          </div>
-        </Reveal>
+        <div>
+          <Reveal>
+            <p className="section-kicker">Firmenprofil</p>
+            <h2>Eine Holding für Wachstum, Marktzugang und belastbare Umsetzung.</h2>
+          </Reveal>
 
-        <Reveal className="profile-visual" delay={0.14}>
+          <Reveal delay={0.1}>
+            <div className="profile-copy">
+              <p>
+                Die Toleo GmbH wurde im Juli 2019 als Familienholding sowie Dienstleistungs- und
+                Beratungsgesellschaft gegründet. Gründer und Geschäftsführer sind Nicole und Holger
+                Rumscheidt.
+              </p>
+              <p>
+                Die Gesellschaft berät, gründet, erwirbt und verwaltet Beteiligungen im In- und
+                Ausland. Der Fokus liegt auf klaren Strukturen, belastbarer Umsetzung und
+                nachhaltigem Wachstum.
+              </p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.18}>
+            <div className="fields">
+              {profileFields.map((item) => (
+                <span key={item}>{item}</span>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+
+        <Reveal className="profile-visual" delay={0.12}>
           <div className="image-frame">
             <Image
               src="/images/firm-profile.jpg"
               alt="Handschlag in einem Besprechungsraum"
               width={1200}
               height={800}
-              sizes="(max-width: 900px) 100vw, 44vw"
+              sizes="(max-width: 1050px) 100vw, 44vw"
             />
             <div className="frame-caption">
               <span>capital</span>
@@ -44,13 +55,6 @@ export function ProfileSection() {
           </div>
         </Reveal>
 
-        <Reveal delay={0.18}>
-          <div className="fields">
-            {profileFields.map((item) => (
-              <span key={item}>{item}</span>
-            ))}
-          </div>
-        </Reveal>
       </div>
     </section>
   );

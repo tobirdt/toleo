@@ -131,3 +131,37 @@ export const tickerItems = [
   "Franchise",
   "Operations"
 ];
+
+export type ProcessPhase = {
+  number: string;
+  title: string;
+  text: string;
+};
+
+export const processPhases: ProcessPhase[] = [
+  {
+    number: "01",
+    title: "Analyse",
+    text: "Marktpotenziale, Wettbewerbsumfeld und regulatorische Rahmenbedingungen werden systematisch bewertet. Klare Faktenlage als Grundlage jeder Entscheidung."
+  },
+  {
+    number: "02",
+    title: "Strategie",
+    text: "Positionierung, Geschäftsmodell und Marktzugangsstrategie werden präzise entwickelt. Strategische Exzellenz mit operativer Umsetzbarkeit als Maßstab."
+  },
+  {
+    number: "03",
+    title: "Markteintritt",
+    text: "Operative Begleitung beim nationalen und internationalen Markteintritt. Netzwerk, Compliance-Wissen und lokale Expertise im direkten Einsatz."
+  },
+  {
+    number: "04",
+    title: "Umsetzung",
+    text: "Management-Unterstützung, Vertrieb, Marketing und Controlling aus einer Hand. Konsequente Bodenhaftung in jeder Phase der Realisierung."
+  },
+  {
+    number: "05",
+    title: "Beteiligung",
+    text: "Langfristige Partnerschaften, Beteiligungen und nachhaltige Investitionen. Wertsteigerung durch Struktur, Kapital und kontinuierliche Expertise."
+  }
+];

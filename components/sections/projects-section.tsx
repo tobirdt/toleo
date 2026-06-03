@@ -17,22 +17,24 @@ export function ProjectsSection() {
           </div>
         </Reveal>
 
-        <div className="project-areas">
-          {projectAreas.map((area, index) => (
-            <Reveal key={area} delay={index * 0.035}>
-              <div className="area-row">
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <p>{area}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
+        <div>
+          <div className="project-areas">
+            {projectAreas.map((area, index) => (
+              <Reveal key={area} delay={index * 0.04}>
+                <div className="area-row">
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <p>{area}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
 
-        <Reveal delay={0.14} className="method-cloud">
-          {projectMethods.map((method) => (
-            <span key={method}>{method}</span>
-          ))}
-        </Reveal>
+          <Reveal delay={0.16} className="method-cloud">
+            {projectMethods.map((method) => (
+              <span key={method}>{method}</span>
+            ))}
+          </Reveal>
+        </div>
       </div>
     </section>
   );
