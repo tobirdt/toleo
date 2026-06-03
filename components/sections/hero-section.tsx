@@ -25,7 +25,7 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.08 }}
           >
-            Toleo gestaltet Wachstum mit Präzision, Kapital und Haltung.
+            Toleo. Wachstum mit Präzision, Kapital und Haltung.
           </motion.h1>
           <motion.p
             className="hero-copy"
@@ -33,9 +33,8 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.18 }}
           >
-            Smarte Investitionen für eine nachhaltige Zukunft. Beratung, Beteiligungen und operative
-            Managementunterstützung für Kommunikationstechnologien, Sicherheit, Verteidigung und
-            Hospitality.
+            Beratung, Beteiligungen und operative Unterstützung für spezialisierte Märkte:
+            Kommunikationstechnologien, Sicherheit, Verteidigung und Hospitality.
           </motion.p>
           <motion.div
             className="hero-actions"

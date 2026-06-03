@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export function AnimatedLogo() {
   return (
-    <div className="animated-logo" aria-label="Toleo Holding">
+    <div className="animated-logo" role="img" aria-label="Toleo Holding Logo">
       <Image
         className="animated-logo-image"
         src="/images/toleo-logo.png"

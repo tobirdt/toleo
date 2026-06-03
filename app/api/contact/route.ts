@@ -6,25 +6,44 @@ type ContactPayload = {
   lastName?: string;
   email?: string;
   message?: string;
+  company?: string;
 };
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const maxNameLength = 80;
+const maxEmailLength = 160;
+const maxMessageLength = 3000;
 
 export async function POST(request: Request) {
   let payload: ContactPayload;
 
   try {
-    payload = (await request.json()) as ContactPayload;
+    const body = await request.json();
+    payload = isRecord(body) ? (body as ContactPayload) : {};
   } catch {
     return NextResponse.json({ error: "Ungültige Anfrage." }, { status: 400 });
   }
 
-  const firstName = payload.firstName?.trim() ?? "";
-  const lastName = payload.lastName?.trim() ?? "";
-  const email = payload.email?.trim() ?? "";
-  const message = payload.message?.trim() ?? "";
+  const firstName = getField(payload.firstName);
+  const lastName = getField(payload.lastName);
+  const email = getField(payload.email);
+  const message = getField(payload.message);
+  const company = getField(payload.company);
 
-  if (!firstName || !lastName || !emailPattern.test(email) || message.length < 10) {
+  if (company) {
+    return NextResponse.json({ ok: true });
+  }
+
+  if (
+    !firstName ||
+    !lastName ||
+    firstName.length > maxNameLength ||
+    lastName.length > maxNameLength ||
+    email.length > maxEmailLength ||
+    !emailPattern.test(email) ||
+    message.length < 10 ||
+    message.length > maxMessageLength
+  ) {
     return NextResponse.json(
       { error: "Bitte füllen Sie alle Felder korrekt aus." },
       { status: 400 }
@@ -85,4 +104,12 @@ function escapeHtml(value: string) {
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
+}
+
+function getField(value: unknown) {
+  return typeof value === "string" ? value.trim() : "";
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
 }

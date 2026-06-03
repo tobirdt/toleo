@@ -20,9 +20,9 @@ export function ProfileSection() {
               Rumscheidt.
             </p>
             <p>
-              Die Gesellschaft erbringt Beratungsleistungen in verschiedenen Geschäftsfeldern,
-              beteiligt sich an Unternehmen mit gleichem oder ähnlichem Zweck im In- und Ausland
-              und übernimmt deren Führung oder Beteiligung als persönlich haftende Gesellschafterin.
+              Die Gesellschaft berät, gründet, erwirbt und verwaltet Beteiligungen im In- und
+              Ausland. Der Fokus liegt auf klaren Strukturen, belastbarer Umsetzung und nachhaltigem
+              Wachstum.
             </p>
           </div>
         </Reveal>

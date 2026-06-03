@@ -10,9 +10,8 @@ export function ServicesSection() {
             <p className="section-kicker">Dienstleistungen</p>
             <h2>Strategische Beratung mit operativer Bodenhaftung.</h2>
             <p>
-              Toleo begleitet Kunden und Unternehmen mit einem 360-Grad-Service:
-              Unternehmensvertretung, Markteintritt, Strategieentwicklung, Branding, operative
-              Managementunterstützung und Vermittlung.
+              Toleo verbindet strategische Beratung mit Umsetzung: Markteintritt, Positionierung,
+              Management, Finanzen, Compliance und Vermittlung.
             </p>
           </div>
         </Reveal>

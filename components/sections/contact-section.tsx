@@ -9,6 +9,7 @@ type ContactStatus = "idle" | "loading" | "success" | "error";
 export function ContactSection() {
   const [status, setStatus] = useState<ContactStatus>("idle");
   const [statusMessage, setStatusMessage] = useState("");
+  const isSubmitting = status === "loading";
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -20,7 +21,8 @@ export function ContactSection() {
       firstName: String(formData.get("firstName") ?? ""),
       lastName: String(formData.get("lastName") ?? ""),
       email: String(formData.get("email") ?? ""),
-      message: String(formData.get("message") ?? "")
+      message: String(formData.get("message") ?? ""),
+      company: String(formData.get("company") ?? "")
     };
 
     try {
@@ -72,30 +74,53 @@ export function ContactSection() {
         </Reveal>
 
         <Reveal delay={0.08}>
-          <form className="contact-form" onSubmit={handleSubmit}>
+          <form
+            className="contact-form"
+            onSubmit={handleSubmit}
+            aria-busy={isSubmitting}
+            aria-describedby="contact-status"
+          >
             <div className="form-row">
               <label>
                 Vorname
-                <input name="firstName" type="text" autoComplete="given-name" required />
+                <input
+                  name="firstName"
+                  type="text"
+                  autoComplete="given-name"
+                  maxLength={80}
+                  required
+                />
               </label>
               <label>
                 Nachname
-                <input name="lastName" type="text" autoComplete="family-name" required />
+                <input
+                  name="lastName"
+                  type="text"
+                  autoComplete="family-name"
+                  maxLength={80}
+                  required
+                />
               </label>
             </div>
             <label>
               E-Mail-Adresse
-              <input name="email" type="email" autoComplete="email" required />
+              <input name="email" type="email" autoComplete="email" maxLength={160} required />
             </label>
             <label>
               Nachricht
-              <textarea name="message" rows={5} minLength={10} required />
+              <textarea name="message" rows={5} minLength={10} maxLength={3000} required />
             </label>
-            <button type="submit" disabled={status === "loading"}>
+            <div className="form-honey" aria-hidden="true">
+              <label>
+                Firma
+                <input name="company" type="text" tabIndex={-1} autoComplete="off" />
+              </label>
+            </div>
+            <button type="submit" disabled={isSubmitting}>
               <Send size={18} aria-hidden="true" />
-              {status === "loading" ? "Wird gesendet..." : "Senden"}
+              {isSubmitting ? "Wird gesendet..." : "Nachricht senden"}
             </button>
-            <p className={`form-status ${status}`} aria-live="polite">
+            <p id="contact-status" className={`form-status ${status}`} aria-live="polite">
               {statusMessage}
             </p>
           </form>

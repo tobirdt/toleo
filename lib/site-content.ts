@@ -38,17 +38,17 @@ export const navigation: NavigationItem[] = [
 export const services: Service[] = [
   {
     title: "Markteintritt & Strategie",
-    text: "Analyse, Positionierung, Marktplatzierung und operative Begleitung für neue nationale und internationale Märkte.",
+    text: "Analyse, Positionierung und operative Begleitung für nationale und internationale Markteintritte.",
     icon: Target
   },
   {
     title: "Vertrieb & Marketing",
-    text: "Vertriebsunterstützung, Branding, Marketingpläne und Audits für anspruchsvolle Wachstumsphasen.",
+    text: "Vertriebsunterstützung, Markenführung, Marketingpläne und Audits für anspruchsvolle Wachstumsphasen.",
     icon: LineChart
   },
   {
     title: "Sicherheit & Verteidigung",
-    text: "Beratung für Kommunikations-, Sicherheits- und Verteidigungslösungen innerhalb des rechtlichen Rahmens.",
+    text: "Beratung für Kommunikations-, Sicherheits- und Verteidigungslösungen im rechtlichen Rahmen.",
     icon: ShieldCheck
   },
   {
@@ -58,7 +58,7 @@ export const services: Service[] = [
   },
   {
     title: "Recht & Regulierung",
-    text: "Unterstützung bei nationalen und internationalen Vorschriften, Exportthemen und Compliance-Fragen.",
+    text: "Unterstützung bei Vorschriften, Exportthemen und Compliance-Fragen in komplexen Märkten.",
     icon: Scale
   },
   {
@@ -72,7 +72,7 @@ export const projectAreas = [
   "Neue Technologien und Anwendungen",
   "Informations- und Kommunikationstechnologien",
   "Sichere Kommunikation und Cyber Defense",
-  "Produkte und Lösungen für Sicherheit und Verteidigung",
+  "Lösungen für Sicherheit und Verteidigung",
   "Restaurant- und Gastgewerbe",
   "Implementierung von Franchise-Systemen"
 ];
@@ -116,18 +116,18 @@ export const portfolio: PortfolioItem[] = [
 ];
 
 export const investmentPoints = [
-  "Umfassender Erfahrungsschatz in Produktplatzierung, Vertriebsunterstützung, Marketing und Finanzen.",
+  "Erfahrung in Produktplatzierung, Vertriebsunterstützung, Marketing und Finanzen.",
   "Investitionen in nationale und internationale Hospitality-Märkte, Restaurantkonzepte und Gastronomie-Unternehmen.",
   "Unterstützung nationaler und internationaler Marktführer beim Erreichen operativer und finanzieller Ziele.",
-  "Bewährte Prozesse und Strategien, um Unternehmen von nationalen zu internationalen Playern weiterzuentwickeln."
+  "Klare Prozesse, um Unternehmen von nationalen Strukturen in internationale Märkte weiterzuentwickeln."
 ];
 
 export const tickerItems = [
-  "Strategy",
-  "Capital",
-  "Defense",
+  "Strategie",
+  "Kapital",
+  "Sicherheit",
   "Hospitality",
-  "Market Entry",
+  "Markteintritt",
   "Franchise",
   "Operations"
 ];

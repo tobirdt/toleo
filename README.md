@@ -9,6 +9,7 @@ React, Framer Motion und Resend.
 - `components/sections/*` enthält die großen Onepager-Abschnitte.
 - `components/site/*` enthält wiederverwendbare Site-Bausteine wie Header, Footer und Ticker.
 - `components/motion/*` enthält Motion-Helfer.
+- `components/brand/*` enthält markennahe Komponenten wie das animierte Toleo-Logo.
 - `components/legal/legal-shell.tsx` kapselt das Layout der rechtlichen Seiten.
 - `lib/site-content.ts` enthält Navigation, Leistungsdaten, Projektlisten und Portfolio-Inhalte.
 - `app/api/contact/route.ts` ist die serverseitige Resend-Route für das Kontaktformular.
@@ -21,7 +22,7 @@ Die Farbwelt ist aus dem Logo abgeleitet:
 - Ink: `#181716`
 - Blue: `#3060a8`
 - Red: `#e00810`
-- Paper: `#fffdfa`
+- Paper: `#ffffff`
 
 Bei neuen Komponenten zuerst diese Tokens verwenden und bestehende Klassenmuster
 weiterführen, statt neue Farbsysteme einzuführen.
