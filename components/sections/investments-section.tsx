@@ -10,10 +10,10 @@ export function InvestmentsSection() {
 
         <Reveal>
           <p className="section-kicker">Investitionen</p>
-          <h2>Smarte Investitionen für eine nachhaltige Zukunft.</h2>
+          <h2>Gezielte Investitionen. Langfristige Partnerschaften.</h2>
           <blockquote>
-            „Man trifft sich immer zweimal im Leben. Deshalb ist es essenziell, immer fair und
-            freundlich miteinander umzugehen und mit Spaß und Motivation dabei zu sein."
+            „Man trifft sich immer zweimal im Leben. Deshalb ist es entscheidend, immer fair und
+            freundlich miteinander umzugehen und mit Freude und Überzeugung dabei zu sein."
             <cite>Holger Rumscheidt, Geschäftsführer der Toleo GmbH</cite>
           </blockquote>
           <div style={{ marginTop: 28 }}>

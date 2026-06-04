@@ -16,10 +16,27 @@ export function Header() {
 
   useEffect(() => { setScrolled(window.scrollY > 40); }, []);
 
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [menuOpen]);
+
   return (
     <header className="site-header" data-scrolled={scrolled ? "true" : "false"}>
       <a className="brand" href="#top" aria-label="Toleo Startseite">
-        <Image src="/images/toleo-logo.png" alt="Toleo Holding" width={92} height={58} priority />
+        <Image src="/images/toleo-logo.png" alt="Toleo Holding" width={72} height={45} priority />
       </a>
 
       <nav className="desktop-nav" aria-label="Hauptnavigation">
@@ -50,6 +67,7 @@ export function Header() {
         initial={{ scaleX: 0, opacity: 0 }}
         animate={{ scaleX: scrolled ? 1 : 0, opacity: scrolled ? 1 : 0 }}
         transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+        suppressHydrationWarning
       />
 
       {menuOpen && (
@@ -62,7 +80,12 @@ export function Header() {
           transition={{ duration: 0.22 }}
         >
           {navigation.map((item) => (
-            <a key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>
+            <a
+              key={item.href}
+              href={item.href}
+              className={item.href === "#kontakt" ? "mobile-nav-cta" : undefined}
+              onClick={() => setMenuOpen(false)}
+            >
               {item.label}
             </a>
           ))}

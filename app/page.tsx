@@ -9,7 +9,7 @@ import {
   ProjectsSection,
   ServicesSection,
 } from "@/components/sections";
-import { Footer, Header, Ticker } from "@/components/site";
+import { Footer, Header } from "@/components/site";
 
 export default function Home() {
   return (
@@ -17,7 +17,6 @@ export default function Home() {
       <ScrollProgress />
       <Header />
       <HeroSection />
-      <Ticker />
       <ProfileSection />
       <ServicesSection />
       <ProjectsSection />

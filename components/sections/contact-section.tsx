@@ -77,7 +77,7 @@ export function ContactSection() {
                   </a>
                   <span>
                     <MapPin size={17} aria-hidden="true" />
-                    Ritter-Hilprand Str. 9, 82024 Taufkirchen
+                    Ritter-Hilprand-Str. 9, 82024 Taufkirchen
                   </span>
                 </div>
 

@@ -74,7 +74,7 @@ export const projectAreas = [
   "Sichere Kommunikation und Cyber Defense",
   "Lösungen für Sicherheit und Verteidigung",
   "Restaurant- und Gastgewerbe",
-  "Implementierung von Franchise-Systemen"
+  "Aufbau und Entwicklung von Franchise-Systemen"
 ];
 
 export const projectMethods = [
@@ -95,41 +95,31 @@ export const projectMethods = [
 export const portfolio: PortfolioItem[] = [
   {
     title: "Sicherheits- und Verteidigungsindustrie",
-    image: "/images/defence.png",
+    image: "/images/portfolio-defence.png",
     tone: "blue"
   },
   {
     title: "Vertrieb und Marketing",
-    image: "/images/marketing.png",
+    image: "/images/portfolio-marketing.png",
     tone: "red"
   },
   {
     title: "Gastronomie und F&B",
-    image: "/images/hospitality.jpg",
+    image: "/images/portfolio-hospitality.jpg",
     tone: "ink"
   },
   {
     title: "Franchise-Systeme",
-    image: "/images/franchise.jpg",
+    image: "/images/portfolio-franchise.jpg",
     tone: "blue"
   }
 ];
 
 export const investmentPoints = [
-  "Erfahrung in Produktplatzierung, Vertriebsunterstützung, Marketing und Finanzen.",
+  "Langjährige Erfahrung in Produktplatzierung, Vertriebsunterstützung, Marketing und Finanzen.",
   "Investitionen in nationale und internationale Hospitality-Märkte, Restaurantkonzepte und Gastronomie-Unternehmen.",
-  "Unterstützung nationaler und internationaler Marktführer beim Erreichen operativer und finanzieller Ziele.",
-  "Klare Prozesse, um Unternehmen von nationalen Strukturen in internationale Märkte weiterzuentwickeln."
-];
-
-export const tickerItems = [
-  "Strategie",
-  "Kapital",
-  "Sicherheit",
-  "Hospitality",
-  "Markteintritt",
-  "Franchise",
-  "Operations"
+  "Unterstützung etablierter Unternehmen beim Erreichen operativer und finanzieller Ziele – national wie international.",
+  "Strukturierte Begleitung beim Eintritt in internationale Märkte und beim Aufbau neuer Geschäftsfelder."
 ];
 
 export type ProcessPhase = {
@@ -147,7 +137,7 @@ export const processPhases: ProcessPhase[] = [
   {
     number: "02",
     title: "Strategie",
-    text: "Positionierung, Geschäftsmodell und Marktzugangsstrategie werden präzise entwickelt. Strategische Exzellenz mit operativer Umsetzbarkeit als Maßstab."
+    text: "Positionierung, Geschäftsmodell und Marktzugangsstrategie werden präzise entwickelt. Machbarkeit und operative Realisierbarkeit sind der Maßstab."
   },
   {
     number: "03",
@@ -157,11 +147,11 @@ export const processPhases: ProcessPhase[] = [
   {
     number: "04",
     title: "Umsetzung",
-    text: "Management-Unterstützung, Vertrieb, Marketing und Controlling aus einer Hand. Konsequente Bodenhaftung in jeder Phase der Realisierung."
+    text: "Management-Unterstützung, Vertrieb, Marketing und Controlling aus einer Hand. Operative Präzision und Verlässlichkeit in jeder Phase der Realisierung."
   },
   {
     number: "05",
     title: "Beteiligung",
-    text: "Langfristige Partnerschaften, Beteiligungen und nachhaltige Investitionen. Wertsteigerung durch Struktur, Kapital und kontinuierliche Expertise."
+    text: "Langfristige Partnerschaften, Beteiligungen und nachhaltige Investitionen. Wertsteigerung durch Struktur, Kapital und langfristiges Engagement."
   }
 ];

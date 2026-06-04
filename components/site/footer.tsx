@@ -9,7 +9,7 @@ export function Footer() {
       <div className="footer-inner">
         <div>
           <Image src="/images/toleo-logo.png" alt="Toleo Holding" width={92} height={58} />
-          <p>Smarte Investitionen für eine nachhaltige Zukunft.</p>
+          <p>Strategische Beratung und Beteiligungen seit 2019.</p>
           <div style={{ marginTop: 16 }}>
             <BrandDots size={7} />
           </div>

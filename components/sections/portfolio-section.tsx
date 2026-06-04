@@ -37,6 +37,7 @@ function HorizontalTile({ item, index, total, progress }: TileProps) {
     <motion.article
       className={`portfolio-h-tile portfolio-tile ${item.tone}`}
       style={{ scale, opacity }}
+      suppressHydrationWarning
     >
       <Image src={item.image} alt={item.title} fill sizes="(max-width: 1050px) 100vw, 360px" />
       <div className="tile-orbit" aria-hidden="true" />
@@ -90,7 +91,7 @@ export function PortfolioSection() {
           </div>
 
           <div className="portfolio-h-viewport">
-            <motion.div className="portfolio-h-track" style={{ x: trackX }}>
+            <motion.div className="portfolio-h-track" style={{ x: trackX }} suppressHydrationWarning>
               {portfolio.map((item, index) => (
                 <HorizontalTile
                   key={item.title}
@@ -111,6 +112,7 @@ export function PortfolioSection() {
                 <motion.div
                   className="portfolio-h-progress-fill"
                   style={{ scaleX: progressFill }}
+                  suppressHydrationWarning
                 />
               </div>
             </div>

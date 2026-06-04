@@ -10,9 +10,9 @@ export function ProjectsSection() {
             <p className="section-kicker">Projekte</p>
             <h2>Von der Machbarkeit bis zum Management.</h2>
             <p className="lead">
-              Toleo berät Kunden, Unternehmen und Dienstleister in der Sicherheits-,
-              Verteidigungs- und Gastgewerbebranche. Das Spektrum reicht von
-              Start-up-Einheiten bis hin zu großen Konzernen.
+              Toleo berät Unternehmen im Sicherheits- und Verteidigungsumfeld
+              sowie in der Gastronomie- und Hospitality-Branche. Das Spektrum reicht
+              von Gründungsunternehmen bis hin zu etablierten Konzernen.
             </p>
           </div>
         </Reveal>

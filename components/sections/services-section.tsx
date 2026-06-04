@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import {
   motion,
   useMotionValueEvent,
+  useReducedMotion,
   useScroll,
   useSpring,
   useTransform,
@@ -11,10 +12,13 @@ import {
 import { Reveal } from "@/components/motion/reveal";
 import { services } from "@/lib/site-content";
 import { BrandDots } from "@/components/ui";
+import { useIsMobile } from "@/lib/hooks";
 
 export function ServicesSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const prefersReduced = useReducedMotion();
+  const isMobile = useIsMobile();
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -28,10 +32,11 @@ export function ServicesSection() {
   });
 
   const lineProgress = useTransform(smoothProgress, [0, 1], [0, 1]);
-  const rawIndex = useTransform(scrollYProgress, [0, 1], [0, services.length - 0.001]);
+  const rawIndex = useTransform(scrollYProgress, [0, 1], [0, services.length - 1e-6]);
 
   useMotionValueEvent(rawIndex, "change", (v) => {
-    const next = Math.min(services.length - 1, Math.max(0, Math.round(v)));
+    if (isMobile) return;
+    const next = Math.min(services.length - 1, Math.max(0, Math.floor(v)));
     setActiveIndex(next);
   });
 
@@ -66,14 +71,15 @@ export function ServicesSection() {
                 d="M0.5 0 V100"
                 pathLength={1}
                 style={{ pathLength: lineProgress }}
+                suppressHydrationWarning
               />
             </svg>
 
             <p className="section-kicker">Dienstleistungen</p>
             <h2>Strategische Beratung mit operativer Bodenhaftung.</h2>
             <p className="lead">
-              Toleo verbindet Strategie mit Umsetzung: Markteintritt, Positionierung,
-              Management, Finanzen, Compliance und Vermittlung.
+              Toleo verbindet Strategie mit Umsetzung – von Markteintritt und Positionierung
+              bis zu Vertrieb, Finanzen und Compliance.
             </p>
 
             {/* Step indicators */}
@@ -107,14 +113,18 @@ export function ServicesSection() {
                 <motion.article
                   key={service.title}
                   className={`services-sticky-card${isActive ? " is-active" : ""}`}
-                  animate={{
+                  animate={isMobile ? undefined : {
                     opacity: isActive ? 1 : 0,
                     scale:   isActive ? 1 : 0.97,
-                    filter:  isActive ? "blur(0px)" : "blur(4px)",
                     y:       isActive ? 0 : 12,
                   }}
-                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                  aria-hidden={!isActive}
+                  transition={
+                    prefersReduced
+                      ? { duration: 0 }
+                      : { duration: 0.5, ease: [0.22, 1, 0.36, 1] }
+                  }
+                  aria-hidden={isMobile ? undefined : !isActive}
+                  suppressHydrationWarning
                 >
                   <span className="card-index">{String(index + 1).padStart(2, "0")}</span>
                   <Icon size={28} aria-hidden="true" />

@@ -1,18 +1,6 @@
-import Image from "next/image";
-
 export function AnimatedLogo() {
   return (
     <div className="animated-logo" role="img" aria-label="Toleo Holding Logo">
-      <Image
-        className="animated-logo-image"
-        src="/images/toleo-logo.png"
-        alt=""
-        fill
-        priority
-        sizes="(max-width: 700px) 78vw, 420px"
-        aria-hidden="true"
-      />
-
       <svg className="animated-logo-trace" viewBox="0 0 428 271" aria-hidden="true">
         <path
           className="logo-stroke logo-stroke-top"
@@ -50,8 +38,6 @@ export function AnimatedLogo() {
           HOLDING
         </text>
       </svg>
-
-      <span className="logo-writing-point" aria-hidden="true" />
     </div>
   );
 }
