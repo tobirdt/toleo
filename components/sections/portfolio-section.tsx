@@ -11,6 +11,7 @@ import {
   type MotionValue,
 } from "framer-motion";
 import { Reveal } from "@/components/motion/reveal";
+import { useIsMobile } from "@/lib/hooks";
 import type { PortfolioItem, SiteContent } from "@/lib/site-content";
 
 type TileProps = {
@@ -18,9 +19,10 @@ type TileProps = {
   index: number;
   total: number;
   progress: MotionValue<number>;
+  isStatic: boolean;
 };
 
-function HorizontalTile({ item, index, total, progress }: TileProps) {
+function HorizontalTile({ item, index, total, progress, isStatic }: TileProps) {
   const scale = useTransform(progress, (v) => {
     const center   = index / (total - 1 || 1);
     const distance = Math.abs(v - center);
@@ -36,7 +38,7 @@ function HorizontalTile({ item, index, total, progress }: TileProps) {
   return (
     <motion.article
       className={`portfolio-h-tile portfolio-tile ${item.tone}`}
-      style={{ scale, opacity }}
+      style={isStatic ? undefined : { scale, opacity }}
       suppressHydrationWarning
     >
       <Image src={item.image} alt={item.title} fill sizes="(max-width: 1050px) 100vw, 360px" />
@@ -56,6 +58,7 @@ type PortfolioSectionProps = {
 export function PortfolioSection({ content }: PortfolioSectionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeStep, setActiveStep] = useState(1);
+  const isMobile = useIsMobile();
   const items = content.items;
 
   const { scrollYProgress } = useScroll({
@@ -95,7 +98,11 @@ export function PortfolioSection({ content }: PortfolioSectionProps) {
           </div>
 
           <div className="portfolio-h-viewport">
-            <motion.div className="portfolio-h-track" style={{ x: trackX }} suppressHydrationWarning>
+            <motion.div
+              className="portfolio-h-track"
+              style={isMobile ? undefined : { x: trackX }}
+              suppressHydrationWarning
+            >
               {items.map((item, index) => (
                 <HorizontalTile
                   key={item.title}
@@ -103,6 +110,7 @@ export function PortfolioSection({ content }: PortfolioSectionProps) {
                   index={index}
                   total={items.length}
                   progress={smoothProgress}
+                  isStatic={isMobile}
                 />
               ))}
             </motion.div>
