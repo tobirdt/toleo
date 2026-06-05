@@ -49,8 +49,8 @@ Für den Versand über Resend werden diese Environment Variables benötigt:
 
 ```bash
 RESEND_API_KEY=re_...
-CONTACT_TO_EMAIL=info@toleo.biz
-CONTACT_FROM_EMAIL=kontakt@toleo.biz
+CONTACT_TO_EMAIL=hrumscheidt@toleo.biz
+CONTACT_FROM_EMAIL=tickets@lws98.de
 ```
 
 `CONTACT_FROM_EMAIL` muss bei Resend verifiziert sein. Ohne `RESEND_API_KEY` zeigt
