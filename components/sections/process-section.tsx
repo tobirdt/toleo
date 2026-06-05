@@ -1,147 +1,31 @@
-"use client";
-
-import { useEffect, useRef, useState } from "react";
-import {
-  motion,
-  useMotionValue,
-  useMotionValueEvent,
-  useReducedMotion,
-  useScroll,
-  useSpring,
-} from "framer-motion";
+import { Reveal } from "@/components/motion/reveal";
 import type { SiteContent } from "@/lib/site-content";
-import { useIsMobile } from "@/lib/hooks";
 
 type ProcessSectionProps = {
   content: SiteContent["process"];
 };
 
 export function ProcessSection({ content }: ProcessSectionProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [activePhase, setActivePhase] = useState(0);
-  const prevPhase = useRef(0);
-  const prefersReduced = useReducedMotion();
-  const isMobile = useIsMobile();
-  const phases = content.phases;
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
-
-  useMotionValueEvent(scrollYProgress, "change", (value) => {
-    if (isMobile) return;
-    const clamped = Math.min(Math.max(value, 0), 1 - 1e-6);
-    const next = Math.floor(clamped * phases.length);
-    if (next !== prevPhase.current) {
-      prevPhase.current = next;
-      setActivePhase(next);
-    }
-  });
-
-  const lineTarget = useMotionValue(0);
-  const lineScaleY = useSpring(lineTarget, {
-    stiffness: prefersReduced ? 10000 : 220,
-    damping:   prefersReduced ?   200 :  34,
-    mass: 0.4,
-  });
-
-  useEffect(() => {
-    if (isMobile) return;
-    lineTarget.set(
-      phases.length > 1
-        ? activePhase / (phases.length - 1)
-        : 0
-    );
-  }, [activePhase, isMobile, lineTarget, phases.length]);
-
   return (
-    <section className="section process-section" id="prozess">
-      <div className="process-outer" ref={containerRef}>
-        <div className="process-sticky">
-          <div className="section-inner process-inner">
+    <section className="section viewport-section process-section" id="prozess">
+      <div className="section-inner viewport-inner process-inner">
+        <Reveal className="process-intro">
+          <p className="section-kicker">{content.kicker}</p>
+          <h2>{content.title}</h2>
+          <p className="lead">{content.copy}</p>
+        </Reveal>
 
-            <div className="process-timeline" aria-hidden="true">
-              <div className="process-line-track" />
-
-              <motion.div
-                className="process-line-fill"
-                style={{ scaleY: lineScaleY }}
-                suppressHydrationWarning
-              />
-
-              {phases.map((phase, i) => (
-                <div key={phase.number} className="process-phase-row">
-                  <div
-                    className={[
-                      "process-phase-dot",
-                      i === activePhase ? "is-active" : "",
-                      i < activePhase  ? "is-past"   : "",
-                    ].filter(Boolean).join(" ")}
-                  >
-                    {phase.number}
-                  </div>
-                  <span
-                    className={[
-                      "process-phase-label",
-                      i === activePhase ? "is-active" : "",
-                      i < activePhase  ? "is-past"   : "",
-                    ].filter(Boolean).join(" ")}
-                  >
-                    {phase.title}
-                  </span>
-                </div>
-              ))}
-            </div>
-
-            <div className="process-content">
-              <div className="process-content-header">
-                <p className="section-kicker">{content.kicker}</p>
-                <h2>{content.title}</h2>
-              </div>
-              <div className="process-cards">
-                {phases.map((phase, i) => {
-                  const cardContent = (
-                    <>
-                      <span className="process-card-number">{phase.number}</span>
-                      <h3>{phase.title}</h3>
-                      <p>{phase.text}</p>
-                    </>
-                  );
-
-                  if (isMobile) {
-                    return (
-                      <div key={phase.number} className="process-card">
-                        {cardContent}
-                      </div>
-                    );
-                  }
-
-                  return (
-                    <motion.div
-                      key={phase.number}
-                      className={`process-card${i === activePhase ? " is-active" : ""}`}
-                      animate={{
-                        opacity: i === activePhase ? 1 : 0,
-                        scale:   i === activePhase ? 1 : 0.97,
-                        y:       i === activePhase ? 0 : 10,
-                      }}
-                      transition={
-                        prefersReduced
-                          ? { duration: 0 }
-                          : { duration: 0.4, ease: [0.25, 1, 0.35, 1] }
-                      }
-                      aria-hidden={i !== activePhase}
-                    >
-                      {cardContent}
-                    </motion.div>
-                  );
-                })}
-              </div>
-            </div>
-
-          </div>
-        </div>
+        <ol className="process-map" aria-label={content.title}>
+          {content.phases.map((phase, index) => (
+            <li key={phase.number} className="process-card">
+              <Reveal delay={index * 0.045}>
+                <span className="process-card-number">{phase.number}</span>
+                <h3>{phase.title}</h3>
+                <p>{phase.text}</p>
+              </Reveal>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   );

@@ -43,11 +43,6 @@ export function ProfileSection({ content }: ProfileSectionProps) {
               height={800}
               sizes="(max-width: 1050px) 100vw, 44vw"
             />
-            <div className="frame-caption">
-              {content.frameCaption.map((item) => (
-                <span key={item}>{item}</span>
-              ))}
-            </div>
           </div>
         </Reveal>
 

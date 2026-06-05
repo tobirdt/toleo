@@ -7,10 +7,10 @@ type ProjectsSectionProps = {
 
 export function ProjectsSection({ content }: ProjectsSectionProps) {
   return (
-    <section className="section project-section" id="projekte">
-      <div className="section-inner project-layout">
-        <Reveal>
-          <div className="sticky-copy">
+    <section className="section viewport-section project-section" id="projekte">
+      <div className="section-inner viewport-inner project-layout">
+        <Reveal className="project-intro">
+          <div>
             <p className="section-kicker">{content.kicker}</p>
             <h2>{content.title}</h2>
             <p className="lead">
@@ -19,7 +19,7 @@ export function ProjectsSection({ content }: ProjectsSectionProps) {
           </div>
         </Reveal>
 
-        <div>
+        <div className="projects-board">
           <div className="project-areas">
             {content.areas.map((area, index) => (
               <Reveal key={area} delay={index * 0.04}>

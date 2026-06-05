@@ -11,10 +11,10 @@ export function Footer({ navigation, content }: FooterProps) {
   return (
     <footer className="footer">
       <div className="footer-inner">
-        <div>
+        <div className="footer-brand">
           <Image src="/images/toleo-logo.png" alt="Toleo Holding" width={92} height={58} />
-          <p>{content.tagline}</p>
-          <div style={{ marginTop: 16 }}>
+          <div>
+            <p>{content.tagline}</p>
             <BrandDots size={7} />
           </div>
         </div>

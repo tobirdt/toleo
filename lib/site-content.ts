@@ -73,7 +73,6 @@ export type SiteContent = {
     paragraphs: string[];
     fields: string[];
     imageAlt: string;
-    frameCaption: string[];
   };
   services: {
     kicker: string;
@@ -92,6 +91,7 @@ export type SiteContent = {
   process: {
     kicker: string;
     title: string;
+    copy: string;
     phases: ProcessPhase[];
   };
   portfolio: {
@@ -192,8 +192,7 @@ export const siteContent: Record<Locale, SiteContent> = {
         "Die Gesellschaft berät, gründet, erwirbt und verwaltet Beteiligungen im In- und Ausland. Der Fokus liegt auf klaren Strukturen, belastbarer Umsetzung und nachhaltigem Wachstum."
       ],
       fields: ["Neugründung", "Erwerb", "Verwaltung", "Beratung"],
-      imageAlt: "Handschlag in einem Besprechungsraum",
-      frameCaption: ["capital", "structure", "trust"]
+      imageAlt: "Handschlag in einem Besprechungsraum"
     },
     services: {
       kicker: "Dienstleistungen",
@@ -265,31 +264,33 @@ export const siteContent: Record<Locale, SiteContent> = {
     process: {
       kicker: "Vorgehensweise",
       title: "Von der Analyse zur Beteiligung.",
+      copy:
+        "Ein klarer Ablauf für fundierte Entscheidungen, belastbare Umsetzung und langfristige Partnerschaften.",
       phases: [
         {
           number: "01",
           title: "Analyse",
-          text: "Marktpotenziale, Wettbewerbsumfeld und regulatorische Rahmenbedingungen werden systematisch bewertet. Klare Faktenlage als Grundlage jeder Entscheidung."
+          text: "Marktpotenzial, Wettbewerb und Regulierung werden bewertet. So entsteht eine klare Faktenbasis."
         },
         {
           number: "02",
           title: "Strategie",
-          text: "Positionierung, Geschäftsmodell und Marktzugangsstrategie werden präzise entwickelt. Machbarkeit und operative Realisierbarkeit sind der Maßstab."
+          text: "Positionierung, Geschäftsmodell und Marktzugang werden präzise entwickelt."
         },
         {
           number: "03",
           title: "Markteintritt",
-          text: "Operative Begleitung beim nationalen und internationalen Markteintritt. Netzwerk, Compliance-Wissen und lokale Expertise im direkten Einsatz."
+          text: "Netzwerk, Compliance-Wissen und lokale Expertise begleiten den Eintritt in neue Märkte."
         },
         {
           number: "04",
           title: "Umsetzung",
-          text: "Management-Unterstützung, Vertrieb, Marketing und Controlling aus einer Hand. Operative Präzision und Verlässlichkeit in jeder Phase der Realisierung."
+          text: "Management, Vertrieb, Marketing und Controlling werden operativ verbunden."
         },
         {
           number: "05",
           title: "Beteiligung",
-          text: "Langfristige Partnerschaften, Beteiligungen und nachhaltige Investitionen. Wertsteigerung durch Struktur, Kapital und langfristiges Engagement."
+          text: "Langfristige Partnerschaften und Investitionen schaffen strukturiertes Wachstum."
         }
       ]
     },
@@ -421,8 +422,7 @@ export const siteContent: Record<Locale, SiteContent> = {
         "The company advises, establishes, acquires and manages investments in Germany and abroad. Its focus is clear structures, reliable execution and sustainable growth."
       ],
       fields: ["Formation", "Acquisition", "Management", "Advisory"],
-      imageAlt: "Handshake in a meeting room",
-      frameCaption: ["capital", "structure", "trust"]
+      imageAlt: "Handshake in a meeting room"
     },
     services: {
       kicker: "Services",
@@ -494,31 +494,33 @@ export const siteContent: Record<Locale, SiteContent> = {
     process: {
       kicker: "Approach",
       title: "From analysis to investment.",
+      copy:
+        "A clear sequence for informed decisions, reliable execution and long-term partnerships.",
       phases: [
         {
           number: "01",
           title: "Analysis",
-          text: "Market potential, competitive environment and regulatory framework are evaluated systematically. A clear factual basis guides every decision."
+          text: "Market potential, competition and regulation are evaluated to create a clear factual basis."
         },
         {
           number: "02",
           title: "Strategy",
-          text: "Positioning, business model and market access strategy are developed precisely. Feasibility and operational viability define the standard."
+          text: "Positioning, business model and market access are developed with precision."
         },
         {
           number: "03",
           title: "Market Entry",
-          text: "Operational support for national and international market entry. Network access, compliance knowledge and local expertise are applied directly."
+          text: "Network access, compliance knowledge and local expertise support entry into new markets."
         },
         {
           number: "04",
           title: "Execution",
-          text: "Management support, sales, marketing and controlling from one source. Operational precision and reliability in every phase of implementation."
+          text: "Management, sales, marketing and controlling are connected operationally."
         },
         {
           number: "05",
           title: "Investment",
-          text: "Long-term partnerships, participations and sustainable investments. Value creation through structure, capital and long-term commitment."
+          text: "Long-term partnerships and investments create structured growth."
         }
       ]
     },
