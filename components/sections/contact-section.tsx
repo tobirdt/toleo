@@ -20,10 +20,11 @@ export function ContactSection({ content, locale }: ContactSectionProps) {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    const form = event.currentTarget;
     setStatus("loading");
     setStatusMessage("");
 
-    const formData = new FormData(event.currentTarget);
+    const formData = new FormData(form);
     const payload = {
       firstName: String(formData.get("firstName") ?? ""),
       lastName:  String(formData.get("lastName")  ?? ""),
@@ -46,7 +47,7 @@ export function ContactSection({ content, locale }: ContactSectionProps) {
         throw new Error(data.error ?? content.error);
       }
 
-      event.currentTarget.reset();
+      form.reset();
       setStatus("success");
       setStatusMessage(content.success);
     } catch (error) {
