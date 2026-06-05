@@ -4,9 +4,22 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { ArrowUpRight, Menu, X } from "lucide-react";
-import { navigation } from "@/lib/site-content";
+import {
+  getLocaleHref,
+  languages,
+  type Locale,
+  type NavigationItem,
+  type SiteContent
+} from "@/lib/site-content";
 
-export function Header() {
+type HeaderProps = {
+  locale: Locale;
+  navigation: NavigationItem[];
+  copy: SiteContent["header"];
+  language: SiteContent["language"];
+};
+
+export function Header({ locale, navigation, copy, language }: HeaderProps) {
   const [menuOpen, setMenuOpen]   = useState(false);
   const [scrolled, setScrolled]   = useState(false);
   const { scrollY }               = useScroll();
@@ -35,25 +48,27 @@ export function Header() {
 
   return (
     <header className="site-header" data-scrolled={scrolled ? "true" : "false"}>
-      <a className="brand" href="#top" aria-label="Toleo Startseite">
+      <a className="brand" href="#top" aria-label={copy.homeAria}>
         <Image src="/images/toleo-logo.png" alt="Toleo Holding" width={72} height={45} priority />
       </a>
 
-      <nav className="desktop-nav" aria-label="Hauptnavigation">
+      <nav className="desktop-nav" aria-label={copy.navAria}>
         {navigation.map((item) => (
           <a key={item.href} href={item.href}>{item.label}</a>
         ))}
       </nav>
 
       <a className="header-cta" href="#kontakt">
-        Kontakt
+        {copy.contact}
         <ArrowUpRight size={15} aria-hidden="true" />
       </a>
+
+      <LanguageSwitch locale={locale} language={language} />
 
       <button
         className="menu-button"
         type="button"
-        aria-label={menuOpen ? "Menü schließen" : "Menü öffnen"}
+        aria-label={menuOpen ? copy.closeMenu : copy.openMenu}
         aria-controls={mobileNavId}
         aria-expanded={menuOpen}
         onClick={() => setMenuOpen(!menuOpen)}
@@ -74,7 +89,7 @@ export function Header() {
         <motion.nav
           id={mobileNavId}
           className="mobile-nav"
-          aria-label="Mobile Navigation"
+          aria-label={copy.mobileNavAria}
           initial={{ opacity: 0, y: -10, scale: 0.98 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.22 }}
@@ -92,5 +107,32 @@ export function Header() {
         </motion.nav>
       )}
     </header>
+  );
+}
+
+function LanguageSwitch({
+  locale,
+  language
+}: {
+  locale: Locale;
+  language: SiteContent["language"];
+}) {
+  return (
+    <nav className="language-switch" aria-label={language.ariaLabel}>
+      {languages.map((item) => {
+        const isActive = item.locale === locale;
+
+        return (
+          <a
+            key={item.locale}
+            href={isActive ? "#top" : getLocaleHref(item.locale)}
+            aria-current={isActive ? "page" : undefined}
+            aria-label={item.locale === "de" ? "Deutsch" : "English"}
+          >
+            {language.options[item.locale]}
+          </a>
+        );
+      })}
+    </nav>
   );
 }

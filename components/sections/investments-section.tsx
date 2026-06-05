@@ -1,20 +1,23 @@
 import { CheckCircle2 } from "lucide-react";
 import { Reveal } from "@/components/motion/reveal";
-import { investmentPoints } from "@/lib/site-content";
+import type { SiteContent } from "@/lib/site-content";
 import { BrandDots } from "@/components/ui";
 
-export function InvestmentsSection() {
+type InvestmentsSectionProps = {
+  content: SiteContent["investments"];
+};
+
+export function InvestmentsSection({ content }: InvestmentsSectionProps) {
   return (
     <section className="section investment-section" id="investitionen">
       <div className="section-inner investment-grid">
 
         <Reveal>
-          <p className="section-kicker">Investitionen</p>
-          <h2>Gezielte Investitionen. Langfristige Partnerschaften.</h2>
+          <p className="section-kicker">{content.kicker}</p>
+          <h2>{content.title}</h2>
           <blockquote>
-            „Man trifft sich immer zweimal im Leben. Deshalb ist es entscheidend, immer fair und
-            freundlich miteinander umzugehen und mit Freude und Überzeugung dabei zu sein."
-            <cite>Holger Rumscheidt, Geschäftsführer der Toleo GmbH</cite>
+            {content.quote}
+            <cite>{content.cite}</cite>
           </blockquote>
           <div style={{ marginTop: 28 }}>
             <BrandDots mode="signature" size={9} />
@@ -23,10 +26,13 @@ export function InvestmentsSection() {
 
         <Reveal delay={0.1}>
           <div className="investment-list">
-            {investmentPoints.map((point) => (
-              <div key={point}>
+            {content.points.map((point) => (
+              <div key={point.desktop}>
                 <CheckCircle2 size={20} aria-hidden="true" />
-                <p>{point}</p>
+                <p>
+                  <span className="desktop-copy">{point.desktop}</span>
+                  <span className="mobile-copy">{point.mobile}</span>
+                </p>
               </div>
             ))}
           </div>

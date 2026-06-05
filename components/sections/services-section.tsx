@@ -10,11 +10,15 @@ import {
   useTransform,
 } from "framer-motion";
 import { Reveal } from "@/components/motion/reveal";
-import { services } from "@/lib/site-content";
+import type { SiteContent } from "@/lib/site-content";
 import { BrandDots } from "@/components/ui";
 import { useIsMobile } from "@/lib/hooks";
 
-export function ServicesSection() {
+type ServicesSectionProps = {
+  content: SiteContent["services"];
+};
+
+export function ServicesSection({ content }: ServicesSectionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const prefersReduced = useReducedMotion();
@@ -32,11 +36,11 @@ export function ServicesSection() {
   });
 
   const lineProgress = useTransform(smoothProgress, [0, 1], [0, 1]);
-  const rawIndex = useTransform(scrollYProgress, [0, 1], [0, services.length - 1e-6]);
+  const rawIndex = useTransform(scrollYProgress, [0, 1], [0, content.items.length - 1e-6]);
 
   useMotionValueEvent(rawIndex, "change", (v) => {
     if (isMobile) return;
-    const next = Math.min(services.length - 1, Math.max(0, Math.floor(v)));
+    const next = Math.min(content.items.length - 1, Math.max(0, Math.floor(v)));
     setActiveIndex(next);
   });
 
@@ -75,16 +79,15 @@ export function ServicesSection() {
               />
             </svg>
 
-            <p className="section-kicker">Dienstleistungen</p>
-            <h2>Strategische Beratung mit operativer Bodenhaftung.</h2>
+            <p className="section-kicker">{content.kicker}</p>
+            <h2>{content.title}</h2>
             <p className="lead">
-              Toleo verbindet Strategie mit Umsetzung – von Markteintritt und Positionierung
-              bis zu Vertrieb, Finanzen und Compliance.
+              {content.copy}
             </p>
 
             {/* Step indicators */}
-            <nav className="services-sticky-nav" aria-label="Leistungs-Navigation">
-              {services.map((service, index) => (
+            <nav className="services-sticky-nav" aria-label={content.navAria}>
+              {content.items.map((service, index) => (
                 <button
                   key={service.title}
                   type="button"
@@ -105,7 +108,7 @@ export function ServicesSection() {
 
           {/* RIGHT — animated card */}
           <div className="services-sticky-right">
-            {services.map((service, index) => {
+            {content.items.map((service, index) => {
               const Icon = service.icon;
               const isActive = index === activeIndex;
 

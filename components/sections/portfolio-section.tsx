@@ -11,7 +11,7 @@ import {
   type MotionValue,
 } from "framer-motion";
 import { Reveal } from "@/components/motion/reveal";
-import { portfolio, type PortfolioItem } from "@/lib/site-content";
+import type { PortfolioItem, SiteContent } from "@/lib/site-content";
 
 type TileProps = {
   item: PortfolioItem;
@@ -49,9 +49,14 @@ function HorizontalTile({ item, index, total, progress }: TileProps) {
   );
 }
 
-export function PortfolioSection() {
+type PortfolioSectionProps = {
+  content: SiteContent["portfolio"];
+};
+
+export function PortfolioSection({ content }: PortfolioSectionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeStep, setActiveStep] = useState(1);
+  const items = content.items;
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -68,8 +73,8 @@ export function PortfolioSection() {
   const progressFill = useTransform(smoothProgress, [0, 1], [0, 1]);
 
   useMotionValueEvent(smoothProgress, "change", (v) => {
-    const step = Math.round(v * (portfolio.length - 1)) + 1;
-    setActiveStep(Math.min(portfolio.length, Math.max(1, step)));
+    const step = Math.round(v * (items.length - 1)) + 1;
+    setActiveStep(Math.min(items.length, Math.max(1, step)));
   });
 
   return (
@@ -80,11 +85,10 @@ export function PortfolioSection() {
           <div className="portfolio-h-header">
             <Reveal>
               <div className="section-heading compact">
-                <p className="section-kicker">Portfolio</p>
-                <h2>Beteiligungen und Beratung in spezialisierten Märkten.</h2>
+                <p className="section-kicker">{content.kicker}</p>
+                <h2>{content.title}</h2>
                 <p>
-                  Toleo verbindet spezialisierte Märkte mit klaren Strukturen, belastbaren
-                  Prozessen und einem Netzwerk für nachhaltige Expansion.
+                  {content.copy}
                 </p>
               </div>
             </Reveal>
@@ -92,12 +96,12 @@ export function PortfolioSection() {
 
           <div className="portfolio-h-viewport">
             <motion.div className="portfolio-h-track" style={{ x: trackX }} suppressHydrationWarning>
-              {portfolio.map((item, index) => (
+              {items.map((item, index) => (
                 <HorizontalTile
                   key={item.title}
                   item={item}
                   index={index}
-                  total={portfolio.length}
+                  total={items.length}
                   progress={smoothProgress}
                 />
               ))}
@@ -106,7 +110,7 @@ export function PortfolioSection() {
             <div className="portfolio-h-progress" aria-hidden="true">
               <span>
                 {String(activeStep).padStart(2, "0")} /{" "}
-                {String(portfolio.length).padStart(2, "0")}
+                {String(items.length).padStart(2, "0")}
               </span>
               <div className="portfolio-h-progress-bar">
                 <motion.div

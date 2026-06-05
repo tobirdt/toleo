@@ -9,15 +9,20 @@ import {
   useScroll,
   useSpring,
 } from "framer-motion";
-import { processPhases } from "@/lib/site-content";
+import type { SiteContent } from "@/lib/site-content";
 import { useIsMobile } from "@/lib/hooks";
 
-export function ProcessSection() {
+type ProcessSectionProps = {
+  content: SiteContent["process"];
+};
+
+export function ProcessSection({ content }: ProcessSectionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activePhase, setActivePhase] = useState(0);
   const prevPhase = useRef(0);
   const prefersReduced = useReducedMotion();
   const isMobile = useIsMobile();
+  const phases = content.phases;
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -27,7 +32,7 @@ export function ProcessSection() {
   useMotionValueEvent(scrollYProgress, "change", (value) => {
     if (isMobile) return;
     const clamped = Math.min(Math.max(value, 0), 1 - 1e-6);
-    const next = Math.floor(clamped * processPhases.length);
+    const next = Math.floor(clamped * phases.length);
     if (next !== prevPhase.current) {
       prevPhase.current = next;
       setActivePhase(next);
@@ -44,11 +49,11 @@ export function ProcessSection() {
   useEffect(() => {
     if (isMobile) return;
     lineTarget.set(
-      processPhases.length > 1
-        ? activePhase / (processPhases.length - 1)
+      phases.length > 1
+        ? activePhase / (phases.length - 1)
         : 0
     );
-  }, [activePhase, isMobile, lineTarget]);
+  }, [activePhase, isMobile, lineTarget, phases.length]);
 
   return (
     <section className="section process-section" id="prozess">
@@ -65,7 +70,7 @@ export function ProcessSection() {
                 suppressHydrationWarning
               />
 
-              {processPhases.map((phase, i) => (
+              {phases.map((phase, i) => (
                 <div key={phase.number} className="process-phase-row">
                   <div
                     className={[
@@ -91,11 +96,11 @@ export function ProcessSection() {
 
             <div className="process-content">
               <div className="process-content-header">
-                <p className="section-kicker">Vorgehensweise</p>
-                <h2>Von der Analyse zur Beteiligung.</h2>
+                <p className="section-kicker">{content.kicker}</p>
+                <h2>{content.title}</h2>
               </div>
               <div className="process-cards">
-                {processPhases.map((phase, i) => {
+                {phases.map((phase, i) => {
                   const cardContent = (
                     <>
                       <span className="process-card-number">{phase.number}</span>

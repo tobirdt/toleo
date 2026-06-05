@@ -16,7 +16,7 @@ export default function ImpressumPage() {
       <p>
         Toleo GmbH
         <br />
-        Ritter-Hilprand Str. 9
+        Ritter-Hilprand-Str. 9
         <br />
         82024 Taufkirchen
         <br />
@@ -47,7 +47,7 @@ export default function ImpressumPage() {
       <p>
         Verantwortlich nach § 18 Abs. 2 MStV:
         <br />
-        Holger Rumscheidt, Ritter-Hilprand Str. 9, 82024 Taufkirchen
+        Holger Rumscheidt, Ritter-Hilprand-Str. 9, 82024 Taufkirchen
       </p>
 
       <h2>Verbraucherstreitbeilegung</h2>
@@ -71,7 +71,7 @@ export default function ImpressumPage() {
         verantwortlich.
       </p>
 
-      <p>Stand: 3. Juni 2026</p>
+      <p>Stand: 5. Juni 2026</p>
     </LegalShell>
   );
 }

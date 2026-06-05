@@ -4,10 +4,16 @@ import { type FormEvent, useState } from "react";
 import { Mail, MapPin, Phone, Send } from "lucide-react";
 import { Reveal } from "@/components/motion/reveal";
 import { BrandDots } from "@/components/ui";
+import type { Locale, SiteContent } from "@/lib/site-content";
 
 type ContactStatus = "idle" | "loading" | "success" | "error";
 
-export function ContactSection() {
+type ContactSectionProps = {
+  content: SiteContent["contact"];
+  locale: Locale;
+};
+
+export function ContactSection({ content, locale }: ContactSectionProps) {
   const [status, setStatus]               = useState<ContactStatus>("idle");
   const [statusMessage, setStatusMessage] = useState("");
   const isSubmitting                      = status === "loading";
@@ -24,6 +30,7 @@ export function ContactSection() {
       email:     String(formData.get("email")     ?? ""),
       message:   String(formData.get("message")   ?? ""),
       company:   String(formData.get("company")   ?? ""),
+      locale,
     };
 
     try {
@@ -36,18 +43,18 @@ export function ContactSection() {
       const data = (await response.json()) as { error?: string };
 
       if (!response.ok) {
-        throw new Error(data.error ?? "Die Nachricht konnte nicht gesendet werden.");
+        throw new Error(data.error ?? content.error);
       }
 
       event.currentTarget.reset();
       setStatus("success");
-      setStatusMessage("Danke für Ihre Nachricht. Wir melden uns zeitnah bei Ihnen.");
+      setStatusMessage(content.success);
     } catch (error) {
       setStatus("error");
       setStatusMessage(
         error instanceof Error
           ? error.message
-          : "Die Nachricht konnte nicht gesendet werden."
+          : content.error
       );
     }
   }
@@ -61,9 +68,9 @@ export function ContactSection() {
 
               {/* LEFT — info */}
               <div>
-                <p className="section-kicker">Kontakt</p>
+                <p className="section-kicker">{content.kicker}</p>
                 <h2 className="contact-heading">
-                  Starten wir ein Gespräch über Markt, Struktur und Wachstum.
+                  {content.title}
                 </h2>
 
                 <div className="contact-links">
@@ -95,7 +102,7 @@ export function ContactSection() {
               >
                 <div className="form-row">
                   <label>
-                    Vorname
+                    {content.labels.firstName}
                     <input
                       name="firstName"
                       type="text"
@@ -105,7 +112,7 @@ export function ContactSection() {
                     />
                   </label>
                   <label>
-                    Nachname
+                    {content.labels.lastName}
                     <input
                       name="lastName"
                       type="text"
@@ -117,7 +124,7 @@ export function ContactSection() {
                 </div>
 
                 <label>
-                  E-Mail-Adresse
+                  {content.labels.email}
                   <input
                     name="email"
                     type="email"
@@ -128,7 +135,7 @@ export function ContactSection() {
                 </label>
 
                 <label>
-                  Nachricht
+                  {content.labels.message}
                   <textarea
                     name="message"
                     rows={5}
@@ -140,14 +147,14 @@ export function ContactSection() {
 
                 <div className="form-honey" aria-hidden="true">
                   <label>
-                    Firma
+                    {content.labels.company}
                     <input name="company" type="text" tabIndex={-1} autoComplete="off" />
                   </label>
                 </div>
 
                 <button type="submit" disabled={isSubmitting}>
                   <Send size={17} aria-hidden="true" />
-                  {isSubmitting ? "Wird gesendet…" : "Nachricht senden"}
+                  {isSubmitting ? content.sending : content.button}
                 </button>
 
                 <p

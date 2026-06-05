@@ -7,12 +7,38 @@ type ContactPayload = {
   email?: string;
   message?: string;
   company?: string;
+  locale?: string;
 };
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const maxNameLength = 80;
 const maxEmailLength = 160;
 const maxMessageLength = 3000;
+
+const messages = {
+  de: {
+    invalidRequest: "Ungültige Anfrage.",
+    invalidFields: "Bitte füllen Sie alle Felder korrekt aus.",
+    missingMailConfig: "Der Mailversand ist noch nicht konfiguriert.",
+    sendFailed: "Die Nachricht konnte nicht gesendet werden.",
+    subjectPrefix: "Neue Kontaktanfrage von",
+    emailHeading: "Neue Kontaktanfrage über toleo.biz",
+    nameLabel: "Name",
+    emailLabel: "E-Mail",
+    messageLabel: "Nachricht"
+  },
+  en: {
+    invalidRequest: "Invalid request.",
+    invalidFields: "Please fill in all fields correctly.",
+    missingMailConfig: "Email delivery is not configured yet.",
+    sendFailed: "The message could not be sent.",
+    subjectPrefix: "New contact request from",
+    emailHeading: "New contact request via toleo.biz",
+    nameLabel: "Name",
+    emailLabel: "Email",
+    messageLabel: "Message"
+  }
+};
 
 export async function POST(request: Request) {
   let payload: ContactPayload;
@@ -21,9 +47,11 @@ export async function POST(request: Request) {
     const body = await request.json();
     payload = isRecord(body) ? (body as ContactPayload) : {};
   } catch {
-    return NextResponse.json({ error: "Ungültige Anfrage." }, { status: 400 });
+    return NextResponse.json({ error: messages.de.invalidRequest }, { status: 400 });
   }
 
+  const locale = payload.locale === "en" ? "en" : "de";
+  const copy = messages[locale];
   const firstName = getField(payload.firstName);
   const lastName = getField(payload.lastName);
   const email = getField(payload.email);
@@ -45,7 +73,7 @@ export async function POST(request: Request) {
     message.length > maxMessageLength
   ) {
     return NextResponse.json(
-      { error: "Bitte füllen Sie alle Felder korrekt aus." },
+      { error: copy.invalidFields },
       { status: 400 }
     );
   }
@@ -56,7 +84,7 @@ export async function POST(request: Request) {
 
   if (!apiKey) {
     return NextResponse.json(
-      { error: "Der Mailversand ist noch nicht konfiguriert." },
+      { error: copy.missingMailConfig },
       { status: 500 }
     );
   }
@@ -69,20 +97,20 @@ export async function POST(request: Request) {
       from,
       to,
       replyTo: email,
-      subject: `Neue Kontaktanfrage von ${fullName}`,
+      subject: `${copy.subjectPrefix} ${fullName}`,
       text: [
-        `Name: ${fullName}`,
-        `E-Mail: ${email}`,
+        `${copy.nameLabel}: ${fullName}`,
+        `${copy.emailLabel}: ${email}`,
         "",
-        "Nachricht:",
+        `${copy.messageLabel}:`,
         message
       ].join("\n"),
       html: `
         <div style="font-family:Arial,sans-serif;color:#111;line-height:1.6">
-          <h2>Neue Kontaktanfrage über toleo.biz</h2>
-          <p><strong>Name:</strong> ${escapeHtml(fullName)}</p>
-          <p><strong>E-Mail:</strong> ${escapeHtml(email)}</p>
-          <p><strong>Nachricht:</strong></p>
+          <h2>${escapeHtml(copy.emailHeading)}</h2>
+          <p><strong>${escapeHtml(copy.nameLabel)}:</strong> ${escapeHtml(fullName)}</p>
+          <p><strong>${escapeHtml(copy.emailLabel)}:</strong> ${escapeHtml(email)}</p>
+          <p><strong>${escapeHtml(copy.messageLabel)}:</strong></p>
           <p>${escapeHtml(message).replace(/\n/g, "<br />")}</p>
         </div>
       `
@@ -91,7 +119,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true });
   } catch {
     return NextResponse.json(
-      { error: "Die Nachricht konnte nicht gesendet werden." },
+      { error: copy.sendFailed },
       { status: 500 }
     );
   }

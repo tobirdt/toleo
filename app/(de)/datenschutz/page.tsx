@@ -23,7 +23,7 @@ export default function DatenschutzPage() {
       <p>
         Toleo GmbH
         <br />
-        Ritter-Hilprand Str. 9
+        Ritter-Hilprand-Str. 9
         <br />
         82024 Taufkirchen
         <br />
@@ -34,23 +34,26 @@ export default function DatenschutzPage() {
 
       <h2>2. Hosting und Server-Logdaten</h2>
       <p>
-        Diese Website ist für den Betrieb auf Vercel vorbereitet. Beim Aufruf der Website werden
-        technisch notwendige Daten verarbeitet, damit die Seite ausgeliefert und gesichert werden
-        kann. Dazu können insbesondere IP-Adresse, Datum und Uhrzeit des Zugriffs, aufgerufene URL,
-        Referrer-URL, Browsertyp, Betriebssystem und technische Statusinformationen gehören.
+        Diese Website wird bei Vercel Inc. betrieben. Beim Aufruf der Website werden technisch
+        notwendige Daten verarbeitet, damit die Seite ausgeliefert, geschützt und stabil betrieben
+        werden kann. Dazu können insbesondere IP-Adresse, Datum und Uhrzeit des Zugriffs,
+        aufgerufene URL, Referrer-URL, Browsertyp, Betriebssystem und technische
+        Statusinformationen gehören.
       </p>
       <p>
         Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes Interesse liegt in der
-        sicheren, stabilen und effizienten Bereitstellung der Website. Soweit Vercel als
-        Dienstleister eingesetzt wird, erfolgt die Verarbeitung auf Grundlage eines Vertrags zur
-        Auftragsverarbeitung und geeigneter Garantien für etwaige Drittlandübermittlungen.
+        sicheren, stabilen und effizienten Bereitstellung der Website. Die Verarbeitung durch Vercel
+        erfolgt auf Grundlage eines Vertrags zur Auftragsverarbeitung. Soweit Daten in ein Drittland
+        übermittelt werden, erfolgt dies auf Grundlage geeigneter Garantien, insbesondere
+        Standardvertragsklauseln.
       </p>
 
       <h2>3. Kontaktaufnahme und Kontaktformular</h2>
       <p>
         Wenn Sie uns per E-Mail oder über das Kontaktformular kontaktieren, verarbeiten wir die von
         Ihnen angegebenen Daten, insbesondere Name, E-Mail-Adresse und Nachrichtentext, um Ihre
-        Anfrage zu bearbeiten.
+        Anfrage zu bearbeiten. Pflichtfelder im Formular sind nur die Angaben, die wir für die
+        Bearbeitung der Anfrage benötigen. Weitere Angaben erfolgen freiwillig.
       </p>
       <p>
         Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, soweit Ihre Anfrage auf vorvertragliche
@@ -61,23 +64,24 @@ export default function DatenschutzPage() {
 
       <h2>4. E-Mail-Versand über Resend</h2>
       <p>
-        Für den Versand von Nachrichten aus dem Kontaktformular ist die Nutzung von Resend, Inc. als
-        E-Mail-Dienstleister vorgesehen. Dabei werden die für den Versand erforderlichen Kontakt- und
+        Für die Zustellung von Nachrichten aus dem Kontaktformular setzen wir Resend, Inc. als
+        E-Mail-Dienstleister ein. Dabei werden die für den Versand erforderlichen Kontakt- und
         Inhaltsdaten an Resend übermittelt. Resend verarbeitet diese Daten als Dienstleister, soweit
         dies für die Zustellung und technische Absicherung des Mailversands erforderlich ist.
       </p>
       <p>
         Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes Interesse liegt in der
-        zuverlässigen Zustellung eingehender Kontaktanfragen. Soweit Daten in ein Drittland
-        übermittelt werden, erfolgt dies auf Grundlage geeigneter Garantien, insbesondere
-        Standardvertragsklauseln, sofern erforderlich.
+        zuverlässigen Zustellung eingehender Kontaktanfragen. Die Verarbeitung erfolgt auf Grundlage
+        eines Vertrags zur Auftragsverarbeitung. Soweit Daten in ein Drittland übermittelt werden,
+        erfolgt dies auf Grundlage geeigneter Garantien, insbesondere Standardvertragsklauseln.
       </p>
 
       <h2>5. Cookies, Analyse und Tracking</h2>
       <p>
         Diese Website setzt keine Analyse- oder Marketing-Cookies ein und verwendet kein
-        Trackingpixel. Technisch notwendige Speicherungen können nur dann erfolgen, wenn sie für den
-        Betrieb der Website oder die Sicherheit der Anfrage erforderlich sind.
+        Trackingpixel. Soweit technisch notwendige Cookies oder vergleichbare Technologien für den
+        Betrieb der Website oder die Sicherheit der Anfrage erforderlich sind, erfolgt dies auf
+        Grundlage von § 25 Abs. 2 Nr. 2 TDDDG.
       </p>
 
       <h2>6. Speicherdauer</h2>
@@ -112,7 +116,7 @@ export default function DatenschutzPage() {
         nicht statt.
       </p>
 
-      <p>Stand: 3. Juni 2026</p>
+      <p>Stand: 5. Juni 2026</p>
     </LegalShell>
   );
 }

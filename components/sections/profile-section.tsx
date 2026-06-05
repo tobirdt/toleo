@@ -1,37 +1,33 @@
 import Image from "next/image";
 import { Reveal } from "@/components/motion/reveal";
+import type { SiteContent } from "@/lib/site-content";
 
-const profileFields = ["Neugründung", "Erwerb", "Verwaltung", "Beratung"];
+type ProfileSectionProps = {
+  content: SiteContent["profile"];
+};
 
-export function ProfileSection() {
+export function ProfileSection({ content }: ProfileSectionProps) {
   return (
     <section className="section profile-section" id="profil">
       <div className="section-inner profile-grid">
 
         <div>
           <Reveal>
-            <p className="section-kicker">Firmenprofil</p>
-            <h2>Eine Holding für Wachstum, Marktzugang und belastbare Umsetzung.</h2>
+            <p className="section-kicker">{content.kicker}</p>
+            <h2>{content.title}</h2>
           </Reveal>
 
           <Reveal delay={0.1}>
             <div className="profile-copy">
-              <p>
-                Die Toleo GmbH wurde im Juli 2019 als Familienholding sowie Dienstleistungs- und
-                Beratungsgesellschaft gegründet. Gründer und Geschäftsführer sind Nicole und Holger
-                Rumscheidt.
-              </p>
-              <p>
-                Die Gesellschaft berät, gründet, erwirbt und verwaltet Beteiligungen im In- und
-                Ausland. Der Fokus liegt auf klaren Strukturen, belastbarer Umsetzung und
-                nachhaltigem Wachstum.
-              </p>
+              {content.paragraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
             </div>
           </Reveal>
 
           <Reveal delay={0.18}>
             <div className="fields">
-              {profileFields.map((item) => (
+              {content.fields.map((item) => (
                 <span key={item}>{item}</span>
               ))}
             </div>
@@ -42,15 +38,15 @@ export function ProfileSection() {
           <div className="image-frame">
             <Image
               src="/images/firm-profile.jpg"
-              alt="Handschlag in einem Besprechungsraum"
+              alt={content.imageAlt}
               width={1200}
               height={800}
               sizes="(max-width: 1050px) 100vw, 44vw"
             />
             <div className="frame-caption">
-              <span>capital</span>
-              <span>structure</span>
-              <span>trust</span>
+              {content.frameCaption.map((item) => (
+                <span key={item}>{item}</span>
+              ))}
             </div>
           </div>
         </Reveal>
