@@ -23,7 +23,7 @@ export function ServicesSection({ content }: ServicesSectionProps) {
             const Icon = service.icon;
 
             return (
-              <Reveal key={service.title} delay={index * 0.035}>
+              <Reveal key={service.title} className="service-card-wrap" delay={index * 0.035}>
                 <article className="service-card" data-accent={index % 2 === 0 ? "blue" : "red"}>
                   <div className="service-card-top">
                     <span>{String(index + 1).padStart(2, "0")}</span>

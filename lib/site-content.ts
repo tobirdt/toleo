@@ -35,6 +35,12 @@ export type ProcessPhase = {
   text: string;
 };
 
+export type ProjectPillar = {
+  number: string;
+  title: string;
+  items: string[];
+};
+
 export type InvestmentPoint = {
   desktop: string;
   mobile: string;
@@ -85,8 +91,7 @@ export type SiteContent = {
     kicker: string;
     title: string;
     copy: string;
-    areas: string[];
-    methods: string[];
+    pillars: ProjectPillar[];
   };
   process: {
     kicker: string;
@@ -237,28 +242,35 @@ export const siteContent: Record<Locale, SiteContent> = {
       kicker: "Projekte",
       title: "Von der Machbarkeit bis zum Management.",
       copy:
-        "Toleo berät Unternehmen im Sicherheits- und Verteidigungsumfeld sowie in der Gastronomie- und Hospitality-Branche. Das Spektrum reicht von Gründungsunternehmen bis hin zu etablierten Konzernen.",
-      areas: [
-        "Neue Technologien und Anwendungen",
-        "Informations- und Kommunikationstechnologien",
-        "Sichere Kommunikation und Cyber Defense",
-        "Lösungen für Sicherheit und Verteidigung",
-        "Restaurant- und Gastgewerbe",
-        "Aufbau und Entwicklung von Franchise-Systemen"
-      ],
-      methods: [
-        "Machbarkeitsstudien",
-        "Markenstrategie",
-        "Geschäftsplanerstellung",
-        "Konzept- und Markenentwicklung",
-        "Projektentwicklung",
-        "Marketingpläne",
-        "Projektmanagement",
-        "Finanzen, Revision und Controlling",
-        "Vertriebs- und Marketing-Audits",
-        "Betriebs-, Sicherheits- und Personalaudits",
-        "Richtlinien und Verfahren",
-        "Executive- und Management-Recruiting"
+        "Toleo begleitet Projekte in Sicherheits-, Verteidigungs-, Gastronomie- und Hospitality-Märkten – von Gründung bis Konzernstruktur.",
+      pillars: [
+        {
+          number: "01",
+          title: "Technologie & Sicherheit",
+          items: [
+            "Neue Technologien und Anwendungen",
+            "Informations- und Kommunikationstechnologien",
+            "Sichere Kommunikation & Cyber Defense",
+            "Sicherheits- und Verteidigungslösungen"
+          ]
+        },
+        {
+          number: "02",
+          title: "Hospitality & Franchise",
+          items: [
+            "Restaurant- und Gastgewerbe",
+            "Aufbau und Entwicklung von Franchise-Systemen"
+          ]
+        },
+        {
+          number: "03",
+          title: "Projektsteuerung",
+          items: [
+            "Machbarkeit, Geschäftsplanung und Konzept",
+            "Marke, Marketing und Projektentwicklung",
+            "Finanzen, Audits, Richtlinien und Recruiting"
+          ]
+        }
       ]
     },
     process: {
@@ -467,28 +479,35 @@ export const siteContent: Record<Locale, SiteContent> = {
       kicker: "Projects",
       title: "From feasibility to management.",
       copy:
-        "Toleo advises companies in security and defence as well as gastronomy and hospitality. The scope ranges from founding teams to established corporations.",
-      areas: [
-        "New technologies and applications",
-        "ICT and communications",
-        "Cyber defence and secure comms",
-        "Security and defence solutions",
-        "Restaurants and hospitality",
-        "Franchise system development"
-      ],
-      methods: [
-        "Feasibility studies",
-        "Brand strategy",
-        "Business planning",
-        "Concept and brand development",
-        "Project development",
-        "Marketing plans",
-        "Project management",
-        "Finance, audit and controlling",
-        "Sales and marketing audits",
-        "Operations, security and personnel audits",
-        "Policies and procedures",
-        "Executive and management recruiting"
+        "Toleo supports projects in security, defence, gastronomy and hospitality, from founding teams to established corporate structures.",
+      pillars: [
+        {
+          number: "01",
+          title: "Technology & Security",
+          items: [
+            "New technologies and applications",
+            "Information and communications technology",
+            "Secure communications & cyber defence",
+            "Security and defence solutions"
+          ]
+        },
+        {
+          number: "02",
+          title: "Hospitality & Franchise",
+          items: [
+            "Restaurants and hospitality",
+            "Development of franchise systems"
+          ]
+        },
+        {
+          number: "03",
+          title: "Project Governance",
+          items: [
+            "Feasibility, business planning and concept",
+            "Brand, marketing and project development",
+            "Finance, audits, procedures and recruiting"
+          ]
+        }
       ]
     },
     process: {
