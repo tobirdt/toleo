@@ -33,10 +33,10 @@ export function LocalizedHome({ locale }: LocalizedHomeProps) {
       />
       <HeroSection content={content.hero} />
       <ProfileSection content={content.profile} />
+      <PortfolioSection content={content.portfolio} />
       <ServicesSection content={content.services} />
       <ProjectsSection content={content.projects} />
       <ProcessSection content={content.process} />
-      <PortfolioSection content={content.portfolio} />
       <InvestmentsSection content={content.investments} />
       <ContactSection content={content.contact} locale={locale} />
       <Footer navigation={content.navigation} content={content.footer} />
