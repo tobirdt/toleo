@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 type BrandDotsMode = "default" | "indicator" | "pulse" | "connected" | "signature";
 
@@ -11,26 +11,29 @@ type BrandDotsProps = {
 };
 
 export function BrandDots({ mode = "default", size = 8, className }: BrandDotsProps) {
+  const prefersReduced = useReducedMotion();
+  const motionEnabled = !prefersReduced;
+
   if (mode === "indicator") {
     return (
       <div className={`brand-dots-indicator ${className ?? ""}`} aria-hidden="true">
         <motion.span
           className="brand-dot brand-dot-blue"
           style={{ width: size, height: size }}
-          animate={{ y: [0, -4, 0] }}
+          animate={motionEnabled ? { y: [0, -4, 0] } : undefined}
           transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
           suppressHydrationWarning
         />
         <motion.span
           className="brand-dots-line"
-          animate={{ scaleY: [0.6, 1, 0.6] }}
+          animate={motionEnabled ? { scaleY: [0.6, 1, 0.6] } : undefined}
           transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
           suppressHydrationWarning
         />
         <motion.span
           className="brand-dot brand-dot-red"
           style={{ width: size, height: size }}
-          animate={{ y: [0, 4, 0] }}
+          animate={motionEnabled ? { y: [0, 4, 0] } : undefined}
           transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
           suppressHydrationWarning
         />
@@ -44,14 +47,14 @@ export function BrandDots({ mode = "default", size = 8, className }: BrandDotsPr
         <motion.span
           className="brand-dot brand-dot-blue"
           style={{ width: size, height: size }}
-          animate={{ scale: [1, 1.3, 1], opacity: [0.6, 1, 0.6] }}
+          animate={motionEnabled ? { scale: [1, 1.3, 1], opacity: [0.6, 1, 0.6] } : undefined}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           suppressHydrationWarning
         />
         <motion.span
           className="brand-dot brand-dot-red"
           style={{ width: size, height: size }}
-          animate={{ scale: [1, 1.3, 1], opacity: [0.6, 1, 0.6] }}
+          animate={motionEnabled ? { scale: [1, 1.3, 1], opacity: [0.6, 1, 0.6] } : undefined}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
           suppressHydrationWarning
         />
@@ -65,14 +68,14 @@ export function BrandDots({ mode = "default", size = 8, className }: BrandDotsPr
         <motion.span
           className="brand-dot brand-dot-blue"
           style={{ width: size, height: size }}
-          initial={{ scale: 0, opacity: 0 }}
+          initial={motionEnabled ? { scale: 0, opacity: 0 } : false}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           suppressHydrationWarning
         />
         <motion.span
           className="brand-dots-connector"
-          initial={{ scaleX: 0 }}
+          initial={motionEnabled ? { scaleX: 0 } : false}
           animate={{ scaleX: 1 }}
           transition={{ duration: 0.6, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
           suppressHydrationWarning
@@ -80,7 +83,7 @@ export function BrandDots({ mode = "default", size = 8, className }: BrandDotsPr
         <motion.span
           className="brand-dot brand-dot-red"
           style={{ width: size, height: size }}
-          initial={{ scale: 0, opacity: 0 }}
+          initial={motionEnabled ? { scale: 0, opacity: 0 } : false}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
           suppressHydrationWarning

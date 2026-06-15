@@ -24,7 +24,7 @@ export function LocalizedHome({ locale }: LocalizedHomeProps) {
   const content = getSiteContent(locale);
 
   return (
-    <main>
+    <main id="main-content">
       <ScrollManager />
       <ScrollProgress />
       <Header

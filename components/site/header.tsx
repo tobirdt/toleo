@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { motion, useMotionValueEvent, useScroll } from "framer-motion";
+import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import {
   getLocaleHref,
@@ -92,27 +92,30 @@ export function Header({ locale, navigation, copy, language }: HeaderProps) {
         suppressHydrationWarning
       />
 
-      {menuOpen && (
-        <motion.nav
-          id={mobileNavId}
-          className="mobile-nav"
-          aria-label={copy.mobileNavAria}
-          initial={{ opacity: 0, y: -10, scale: 0.98 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.22 }}
-        >
-          {navigation.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className={item.href === "#kontakt" ? "mobile-nav-cta" : undefined}
-              onClick={() => setMenuOpen(false)}
-            >
-              {item.label}
-            </a>
-          ))}
-        </motion.nav>
-      )}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.nav
+            id={mobileNavId}
+            className="mobile-nav"
+            aria-label={copy.mobileNavAria}
+            initial={{ opacity: 0, y: -8, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -8, scale: 0.98 }}
+            transition={{ duration: 0.22, ease: [0.23, 1, 0.32, 1] }}
+          >
+            {navigation.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className={item.href === "#kontakt" ? "mobile-nav-cta" : undefined}
+                onClick={() => setMenuOpen(false)}
+              >
+                {item.label}
+              </a>
+            ))}
+          </motion.nav>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

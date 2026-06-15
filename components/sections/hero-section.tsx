@@ -1,14 +1,14 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { AnimatedLogo } from "@/components/brand/animated-logo";
 import type { SiteContent } from "@/lib/site-content";
 
 const reveal = (delay: number) => ({
-  initial: { opacity: 0, y: 22, scale: 0.98 },
+  initial: { opacity: 0, y: 18, scale: 0.96 },
   animate: { opacity: 1, y: 0, scale: 1 },
-  transition: { duration: 1, ease: [0.22, 1, 0.36, 1] as const, delay },
+  transition: { duration: 0.85, ease: [0.23, 1, 0.32, 1] as const, delay },
 });
 
 type HeroSectionProps = {
@@ -16,31 +16,40 @@ type HeroSectionProps = {
 };
 
 export function HeroSection({ content }: HeroSectionProps) {
+  const prefersReduced = useReducedMotion();
   const { scrollYProgress } = useScroll();
 
-  const logoY     = useTransform(scrollYProgress, [0, 0.28], [0,  40]);
+  const logoY     = useTransform(scrollYProgress, [0, 0.28], [0, 40]);
   const copyY     = useTransform(scrollYProgress, [0, 0.28], [0, -28]);
-  const copyOp    = useTransform(scrollYProgress, [0, 0.18], [1,   0]);
+  const copyOp    = useTransform(scrollYProgress, [0, 0.18], [1, 0]);
   const glowScale = useTransform(scrollYProgress, [0, 0.4],  [1, 1.1]);
   const glowOp    = useTransform(scrollYProgress, [0, 0.4],  [1, 0.5]);
 
   return (
     <section className="hero" id="top">
-      <motion.div
-        className="hero-glow hero-glow-blue"
-        style={{ scale: glowScale, opacity: glowOp }}
-        aria-hidden="true"
-        suppressHydrationWarning
-      />
-      <motion.div
-        className="hero-glow hero-glow-red"
-        style={{ scale: glowScale, opacity: glowOp }}
-        aria-hidden="true"
-        suppressHydrationWarning
-      />
+      {!prefersReduced && (
+        <>
+          <motion.div
+            className="hero-glow hero-glow-blue"
+            style={{ scale: glowScale, opacity: glowOp }}
+            aria-hidden="true"
+            suppressHydrationWarning
+          />
+          <motion.div
+            className="hero-glow hero-glow-red"
+            style={{ scale: glowScale, opacity: glowOp }}
+            aria-hidden="true"
+            suppressHydrationWarning
+          />
+        </>
+      )}
 
       <div className="hero-shell">
-        <motion.div className="hero-copy-wrap" style={{ y: copyY, opacity: copyOp }} suppressHydrationWarning>
+        <motion.div
+          className="hero-copy-wrap"
+          style={prefersReduced ? undefined : { y: copyY, opacity: copyOp }}
+          suppressHydrationWarning
+        >
           <motion.p className="eyebrow" suppressHydrationWarning {...reveal(0)}>
             {content.eyebrow}
           </motion.p>
@@ -67,14 +76,18 @@ export function HeroSection({ content }: HeroSectionProps) {
         <div className="hero-visual">
           <motion.div
             className="hero-logo-stage"
-            style={{ y: logoY }}
+            style={prefersReduced ? undefined : { y: logoY }}
             suppressHydrationWarning
           >
             <motion.div
               className="hero-logo-wrap"
-              initial={{ opacity: 0, scale: 0.98 }}
+              initial={prefersReduced ? false : { opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+              transition={
+                prefersReduced
+                  ? { duration: 0 }
+                  : { duration: 0.85, delay: 0.12, ease: [0.23, 1, 0.32, 1] }
+              }
               suppressHydrationWarning
             >
               <AnimatedLogo />
