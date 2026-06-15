@@ -14,6 +14,7 @@ import {
 import { getSiteContent, type Locale } from "@/lib/site-content";
 import { Footer } from "./footer";
 import { Header } from "./header";
+import { ScrollManager } from "./scroll-manager";
 
 type LocalizedHomeProps = {
   locale: Locale;
@@ -24,6 +25,7 @@ export function LocalizedHome({ locale }: LocalizedHomeProps) {
 
   return (
     <main>
+      <ScrollManager />
       <ScrollProgress />
       <Header
         locale={locale}

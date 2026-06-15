@@ -168,10 +168,10 @@ export const siteContent: Record<Locale, SiteContent> = {
     },
     navigation: [
       { label: "Profil", href: "#profil" },
+      { label: "Portfolio", href: "#portfolio" },
       { label: "Leistungen", href: "#leistungen" },
       { label: "Projekte", href: "#projekte" },
       { label: "Prozess", href: "#prozess" },
-      { label: "Portfolio", href: "#portfolio" },
       { label: "Kontakt", href: "#kontakt" }
     ],
     header: {
@@ -405,10 +405,10 @@ export const siteContent: Record<Locale, SiteContent> = {
     },
     navigation: [
       { label: "Profile", href: "#profil" },
+      { label: "Portfolio", href: "#portfolio" },
       { label: "Services", href: "#leistungen" },
       { label: "Projects", href: "#projekte" },
       { label: "Process", href: "#prozess" },
-      { label: "Portfolio", href: "#portfolio" },
       { label: "Contact", href: "#kontakt" }
     ],
     header: {
