@@ -19,7 +19,14 @@ export function LegalShell({
       <div className="legal-shell">
         <div className="legal-top">
           <a href={homeHref} aria-label={logoAria}>
-            <Image src="/images/toleo-logo.png" alt="Toleo Holding" width={96} height={61} priority />
+            <Image
+              src="/images/toleo-logo.png"
+              alt="Toleo Holding"
+              width={96}
+              height={61}
+              loading="eager"
+              preload
+            />
           </a>
           <a className="legal-back" href={homeHref}>
             {backLabel}

@@ -57,18 +57,16 @@ function updateHashForSection(id: string | null) {
   }
 }
 
-function scheduleInitialPosition() {
+function scheduleInitialPosition(initialHash: string) {
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
-      const hash = window.location.hash;
-
       setInstantScroll(() => {
-        if (!hash) {
+        if (!initialHash) {
           window.scrollTo({ top: 0, left: 0, behavior: "auto" });
           return;
         }
 
-        const target = document.getElementById(hash.slice(1));
+        const target = document.getElementById(initialHash.slice(1));
         target?.scrollIntoView({ block: "start", behavior: "auto" });
       });
     });
@@ -83,6 +81,11 @@ export function ScrollManager() {
     let frame = 0;
     let anchorNavigationUntil = 0;
     let delayedSync: number | null = null;
+    const initialHash = window.location.hash;
+
+    if (initialHash) {
+      anchorNavigationUntil = Date.now() + anchorNavigationHoldMs;
+    }
 
     const sync = () => {
       frame = 0;
@@ -122,9 +125,12 @@ export function ScrollManager() {
       scheduleSync();
     };
 
-    scheduleInitialPosition();
+    scheduleInitialPosition(initialHash);
 
-    const initialSync = window.setTimeout(scheduleSync, 450);
+    const initialSync = window.setTimeout(
+      scheduleSync,
+      initialHash ? anchorNavigationHoldMs + 120 : 450
+    );
 
     window.addEventListener("scroll", scheduleSync, { passive: true });
     window.addEventListener("resize", scheduleSync);

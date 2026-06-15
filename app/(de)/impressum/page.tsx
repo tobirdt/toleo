@@ -28,8 +28,6 @@ export default function ImpressumPage() {
 
       <h2>Kontakt</h2>
       <p>
-        Telefon: <a href="tel:+491702208778">+49 (170) 22 08 778</a>
-        <br />
         E-Mail: <a href="mailto:info@toleo.biz">info@toleo.biz</a>
       </p>
 

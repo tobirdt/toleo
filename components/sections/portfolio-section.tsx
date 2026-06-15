@@ -26,13 +26,13 @@ function HorizontalTile({ item, index, total, progress, isStatic }: TileProps) {
   const scale = useTransform(progress, (v) => {
     const center   = index / (total - 1 || 1);
     const distance = Math.abs(v - center);
-    return 1 - Math.min(distance * 0.1, 0.08);
+    return 1 - Math.min(distance * 0.055, 0.045);
   });
 
   const opacity = useTransform(progress, (v) => {
     const center   = index / (total - 1 || 1);
     const distance = Math.abs(v - center);
-    return 1 - Math.min(distance * 0.45, 0.38);
+    return 1 - Math.min(distance * 0.28, 0.24);
   });
 
   return (

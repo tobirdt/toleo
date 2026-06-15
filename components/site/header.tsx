@@ -49,7 +49,14 @@ export function Header({ locale, navigation, copy, language }: HeaderProps) {
   return (
     <header className="site-header" data-scrolled={scrolled ? "true" : "false"}>
       <a className="brand" href="#top" aria-label={copy.homeAria}>
-        <Image src="/images/toleo-logo.png" alt="Toleo Holding" width={72} height={45} priority />
+        <Image
+          src="/images/toleo-logo.png"
+          alt="Toleo Holding"
+          width={72}
+          height={45}
+          loading="eager"
+          preload
+        />
       </a>
 
       <nav className="desktop-nav" aria-label={copy.navAria}>

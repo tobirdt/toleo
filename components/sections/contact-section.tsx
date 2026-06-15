@@ -1,7 +1,7 @@
 "use client";
 
 import { type FormEvent, useState } from "react";
-import { Mail, MapPin, Phone, Send } from "lucide-react";
+import { Mail, MapPin, Send } from "lucide-react";
 import { Reveal } from "@/components/motion/reveal";
 import { BrandDots } from "@/components/ui";
 import type { Locale, SiteContent } from "@/lib/site-content";
@@ -78,10 +78,6 @@ export function ContactSection({ content, locale }: ContactSectionProps) {
                   <a href="mailto:info@toleo.biz">
                     <Mail size={17} aria-hidden="true" />
                     info@toleo.biz
-                  </a>
-                  <a href="tel:+491702208778">
-                    <Phone size={17} aria-hidden="true" />
-                    +49 (170) 22 08 778
                   </a>
                   <span>
                     <MapPin size={17} aria-hidden="true" />
