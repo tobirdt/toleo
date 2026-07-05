@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import {
   motion,
   useMotionValueEvent,
@@ -57,9 +57,35 @@ type PortfolioSectionProps = {
 
 export function PortfolioSection({ content }: PortfolioSectionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const viewportRef  = useRef<HTMLDivElement>(null);
+  const trackRef     = useRef<HTMLDivElement>(null);
+  const shiftRef     = useRef(0);
   const [activeStep, setActiveStep] = useState(1);
+  const [hasShift, setHasShift]     = useState(false);
   const isMobile = useIsMobile();
   const items = content.items;
+
+  /* Measure how far the track actually needs to travel so the last tile
+     lands flush with the right edge — a fixed percentage only fits one
+     viewport width. */
+  useLayoutEffect(() => {
+    const measure = () => {
+      const viewport = viewportRef.current;
+      const track = trackRef.current;
+      if (!viewport || !track) return;
+
+      const shift = Math.max(0, track.scrollWidth - viewport.clientWidth);
+      shiftRef.current = shift;
+      setHasShift(shift > 0);
+    };
+
+    measure();
+
+    const observer = new ResizeObserver(measure);
+    if (viewportRef.current) observer.observe(viewportRef.current);
+    if (trackRef.current) observer.observe(trackRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -72,7 +98,7 @@ export function PortfolioSection({ content }: PortfolioSectionProps) {
     mass: 0.5,
   });
 
-  const trackX       = useTransform(smoothProgress, [0, 1], ["0%", "-75%"]);
+  const trackX       = useTransform(smoothProgress, (v) => v * -shiftRef.current);
   const progressFill = useTransform(smoothProgress, [0, 1], [0, 1]);
 
   useMotionValueEvent(smoothProgress, "change", (v) => {
@@ -80,9 +106,15 @@ export function PortfolioSection({ content }: PortfolioSectionProps) {
     setActiveStep(Math.min(items.length, Math.max(1, step)));
   });
 
+  const isStatic = isMobile || !hasShift;
+
   return (
     <section className="section portfolio-section" id="portfolio">
-      <div className="portfolio-h-outer" ref={containerRef}>
+      <div
+        className="portfolio-h-outer"
+        ref={containerRef}
+        data-static={isStatic ? "true" : "false"}
+      >
         <div className="portfolio-h-inner">
 
           <div className="portfolio-h-header">
@@ -97,10 +129,11 @@ export function PortfolioSection({ content }: PortfolioSectionProps) {
             </Reveal>
           </div>
 
-          <div className="portfolio-h-viewport">
+          <div className="portfolio-h-viewport" ref={viewportRef}>
             <motion.div
               className="portfolio-h-track"
-              style={isMobile ? undefined : { x: trackX }}
+              ref={trackRef}
+              style={isStatic ? undefined : { x: trackX }}
               suppressHydrationWarning
             >
               {items.map((item, index) => (
@@ -110,7 +143,7 @@ export function PortfolioSection({ content }: PortfolioSectionProps) {
                   index={index}
                   total={items.length}
                   progress={smoothProgress}
-                  isStatic={isMobile}
+                  isStatic={isStatic}
                 />
               ))}
             </motion.div>

@@ -144,8 +144,8 @@ export const languages: Array<{ locale: Locale; href: string }> = [
 ];
 
 const portfolioImages = {
-  defence: "/images/portfolio-defence.png",
-  marketing: "/images/portfolio-marketing.png",
+  defence: "/images/portfolio-defence.jpg",
+  marketing: "/images/portfolio-marketing.jpg",
   hospitality: "/images/portfolio-hospitality.jpg",
   franchise: "/images/portfolio-franchise.jpg"
 };

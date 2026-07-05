@@ -1173,8 +1173,21 @@ h3 {
   flex-direction: column;
   justify-content: center;
   height: 100svh;
+  padding-top: var(--header-offset);
   overflow: hidden;
 }
+
+/* Wide screens: every tile already fits, so skip the pinned scroll entirely */
+.portfolio-h-outer[data-static="true"] { height: auto; }
+
+.portfolio-h-outer[data-static="true"] .portfolio-h-inner {
+  position: static;
+  height: auto;
+  padding-top: 0;
+  overflow: visible;
+}
+
+.portfolio-h-outer[data-static="true"] .portfolio-h-progress { display: none; }
 
 .portfolio-h-header {
   width: var(--inner);
@@ -1710,8 +1723,13 @@ textarea {
   box-shadow: var(--sh-md);
 }
 
-.legal-content h1 { font-size: 4rem; text-wrap: balance; }
-.legal-content h2 { margin-top: 40px; font-size: 1.8rem; text-wrap: balance; }
+.legal-content h1 {
+  font-size: clamp(2.1rem, 7vw, 4rem);
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+.legal-content h2 { margin-top: 40px; font-size: clamp(1.35rem, 4.5vw, 1.8rem); text-wrap: balance; }
 .legal-content h3 { margin-top: 26px; text-wrap: balance; }
 .legal-content p,
 .legal-content li {
