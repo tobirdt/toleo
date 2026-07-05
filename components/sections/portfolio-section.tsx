@@ -37,12 +37,11 @@ function HorizontalTile({ item, index, total, progress, isStatic }: TileProps) {
 
   return (
     <motion.article
-      className={`portfolio-h-tile portfolio-tile ${item.tone}`}
+      className={`portfolio-h-tile ${item.tone}`}
       style={isStatic ? undefined : { scale, opacity }}
       suppressHydrationWarning
     >
       <Image src={item.image} alt={item.title} fill sizes="(max-width: 1050px) 100vw, 360px" />
-      <div className="tile-orbit" aria-hidden="true" />
       <div className="tile-label">
         <span>{String(index + 1).padStart(2, "0")}</span>
         <h3>{item.title}</h3>

@@ -1192,11 +1192,13 @@ h3 {
 .portfolio-h-header {
   width: var(--inner);
   margin: 0 auto 28px;
+  flex-shrink: 0;
 }
 
 .portfolio-h-viewport {
   position: relative;
   width: 100%;
+  flex-shrink: 0;
   overflow: hidden;
 }
 
@@ -1210,7 +1212,7 @@ h3 {
 .portfolio-h-tile {
   position: relative;
   flex: 0 0 min(300px, 72vw);
-  min-height: 400px;
+  min-height: clamp(280px, 48svh, 400px);
   overflow: hidden;
   border: 1px solid var(--g-bd);
   border-radius: var(--r);
@@ -1229,21 +1231,21 @@ h3 {
   inset: 0;
   content: "";
   background:
-    linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.88)),
-    linear-gradient(135deg, rgba(24,23,22,0.1), transparent 50%);
+    linear-gradient(180deg, rgba(255,255,255,0.05) 40%, rgba(255,255,255,0.45)),
+    linear-gradient(135deg, rgba(24,23,22,0.08), transparent 50%);
   pointer-events: none;
 }
 
 .portfolio-h-tile.blue::after {
   background:
-    linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.88)),
-    linear-gradient(135deg, rgba(48,96,168,0.22), transparent 56%);
+    linear-gradient(180deg, rgba(255,255,255,0.05) 40%, rgba(255,255,255,0.45)),
+    linear-gradient(135deg, rgba(48,96,168,0.18), transparent 56%);
 }
 
 .portfolio-h-tile.red::after {
   background:
-    linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.88)),
-    linear-gradient(135deg, rgba(224,8,16,0.18), transparent 56%);
+    linear-gradient(180deg, rgba(255,255,255,0.05) 40%, rgba(255,255,255,0.45)),
+    linear-gradient(135deg, rgba(224,8,16,0.14), transparent 56%);
 }
 
 .portfolio-h-tile:hover img {
@@ -1251,34 +1253,18 @@ h3 {
   transform: scale(1.04);
 }
 
-/* The orbit decoration */
-.tile-orbit {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  z-index: 2;
-  width: 72px;
-  height: 72px;
-  border: 1px solid rgba(24,23,22,0.13);
-  border-radius: var(--r-sm);
-  background: var(--g-bg-s);
-  backdrop-filter: blur(10px);
-}
-
-.tile-orbit::before, .tile-orbit::after { position: absolute; content: ""; border-radius: 50%; }
-.tile-orbit::before { top: 8px; left: 7px; width: 10px; height: 10px; background: var(--blue); }
-.tile-orbit::after  { right: 5px; bottom: 9px; width: 10px; height: 10px; background: var(--red); }
-
 .tile-label {
   position: absolute;
-  inset: auto 16px 16px;
+  inset: auto 0 0;
   z-index: 2;
+  padding: 56px 18px 16px;
+  background: linear-gradient(180deg, transparent, rgba(255,255,255,0.92) 58%);
   color: var(--ink);
 }
 
 .tile-label span {
   color: var(--blue);
-  font-weight: 900;
+  font-weight: 700;
   font-size: 0.8rem;
   letter-spacing: 0.08em;
 }
@@ -1291,18 +1277,16 @@ h3 {
   overflow-wrap: break-word;
 }
 
-/* Progress indicator */
+/* Progress indicator — sits below the track so it never covers a tile */
 .portfolio-h-progress {
-  position: absolute;
-  right: max(16px, calc((100vw - 1120px) / 2 + 16px));
-  bottom: 44px;
-  z-index: 2;
   display: grid;
   gap: 10px;
   justify-items: end;
-  color: var(--soft);
+  margin-top: 20px;
+  padding-right: max(16px, calc((100vw - 1120px) / 2 + 16px));
+  color: var(--muted);
   font-size: 0.8rem;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0.1em;
 }
 
@@ -1319,30 +1303,6 @@ h3 {
   background: linear-gradient(90deg, var(--blue), var(--red));
   transform-origin: 0 50%;
 }
-
-.portfolio-tile {
-  position: relative;
-  overflow: hidden;
-  min-height: 380px;
-  border: 1px solid var(--g-bd);
-  border-radius: var(--r);
-  box-shadow: inset 0 1px 0 var(--g-hi), var(--sh-md);
-}
-
-.portfolio-tile img {
-  object-fit: cover;
-  filter: grayscale(0.15) saturate(0.88);
-  transition: filter 600ms ease, transform 700ms ease;
-}
-
-.portfolio-tile::after {
-  position: absolute;
-  inset: 0;
-  content: "";
-  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.88));
-}
-
-.portfolio-tile:hover img { filter: grayscale(0) saturate(0.96); transform: scale(1.05); }
 
 /* === INVESTMENTS / TRUST SECTION === */
 .investment-section {
