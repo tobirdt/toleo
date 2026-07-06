@@ -80,6 +80,12 @@ export function HeroSection({ content }: HeroSectionProps) {
               {content.secondaryAction}
             </a>
           </motion.div>
+
+          <motion.div className="hero-meta" suppressHydrationWarning {...reveal(0.42)}>
+            {content.meta.map((item) => (
+              <span key={item}>{item}</span>
+            ))}
+          </motion.div>
         </motion.div>
 
         <div className="hero-visual">

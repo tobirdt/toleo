@@ -74,6 +74,7 @@ export type SiteContent = {
     copy: string;
     primaryAction: string;
     secondaryAction: string;
+    meta: string[];
   };
   profile: {
     kicker: string;
@@ -130,6 +131,11 @@ export type SiteContent = {
     error: string;
   };
   footer: {
+    claim: string;
+    cta: string;
+    navHeading: string;
+    contactHeading: string;
+    legalHeading: string;
     tagline: string;
     legal: string;
     legalHref: string;
@@ -199,7 +205,8 @@ export const siteContent: Record<Locale, SiteContent> = {
       title: "Beratung und Beteiligungen mit Weitblick.",
       copy: "Strategie, Marktzugang und Umsetzung in spezialisierten Märkten.",
       primaryAction: "Leistungen",
-      secondaryAction: "Portfolio"
+      secondaryAction: "Portfolio",
+      meta: ["Taufkirchen bei München", "Gegründet 2019", "Beratung & Beteiligungen"]
     },
     profile: {
       kicker: "Firmenprofil",
@@ -397,6 +404,11 @@ export const siteContent: Record<Locale, SiteContent> = {
       error: "Die Nachricht konnte nicht gesendet werden."
     },
     footer: {
+      claim: "Sprechen wir über Markt, Struktur und Wachstum.",
+      cta: "Gespräch starten",
+      navHeading: "Navigation",
+      contactHeading: "Kontakt",
+      legalHeading: "Rechtliches",
       tagline: "Strategische Beratung und Beteiligungen seit 2019.",
       legal: "Impressum",
       legalHref: "/impressum",
@@ -452,7 +464,8 @@ export const siteContent: Record<Locale, SiteContent> = {
       title: "Advisory and investments with long-term perspective.",
       copy: "Strategy, market access and execution in specialized markets.",
       primaryAction: "Services",
-      secondaryAction: "Portfolio"
+      secondaryAction: "Portfolio",
+      meta: ["Taufkirchen near Munich", "Founded 2019", "Advisory & Investments"]
     },
     profile: {
       kicker: "Company Profile",
@@ -649,6 +662,11 @@ export const siteContent: Record<Locale, SiteContent> = {
       error: "The message could not be sent."
     },
     footer: {
+      claim: "Let us talk about market access, structure and growth.",
+      cta: "Start a conversation",
+      navHeading: "Navigation",
+      contactHeading: "Contact",
+      legalHeading: "Legal",
       tagline: "Strategic advisory and investments since 2019.",
       legal: "Legal Notice",
       legalHref: "/en/legal-notice",
