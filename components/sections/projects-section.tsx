@@ -7,8 +7,8 @@ type ProjectsSectionProps = {
 
 export function ProjectsSection({ content }: ProjectsSectionProps) {
   return (
-    <section className="section viewport-section project-section" id="projekte">
-      <div className="section-inner viewport-inner project-layout">
+    <section className="section project-section" id="projekte">
+      <div className="section-inner project-layout">
         <Reveal className="project-intro">
           <p className="section-kicker">{content.kicker}</p>
           <h2>{content.title}</h2>

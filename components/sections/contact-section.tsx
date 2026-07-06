@@ -1,7 +1,7 @@
 "use client";
 
 import { type FormEvent, useState } from "react";
-import { Mail, MapPin, Send } from "lucide-react";
+import { AlertCircle, CheckCircle2, Mail, MapPin, Send } from "lucide-react";
 import { Reveal } from "@/components/motion/reveal";
 import { BrandDots } from "@/components/ui";
 import type { Locale, SiteContent } from "@/lib/site-content";
@@ -159,7 +159,9 @@ export function ContactSection({ content, locale }: ContactSectionProps) {
                   className={`form-status ${status}`}
                   aria-live="polite"
                 >
-                  {statusMessage}
+                  {status === "success" && <CheckCircle2 size={18} aria-hidden="true" />}
+                  {status === "error" && <AlertCircle size={18} aria-hidden="true" />}
+                  {statusMessage && <span>{statusMessage}</span>}
                 </p>
               </form>
 

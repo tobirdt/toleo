@@ -18,6 +18,7 @@ export type NavigationItem = {
 export type Service = {
   title: string;
   text: string;
+  textMobile: string;
   icon: LucideIcon;
 };
 
@@ -209,31 +210,37 @@ export const siteContent: Record<Locale, SiteContent> = {
         {
           title: "Markteintritt & Strategie",
           text: "Analyse, Positionierung und operative Begleitung für nationale und internationale Markteintritte.",
+          textMobile: "Analyse, Positionierung und operative Begleitung.",
           icon: Target
         },
         {
           title: "Vertrieb & Marketing",
           text: "Vertriebsunterstützung, Markenführung, Marketingpläne und Audits für anspruchsvolle Wachstumsphasen.",
+          textMobile: "Vertrieb, Markenführung und Marketing-Audits.",
           icon: LineChart
         },
         {
           title: "Sicherheit & Verteidigung",
           text: "Beratung für Kommunikations-, Sicherheits- und Verteidigungslösungen im rechtlichen Rahmen.",
+          textMobile: "Sicherheits- und Verteidigungslösungen im rechtlichen Rahmen.",
           icon: ShieldCheck
         },
         {
           title: "Finanzen & Controlling",
           text: "Geschäftsplanung, Revision, Controlling und finanzielle Strukturen für belastbare Entscheidungen.",
+          textMobile: "Geschäftsplanung, Controlling und Revision.",
           icon: BriefcaseBusiness
         },
         {
           title: "Recht & Regulierung",
           text: "Unterstützung bei Vorschriften, Exportthemen und Compliance-Fragen in komplexen Märkten.",
+          textMobile: "Vorschriften, Export und Compliance.",
           icon: Scale
         },
         {
           title: "Hospitality & Franchise",
           text: "Expansion bestehender Restaurantkonzepte und internationaler Aufbau von Franchise-Systemen.",
+          textMobile: "Restaurant-Expansion und Franchise-Aufbau.",
           icon: Utensils
         }
       ]
@@ -446,31 +453,37 @@ export const siteContent: Record<Locale, SiteContent> = {
         {
           title: "Market Entry & Strategy",
           text: "Analysis, positioning and operational support for national and international market entries.",
+          textMobile: "Analysis, positioning and hands-on support.",
           icon: Target
         },
         {
           title: "Sales & Marketing",
           text: "Sales support, brand management, marketing plans and audits for demanding growth phases.",
+          textMobile: "Sales, brand management and marketing audits.",
           icon: LineChart
         },
         {
           title: "Security & Defence",
           text: "Advisory for communications, security and defence solutions within the relevant legal framework.",
+          textMobile: "Security and defence solutions within the legal framework.",
           icon: ShieldCheck
         },
         {
           title: "Finance & Controlling",
           text: "Business planning, audit, controlling and financial structures for resilient decisions.",
+          textMobile: "Business planning, controlling and audit.",
           icon: BriefcaseBusiness
         },
         {
           title: "Legal & Regulatory",
           text: "Support with regulations, export topics and compliance questions in complex markets.",
+          textMobile: "Regulations, export and compliance.",
           icon: Scale
         },
         {
           title: "Hospitality & Franchise",
           text: "Expansion of established restaurant concepts and international development of franchise systems.",
+          textMobile: "Restaurant expansion and franchise development.",
           icon: Utensils
         }
       ]

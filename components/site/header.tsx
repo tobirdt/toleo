@@ -47,7 +47,22 @@ export function Header({ locale, navigation, copy, language }: HeaderProps) {
   }, [menuOpen]);
 
   return (
-    <header className="site-header" data-scrolled={scrolled ? "true" : "false"}>
+    <>
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            className="nav-scrim"
+            aria-hidden="true"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={() => setMenuOpen(false)}
+          />
+        )}
+      </AnimatePresence>
+
+      <header className="site-header" data-scrolled={scrolled ? "true" : "false"}>
       <a className="brand" href="#top" aria-label={copy.homeAria}>
         <Image
           src="/images/toleo-logo.png"
@@ -116,7 +131,8 @@ export function Header({ locale, navigation, copy, language }: HeaderProps) {
           </motion.nav>
         )}
       </AnimatePresence>
-    </header>
+      </header>
+    </>
   );
 }
 
@@ -131,13 +147,34 @@ function LanguageSwitch({
     <nav className="language-switch" aria-label={language.ariaLabel}>
       {languages.map((item) => {
         const isActive = item.locale === locale;
+        const label = item.locale === "de" ? "Deutsch" : "English";
+
+        if (isActive) {
+          return (
+            <span
+              key={item.locale}
+              className="language-option"
+              aria-current="page"
+              aria-label={label}
+            >
+              {language.options[item.locale]}
+            </span>
+          );
+        }
 
         return (
           <a
             key={item.locale}
-            href={isActive ? "#top" : getLocaleHref(item.locale)}
-            aria-current={isActive ? "page" : undefined}
-            aria-label={item.locale === "de" ? "Deutsch" : "English"}
+            className="language-option"
+            href={getLocaleHref(item.locale)}
+            aria-label={label}
+            onClick={(event) => {
+              // Keep the visitor on the section they are reading
+              const hash = window.location.hash;
+              if (!hash) return;
+              event.preventDefault();
+              window.location.href = getLocaleHref(item.locale) + hash;
+            }}
           >
             {language.options[item.locale]}
           </a>

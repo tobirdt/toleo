@@ -7,8 +7,8 @@ type ProcessSectionProps = {
 
 export function ProcessSection({ content }: ProcessSectionProps) {
   return (
-    <section className="section viewport-section process-section" id="prozess">
-      <div className="section-inner viewport-inner process-layout">
+    <section className="section process-section" id="prozess">
+      <div className="section-inner process-layout">
         <Reveal className="process-copy">
           <p className="section-kicker">{content.kicker}</p>
           <h2>{content.title}</h2>

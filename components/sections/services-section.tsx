@@ -30,7 +30,10 @@ export function ServicesSection({ content }: ServicesSectionProps) {
                     <Icon size={22} aria-hidden="true" />
                   </div>
                   <h3>{service.title}</h3>
-                  <p>{service.text}</p>
+                  <p>
+                    <span className="desktop-copy">{service.text}</span>
+                    <span className="mobile-copy">{service.textMobile}</span>
+                  </p>
                 </article>
               </Reveal>
             );
