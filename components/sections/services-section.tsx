@@ -1,6 +1,6 @@
 import { Reveal } from "@/components/motion/reveal";
 import type { SiteContent } from "@/lib/site-content";
-import { BrandDots, SectionTitle } from "@/components/ui";
+import { SectionTitle } from "@/components/ui";
 
 type ServicesSectionProps = {
   content: SiteContent["services"];
@@ -8,32 +8,32 @@ type ServicesSectionProps = {
 
 export function ServicesSection({ content }: ServicesSectionProps) {
   return (
-    <section className="section viewport-section services-section" id="leistungen">
-      <div className="section-inner viewport-inner services-onepage">
-        <Reveal className="services-intro">
-          <div className="section-rule is-visible" />
-          <p className="section-kicker">{content.kicker}</p>
-          <SectionTitle title={content.title} tone="blue" />
-          <p className="lead">{content.copy}</p>
-          <BrandDots size={7} />
+    <section className="section services-section" id="leistungen">
+      <div className="section-inner">
+        <Reveal>
+          <div className="section-heading compact">
+            <p className="section-kicker">{content.kicker}</p>
+            <SectionTitle title={content.title} tone="blue" />
+            <p>{content.copy}</p>
+          </div>
         </Reveal>
 
-        <div className="services-card-grid" aria-label={content.navAria}>
+        <div className="service-index" aria-label={content.navAria}>
           {content.items.map((service, index) => {
             const Icon = service.icon;
 
             return (
-              <Reveal key={service.title} className="service-card-wrap" delay={index * 0.035}>
-                <article className="service-card" data-accent={index % 2 === 0 ? "blue" : "red"}>
-                  <div className="service-card-top">
-                    <span>{String(index + 1).padStart(2, "0")}</span>
-                    <Icon size={22} aria-hidden="true" />
-                  </div>
+              <Reveal key={service.title} delay={index * 0.04}>
+                <article className="service-row">
+                  <span className="service-row-num">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
                   <h3>{service.title}</h3>
                   <p>
                     <span className="desktop-copy">{service.text}</span>
                     <span className="mobile-copy">{service.textMobile}</span>
                   </p>
+                  <Icon className="service-row-icon" size={20} aria-hidden="true" />
                 </article>
               </Reveal>
             );

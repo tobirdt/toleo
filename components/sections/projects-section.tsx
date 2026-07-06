@@ -9,25 +9,20 @@ type ProjectsSectionProps = {
 export function ProjectsSection({ content }: ProjectsSectionProps) {
   return (
     <section className="section project-section" id="projekte">
-      <div className="section-inner project-layout">
-        <Reveal className="project-intro">
-          <p className="section-kicker">{content.kicker}</p>
-          <SectionTitle title={content.title} tone="red" />
-          <p className="lead">{content.copy}</p>
+      <div className="section-inner">
+        <Reveal>
+          <div className="section-heading compact">
+            <p className="section-kicker">{content.kicker}</p>
+            <SectionTitle title={content.title} tone="red" />
+            <p>{content.copy}</p>
+          </div>
         </Reveal>
 
-        <div className="project-showcase" aria-label={content.title}>
+        <div className="project-columns" aria-label={content.title}>
           {content.pillars.map((pillar, index) => (
-            <Reveal
-              key={pillar.title}
-              className={`project-pillar${index === 0 ? " is-primary" : ""}`}
-              delay={index * 0.06}
-            >
-              <div className="project-pillar-head">
-                <span>{pillar.number}</span>
-                <h3>{pillar.title}</h3>
-              </div>
-
+            <Reveal key={pillar.title} className="project-col" delay={index * 0.06}>
+              <span className="project-col-num">{pillar.number}</span>
+              <h3>{pillar.title}</h3>
               <ul>
                 {pillar.items.map((item) => (
                   <li key={item}>{item}</li>
