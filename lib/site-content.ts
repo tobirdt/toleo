@@ -74,14 +74,14 @@ export type SiteContent = {
     copy: string;
     primaryAction: string;
     secondaryAction: string;
-    meta: string[];
   };
   profile: {
     kicker: string;
     title: string;
     paragraphs: string[];
     summaryMobile: string;
-    fields: string[];
+    fieldsLabel: string;
+    fields: Array<{ label: string; note: string }>;
     imageAlt: string;
   };
   services: {
@@ -196,19 +196,24 @@ export const siteContent: Record<Locale, SiteContent> = {
       title: "Beratung und Beteiligungen mit Weitblick.",
       copy: "Strategie, Marktzugang und Umsetzung in spezialisierten Märkten.",
       primaryAction: "Leistungen",
-      secondaryAction: "Portfolio",
-      meta: ["Taufkirchen bei München", "Gegründet 2019", "Beratung & Beteiligungen"]
+      secondaryAction: "Portfolio"
     },
     profile: {
       kicker: "Firmenprofil",
       title: "Eine Holding für Wachstum, Marktzugang und belastbare Umsetzung.",
       paragraphs: [
-        "Die Toleo GmbH wurde im Juli 2019 als Familienholding sowie Dienstleistungs- und Beratungsgesellschaft gegründet. Gründer und Geschäftsführer sind Nicole und Holger Rumscheidt.",
-        "Die Gesellschaft berät, gründet, erwirbt und verwaltet Beteiligungen im In- und Ausland. Der Fokus liegt auf klaren Strukturen, belastbarer Umsetzung und nachhaltigem Wachstum."
+        "Toleo ist die Familienholding von Nicole und Holger Rumscheidt – gegründet 2019 in Taufkirchen bei München.",
+        "Wir gründen, erwerben, verwalten und beraten Beteiligungen im In- und Ausland. Immer mit klaren Strukturen, belastbarer Umsetzung und Blick auf nachhaltiges Wachstum."
       ],
       summaryMobile:
-        "Die Toleo GmbH ist die Familienholding von Nicole und Holger Rumscheidt, gegründet 2019. Sie berät, gründet, erwirbt und verwaltet Beteiligungen im In- und Ausland.",
-      fields: ["Neugründung", "Erwerb", "Verwaltung", "Beratung"],
+        "Familienholding von Nicole und Holger Rumscheidt, gegründet 2019 in Taufkirchen bei München.",
+      fieldsLabel: "Tätigkeitsfelder",
+      fields: [
+        { label: "Neugründung", note: "Gesellschaften und Strukturen aufsetzen" },
+        { label: "Erwerb", note: "Beteiligungen gezielt übernehmen" },
+        { label: "Verwaltung", note: "Portfolios aktiv steuern" },
+        { label: "Beratung", note: "Strategie bis zur Umsetzung" }
+      ],
       imageAlt: "Handschlag in einem Besprechungsraum"
     },
     services: {
@@ -452,19 +457,24 @@ export const siteContent: Record<Locale, SiteContent> = {
       title: "Advisory and investments with long-term perspective.",
       copy: "Strategy, market access and execution in specialized markets.",
       primaryAction: "Services",
-      secondaryAction: "Portfolio",
-      meta: ["Taufkirchen near Munich", "Founded 2019", "Advisory & Investments"]
+      secondaryAction: "Portfolio"
     },
     profile: {
       kicker: "Company Profile",
       title: "A holding company for growth, market access and reliable execution.",
       paragraphs: [
-        "Toleo GmbH was founded in July 2019 as a family holding company and advisory services firm. Nicole and Holger Rumscheidt are its founders and managing directors.",
-        "The company advises, establishes, acquires and manages investments in Germany and abroad. Its focus is clear structures, reliable execution and sustainable growth."
+        "Toleo is the family holding of Nicole and Holger Rumscheidt — founded in 2019 in Taufkirchen near Munich.",
+        "We establish, acquire, manage and advise investments in Germany and abroad. Always with clear structures, reliable execution and an eye on sustainable growth."
       ],
       summaryMobile:
-        "Toleo GmbH is the family holding of Nicole and Holger Rumscheidt, founded in 2019. It advises, establishes, acquires and manages investments in Germany and abroad.",
-      fields: ["Formation", "Acquisition", "Management", "Advisory"],
+        "Family holding of Nicole and Holger Rumscheidt, founded in 2019 near Munich.",
+      fieldsLabel: "Fields of activity",
+      fields: [
+        { label: "Formation", note: "Setting up companies and structures" },
+        { label: "Acquisition", note: "Taking on targeted holdings" },
+        { label: "Management", note: "Actively steering portfolios" },
+        { label: "Advisory", note: "Strategy through to execution" }
+      ],
       imageAlt: "Handshake in a meeting room"
     },
     services: {

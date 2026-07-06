@@ -29,10 +29,17 @@ export function ProfileSection({ content }: ProfileSectionProps) {
           </Reveal>
 
           <Reveal delay={0.18}>
-            <div className="fields">
-              {content.fields.map((item) => (
-                <span key={item}>{item}</span>
-              ))}
+            <div className="capabilities">
+              <p className="capabilities-label">{content.fieldsLabel}</p>
+              <div className="capabilities-grid">
+                {content.fields.map((field) => (
+                  <div className="capability" key={field.label}>
+                    <span className="cap-dot" aria-hidden="true" />
+                    <span className="cap-label">{field.label}</span>
+                    <span className="cap-note">{field.note}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </Reveal>
         </div>
