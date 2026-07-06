@@ -15,13 +15,13 @@ export function Reveal({ children, className, delay = 0 }: RevealProps) {
   return (
     <motion.div
       className={className}
-      initial={prefersReduced ? false : { opacity: 0, y: 18, scale: 0.96 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true, margin: "-72px" }}
+      initial={prefersReduced ? false : { opacity: 0, y: 14 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
       transition={
         prefersReduced
           ? { duration: 0 }
-          : { duration: 0.72, ease: [0.23, 1, 0.32, 1], delay }
+          : { duration: 0.55, ease: [0.23, 1, 0.32, 1], delay }
       }
       suppressHydrationWarning
     >

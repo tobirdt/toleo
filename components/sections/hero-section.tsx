@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { AnimatedLogo } from "@/components/brand/animated-logo";
@@ -17,16 +18,23 @@ type HeroSectionProps = {
 
 export function HeroSection({ content }: HeroSectionProps) {
   const prefersReduced = useReducedMotion();
-  const { scrollYProgress } = useScroll();
+  const sectionRef = useRef<HTMLElement>(null);
 
-  const logoY     = useTransform(scrollYProgress, [0, 0.28], [0, 40]);
-  const copyY     = useTransform(scrollYProgress, [0, 0.28], [0, -28]);
-  const copyOp    = useTransform(scrollYProgress, [0, 0.18], [1, 0]);
-  const glowScale = useTransform(scrollYProgress, [0, 0.4],  [1, 1.1]);
-  const glowOp    = useTransform(scrollYProgress, [0, 0.4],  [1, 0.5]);
+  /* Progress is tied to the hero itself scrolling out of view, so the
+     parallax speed stays constant no matter how long the page grows. */
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+
+  const logoY     = useTransform(scrollYProgress, [0, 1],    [0, 48]);
+  const copyY     = useTransform(scrollYProgress, [0, 1],    [0, -36]);
+  const copyOp    = useTransform(scrollYProgress, [0, 0.55], [1, 0]);
+  const glowScale = useTransform(scrollYProgress, [0, 1],    [1, 1.08]);
+  const glowOp    = useTransform(scrollYProgress, [0, 1],    [1, 0.45]);
 
   return (
-    <section className="hero" id="top">
+    <section className="hero" id="top" ref={sectionRef}>
       {!prefersReduced && (
         <>
           <motion.div

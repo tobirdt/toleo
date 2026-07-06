@@ -69,8 +69,7 @@ export function Header({ locale, navigation, copy, language }: HeaderProps) {
           alt="Toleo Holding"
           width={72}
           height={45}
-          loading="eager"
-          preload
+          priority
         />
       </a>
 
@@ -97,15 +96,6 @@ export function Header({ locale, navigation, copy, language }: HeaderProps) {
       >
         {menuOpen ? <X size={21} aria-hidden="true" /> : <Menu size={21} aria-hidden="true" />}
       </button>
-
-      <motion.div
-        className="header-scroll-line"
-        aria-hidden="true"
-        initial={{ scaleX: 0, opacity: 0 }}
-        animate={{ scaleX: scrolled ? 1 : 0, opacity: scrolled ? 1 : 0 }}
-        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-        suppressHydrationWarning
-      />
 
       <AnimatePresence>
         {menuOpen && (

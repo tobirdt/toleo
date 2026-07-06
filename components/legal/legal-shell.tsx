@@ -24,8 +24,7 @@ export function LegalShell({
               alt="Toleo Holding"
               width={96}
               height={61}
-              loading="eager"
-              preload
+              priority
             />
           </a>
           <a className="legal-back" href={homeHref}>

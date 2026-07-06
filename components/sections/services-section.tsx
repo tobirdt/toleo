@@ -15,7 +15,7 @@ export function ServicesSection({ content }: ServicesSectionProps) {
           <p className="section-kicker">{content.kicker}</p>
           <h2>{content.title}</h2>
           <p className="lead">{content.copy}</p>
-          <BrandDots mode="pulse" size={7} />
+          <BrandDots size={7} />
         </Reveal>
 
         <div className="services-card-grid" aria-label={content.navAria}>
