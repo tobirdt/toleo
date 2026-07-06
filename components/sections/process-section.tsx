@@ -41,7 +41,10 @@ export function ProcessSection({ content }: ProcessSectionProps) {
                 <span className="process-card-number">{phase.number}</span>
                 <div>
                   <h3>{phase.title}</h3>
-                  <p>{phase.text}</p>
+                  <p>
+                    <span className="desktop-copy">{phase.text}</span>
+                    <span className="mobile-copy">{phase.textMobile}</span>
+                  </p>
                 </div>
               </Reveal>
             </li>

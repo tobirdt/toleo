@@ -21,8 +21,9 @@ export function ProfileSection({ content }: ProfileSectionProps) {
           <Reveal delay={0.1}>
             <div className="profile-copy">
               {content.paragraphs.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
+                <p key={paragraph} className="m-hide">{paragraph}</p>
               ))}
+              <p className="m-only">{content.summaryMobile}</p>
             </div>
           </Reveal>
 

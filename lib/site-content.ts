@@ -34,6 +34,7 @@ export type ProcessPhase = {
   number: string;
   title: string;
   text: string;
+  textMobile: string;
 };
 
 export type ProjectPillar = {
@@ -79,6 +80,7 @@ export type SiteContent = {
     kicker: string;
     title: string;
     paragraphs: string[];
+    summaryMobile: string;
     fields: string[];
     imageAlt: string;
   };
@@ -204,6 +206,8 @@ export const siteContent: Record<Locale, SiteContent> = {
         "Die Toleo GmbH wurde im Juli 2019 als Familienholding sowie Dienstleistungs- und Beratungsgesellschaft gegründet. Gründer und Geschäftsführer sind Nicole und Holger Rumscheidt.",
         "Die Gesellschaft berät, gründet, erwirbt und verwaltet Beteiligungen im In- und Ausland. Der Fokus liegt auf klaren Strukturen, belastbarer Umsetzung und nachhaltigem Wachstum."
       ],
+      summaryMobile:
+        "Die Toleo GmbH ist die Familienholding von Nicole und Holger Rumscheidt, gegründet 2019. Sie berät, gründet, erwirbt und verwaltet Beteiligungen im In- und Ausland.",
       fields: ["Neugründung", "Erwerb", "Verwaltung", "Beratung"],
       imageAlt: "Handschlag in einem Besprechungsraum"
     },
@@ -296,27 +300,32 @@ export const siteContent: Record<Locale, SiteContent> = {
         {
           number: "01",
           title: "Analyse",
-          text: "Marktpotenzial, Wettbewerb und Regulierung werden bewertet. So entsteht eine klare Faktenbasis."
+          text: "Marktpotenzial, Wettbewerb und Regulierung werden bewertet. So entsteht eine klare Faktenbasis.",
+          textMobile: "Marktpotenzial, Wettbewerb, Regulierung."
         },
         {
           number: "02",
           title: "Strategie",
-          text: "Positionierung, Geschäftsmodell und Marktzugang werden präzise entwickelt."
+          text: "Positionierung, Geschäftsmodell und Marktzugang werden präzise entwickelt.",
+          textMobile: "Positionierung, Geschäftsmodell, Marktzugang."
         },
         {
           number: "03",
           title: "Markteintritt",
-          text: "Netzwerk, Compliance-Wissen und lokale Expertise begleiten den Eintritt in neue Märkte."
+          text: "Netzwerk, Compliance-Wissen und lokale Expertise begleiten den Eintritt in neue Märkte.",
+          textMobile: "Netzwerk, Compliance und lokale Expertise."
         },
         {
           number: "04",
           title: "Umsetzung",
-          text: "Management, Vertrieb, Marketing und Controlling werden operativ verbunden."
+          text: "Management, Vertrieb, Marketing und Controlling werden operativ verbunden.",
+          textMobile: "Management, Vertrieb, Marketing, Controlling."
         },
         {
           number: "05",
           title: "Beteiligung",
-          text: "Langfristige Partnerschaften und Investitionen schaffen strukturiertes Wachstum."
+          text: "Langfristige Partnerschaften und Investitionen schaffen strukturiertes Wachstum.",
+          textMobile: "Langfristige Partnerschaften und Investitionen."
         }
       ]
     },
@@ -453,6 +462,8 @@ export const siteContent: Record<Locale, SiteContent> = {
         "Toleo GmbH was founded in July 2019 as a family holding company and advisory services firm. Nicole and Holger Rumscheidt are its founders and managing directors.",
         "The company advises, establishes, acquires and manages investments in Germany and abroad. Its focus is clear structures, reliable execution and sustainable growth."
       ],
+      summaryMobile:
+        "Toleo GmbH is the family holding of Nicole and Holger Rumscheidt, founded in 2019. It advises, establishes, acquires and manages investments in Germany and abroad.",
       fields: ["Formation", "Acquisition", "Management", "Advisory"],
       imageAlt: "Handshake in a meeting room"
     },
@@ -545,27 +556,32 @@ export const siteContent: Record<Locale, SiteContent> = {
         {
           number: "01",
           title: "Analysis",
-          text: "Market potential, competition and regulation are evaluated to create a clear factual basis."
+          text: "Market potential, competition and regulation are evaluated to create a clear factual basis.",
+          textMobile: "Market potential, competition, regulation."
         },
         {
           number: "02",
           title: "Strategy",
-          text: "Positioning, business model and market access are developed with precision."
+          text: "Positioning, business model and market access are developed with precision.",
+          textMobile: "Positioning, business model, market access."
         },
         {
           number: "03",
           title: "Market Entry",
-          text: "Network access, compliance knowledge and local expertise support entry into new markets."
+          text: "Network access, compliance knowledge and local expertise support entry into new markets.",
+          textMobile: "Network, compliance and local expertise."
         },
         {
           number: "04",
           title: "Execution",
-          text: "Management, sales, marketing and controlling are connected operationally."
+          text: "Management, sales, marketing and controlling are connected operationally.",
+          textMobile: "Management, sales, marketing, controlling."
         },
         {
           number: "05",
           title: "Investment",
-          text: "Long-term partnerships and investments create structured growth."
+          text: "Long-term partnerships and investments create structured growth.",
+          textMobile: "Long-term partnerships and investments."
         }
       ]
     },

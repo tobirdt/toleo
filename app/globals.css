@@ -1372,6 +1372,7 @@ cite {
 .investment-row svg { color: var(--blue); margin-top: 2px; flex-shrink: 0; }
 .investment-row p { margin-bottom: 0; color: var(--muted); font-size: 0.98rem; line-height: 1.65; }
 .mobile-copy { display: none; }
+.m-only { display: none; }
 
 /* === CONTACT SECTION === */
 .contact-section { background: var(--surface); }
@@ -2039,6 +2040,13 @@ textarea {
 
   .desktop-copy { display: none; }
   .mobile-copy { display: inline; }
+  .m-hide { display: none; }
+  .m-only { display: block; }
+
+  /* Mobile keeps kicker + headline; the section ledes are desktop garnish */
+  .section-heading.compact > p:last-child { display: none; }
+  .process-copy .lead { display: none; }
+  .hero-meta { display: none; }
 
   .portfolio-h-tile {
     min-height: 260px;
