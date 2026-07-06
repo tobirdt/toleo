@@ -1119,7 +1119,7 @@ h3 {
   letter-spacing: 0.14em;
 }
 
-.process-step:nth-child(even) .process-card-number { color: var(--red); }
+.process-step:nth-of-type(even) .process-card-number { color: var(--red); }
 
 .process-step h3 {
   margin: 0 0 4px;
@@ -1133,7 +1133,7 @@ h3 {
 
 .process-step:hover h3 { color: var(--blue); }
 
-.process-step:nth-child(even):hover h3 { color: var(--red); }
+.process-step:nth-of-type(even):hover h3 { color: var(--red); }
 
 .process-step p {
   margin: 0;
