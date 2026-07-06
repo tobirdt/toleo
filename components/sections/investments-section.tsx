@@ -3,6 +3,7 @@
 import { CheckCircle2 } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Reveal } from "@/components/motion/reveal";
+import { ScrollStage } from "@/components/motion/scroll-stage";
 import type { SiteContent } from "@/lib/site-content";
 import { BrandDots, SectionTitle } from "@/components/ui";
 
@@ -14,7 +15,7 @@ export function InvestmentsSection({ content }: InvestmentsSectionProps) {
   const prefersReduced = useReducedMotion();
 
   return (
-    <section className="section investment-section" id="investitionen">
+    <ScrollStage id="investitionen" className="investment-section" extra={80}>
       {!prefersReduced && (
         <>
           <motion.div
@@ -63,6 +64,6 @@ export function InvestmentsSection({ content }: InvestmentsSectionProps) {
         </div>
 
       </div>
-    </section>
+    </ScrollStage>
   );
 }

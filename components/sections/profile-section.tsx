@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Reveal } from "@/components/motion/reveal";
+import { ScrollStage } from "@/components/motion/scroll-stage";
 import { SectionTitle } from "@/components/ui";
 import type { SiteContent } from "@/lib/site-content";
 
@@ -9,7 +10,7 @@ type ProfileSectionProps = {
 
 export function ProfileSection({ content }: ProfileSectionProps) {
   return (
-    <section className="section profile-section" id="profil">
+    <ScrollStage id="profil" className="profile-section" extra={70}>
       <div className="section-inner profile-grid">
 
         <div>
@@ -49,6 +50,6 @@ export function ProfileSection({ content }: ProfileSectionProps) {
         </Reveal>
 
       </div>
-    </section>
+    </ScrollStage>
   );
 }

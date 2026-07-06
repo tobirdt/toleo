@@ -107,9 +107,9 @@ export function PortfolioSection({ content }: PortfolioSectionProps) {
   });
 
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    mass: 0.5,
+    stiffness: 75,
+    damping: 26,
+    mass: 0.6,
   });
 
   const trackX       = useTransform(smoothProgress, (v) => v * -shiftRef.current);

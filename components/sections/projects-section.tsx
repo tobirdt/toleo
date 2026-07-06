@@ -1,4 +1,5 @@
 import { Reveal } from "@/components/motion/reveal";
+import { ScrollStage } from "@/components/motion/scroll-stage";
 import { SectionTitle } from "@/components/ui";
 import type { SiteContent } from "@/lib/site-content";
 
@@ -8,7 +9,7 @@ type ProjectsSectionProps = {
 
 export function ProjectsSection({ content }: ProjectsSectionProps) {
   return (
-    <section className="section project-section" id="projekte">
+    <ScrollStage id="projekte" className="project-section" extra={90}>
       <div className="section-inner">
         <Reveal>
           <div className="section-heading compact">
@@ -32,6 +33,6 @@ export function ProjectsSection({ content }: ProjectsSectionProps) {
           ))}
         </div>
       </div>
-    </section>
+    </ScrollStage>
   );
 }

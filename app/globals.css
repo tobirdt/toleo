@@ -779,6 +779,29 @@ h3 {
   margin: 0 auto;
 }
 
+/* === SCROLL STAGES ===
+   Desktop sections pin for one viewport + extra scroll; the ScrollStage
+   component streams progress into --p (0 → 1) and each section choreographs
+   its children below. data-pinned="false" (phones, reduced motion, no JS)
+   keeps everything visible with --p locked at 1. */
+.stage[data-pinned="true"] {
+  padding: 0;
+  /* several sections carry overflow:hidden — that would break sticky;
+     the stage-inner does the clipping instead */
+  overflow: visible;
+}
+
+.stage[data-pinned="true"] .stage-inner {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100svh;
+  padding-top: var(--header-offset);
+  overflow: hidden;
+}
+
 .section-heading-wrap {
   margin-bottom: 48px;
 }
@@ -1136,7 +1159,7 @@ h3 {
 /* === PORTFOLIO HORIZONTAL === */
 .portfolio-section { background: var(--surface); padding-top: 0; }
 
-.portfolio-h-outer { position: relative; height: calc(4 * 72vh); }
+.portfolio-h-outer { position: relative; height: calc(4 * 84vh); }
 
 .portfolio-h-inner {
   position: sticky;
@@ -1812,6 +1835,105 @@ textarea {
   to   { opacity: 1; transform: translateY(0); }
 }
 
+
+/* === STAGE CHOREOGRAPHY (desktop pins) === */
+
+/* Profil: copy settles first, the photo wipes up out of the paper */
+.profile-section[data-pinned="true"] .profile-grid > div:first-child {
+  --seg: clamp(0, calc(var(--p) / 0.32), 1);
+  opacity: var(--seg);
+  transform: translateY(calc((1 - var(--seg)) * 34px));
+}
+
+.profile-section[data-pinned="true"] .image-frame {
+  --seg: clamp(0, calc((var(--p) - 0.14) / 0.5), 1);
+  clip-path: inset(calc((1 - var(--seg)) * 58%) 0 0 0);
+  transform: scale(calc(1.05 - var(--seg) * 0.05));
+  opacity: calc(0.25 + var(--seg) * 0.75);
+}
+
+/* Leistungen: the index writes itself row by row */
+.services-section[data-pinned="true"] .section-heading {
+  --seg: clamp(0, calc(var(--p) / 0.22), 1);
+  opacity: var(--seg);
+  transform: translateY(calc((1 - var(--seg)) * 26px));
+}
+
+.services-section[data-pinned="true"] .service-index > div:nth-child(1) .service-row { --st: 0.16; }
+.services-section[data-pinned="true"] .service-index > div:nth-child(2) .service-row { --st: 0.27; }
+.services-section[data-pinned="true"] .service-index > div:nth-child(3) .service-row { --st: 0.38; }
+.services-section[data-pinned="true"] .service-index > div:nth-child(4) .service-row { --st: 0.49; }
+.services-section[data-pinned="true"] .service-index > div:nth-child(5) .service-row { --st: 0.60; }
+.services-section[data-pinned="true"] .service-index > div:nth-child(6) .service-row { --st: 0.71; }
+
+.services-section[data-pinned="true"] .service-row {
+  --seg: clamp(0, calc((var(--p) - var(--st)) / 0.16), 1);
+  opacity: var(--seg);
+  transform: translateY(calc((1 - var(--seg)) * 26px));
+}
+
+/* Projekte: columns cascade — numeral, title, then the list items */
+.project-section[data-pinned="true"] .project-col:nth-child(1) { --st: 0.14; }
+.project-section[data-pinned="true"] .project-col:nth-child(2) { --st: 0.34; }
+.project-section[data-pinned="true"] .project-col:nth-child(3) { --st: 0.54; }
+
+.project-section[data-pinned="true"] .project-col-num,
+.project-section[data-pinned="true"] .project-col h3,
+.project-section[data-pinned="true"] .project-col li {
+  opacity: var(--seg);
+  transform: translateY(calc((1 - var(--seg)) * 22px));
+}
+
+.project-section[data-pinned="true"] .project-col-num { --seg: clamp(0, calc((var(--p) - var(--st)) / 0.14), 1); }
+.project-section[data-pinned="true"] .project-col h3  { --seg: clamp(0, calc((var(--p) - var(--st) - 0.04) / 0.14), 1); }
+.project-section[data-pinned="true"] .project-col li:nth-child(1) { --seg: clamp(0, calc((var(--p) - var(--st) - 0.08) / 0.14), 1); }
+.project-section[data-pinned="true"] .project-col li:nth-child(2) { --seg: clamp(0, calc((var(--p) - var(--st) - 0.12) / 0.14), 1); }
+.project-section[data-pinned="true"] .project-col li:nth-child(3) { --seg: clamp(0, calc((var(--p) - var(--st) - 0.16) / 0.14), 1); }
+.project-section[data-pinned="true"] .project-col li:nth-child(4) { --seg: clamp(0, calc((var(--p) - var(--st) - 0.20) / 0.14), 1); }
+
+/* Prozess: the line draws, the steps light up along it */
+.process-section[data-pinned="true"] .process-line {
+  transform: scaleY(clamp(0, calc(var(--p) / 0.82), 1));
+}
+
+.process-section[data-pinned="true"] .process-step:nth-of-type(1) { --st: 0.12; }
+.process-section[data-pinned="true"] .process-step:nth-of-type(2) { --st: 0.26; }
+.process-section[data-pinned="true"] .process-step:nth-of-type(3) { --st: 0.40; }
+.process-section[data-pinned="true"] .process-step:nth-of-type(4) { --st: 0.54; }
+.process-section[data-pinned="true"] .process-step:nth-of-type(5) { --st: 0.68; }
+
+.process-section[data-pinned="true"] .process-step {
+  --seg: clamp(0, calc((var(--p) - var(--st)) / 0.15), 1);
+  opacity: calc(0.15 + var(--seg) * 0.85);
+  transform: translateX(calc((1 - var(--seg)) * -14px));
+}
+
+/* Investitionen: quote first, then the checklist confirms line by line */
+.investment-section[data-pinned="true"] .investment-grid > div:first-child > * {
+  --seg: clamp(0, calc(var(--p) / 0.3), 1);
+  opacity: var(--seg);
+}
+
+.investment-section[data-pinned="true"] .investment-list > div:nth-child(1) .investment-row { --st: 0.30; }
+.investment-section[data-pinned="true"] .investment-list > div:nth-child(2) .investment-row { --st: 0.44; }
+.investment-section[data-pinned="true"] .investment-list > div:nth-child(3) .investment-row { --st: 0.58; }
+.investment-section[data-pinned="true"] .investment-list > div:nth-child(4) .investment-row { --st: 0.72; }
+
+.investment-section[data-pinned="true"] .investment-row {
+  --seg: clamp(0, calc((var(--p) - var(--st)) / 0.15), 1);
+  opacity: var(--seg);
+  transform: translateY(calc((1 - var(--seg)) * 20px));
+}
+
+/* Short desktop windows: tighten the pinned layouts so nothing crops */
+@media (max-height: 780px) {
+  .stage[data-pinned="true"] .service-row { padding: 14px 4px; }
+  .stage[data-pinned="true"] .section-heading.compact { gap: 8px; }
+  .stage[data-pinned="true"] .profile-section .image-frame,
+  .profile-section[data-pinned="true"] .image-frame { height: clamp(280px, 40vh, 420px); }
+  .process-section[data-pinned="true"] .process-step-inner { min-height: 76px; padding-block: 10px; }
+}
+
 /* === RESPONSIVE 1050px === */
 @media (max-width: 1050px) {
   .site-header {
@@ -1958,9 +2080,11 @@ textarea {
   }
 
   .hero {
-    min-height: auto;
+    display: grid;
+    align-content: center;
+    min-height: 88svh;
     padding-top: 92px;
-    padding-bottom: 48px;
+    padding-bottom: 40px;
   }
 
   h1 { letter-spacing: -0.005em; }
@@ -1988,7 +2112,7 @@ textarea {
   }
 
   .hero-logo-wrap,
-  .animated-logo { width: min(260px, 82vw); }
+  .animated-logo { width: min(190px, 56vw); }
 
   .hero h1 { font-size: 2.05rem; }
 
@@ -2037,7 +2161,7 @@ textarea {
   .contact-signature { margin-top: 28px; padding-top: 20px; }
 
   .image-frame {
-    height: 300px;
+    height: 210px;
     min-height: 0;
   }
 

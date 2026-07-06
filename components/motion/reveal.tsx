@@ -21,7 +21,7 @@ export function Reveal({ children, className, delay = 0 }: RevealProps) {
       transition={
         prefersReduced
           ? { duration: 0 }
-          : { duration: 0.55, ease: [0.23, 1, 0.32, 1], delay }
+          : { duration: 0.7, ease: [0.23, 1, 0.32, 1], delay }
       }
       suppressHydrationWarning
     >
