@@ -1675,7 +1675,7 @@ textarea {
 
 .footer-grid h4 {
   margin: 0 0 16px;
-  color: rgba(255, 255, 255, 0.42);
+  color: rgba(255, 255, 255, 0.55);
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -1724,7 +1724,7 @@ textarea {
   gap: 12px 24px;
   padding-top: 24px;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.6);
   font-size: 0.82rem;
 }
 
