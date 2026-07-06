@@ -296,7 +296,7 @@ h3 {
   justify-content: center;
   justify-self: end;
   gap: 8px;
-  min-height: 44px;
+  min-height: 38px;
   padding: 0 16px;
   border-radius: var(--r-sm);
   color: var(--white);
