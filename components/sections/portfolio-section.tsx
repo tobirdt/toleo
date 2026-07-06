@@ -36,13 +36,27 @@ function HorizontalTile({ item, index, total, progress, isStatic }: TileProps) {
     return 1 - Math.min(distance * 0.28, 0.24);
   });
 
+  /* Inner-image parallax: the photo drifts slightly against the track
+     while the gallery is pinned — the media wrapper bleeds 24px so the
+     shift never exposes an edge. */
+  const mediaY = useTransform(progress, (v) => {
+    const center = index / (total - 1 || 1);
+    return (v - center) * 30;
+  });
+
   return (
     <motion.article
       className={`portfolio-h-tile ${item.tone}`}
       style={isStatic ? undefined : { scale, opacity }}
       suppressHydrationWarning
     >
-      <Image src={item.image} alt={item.title} fill sizes="(max-width: 1050px) 100vw, 360px" />
+      <motion.div
+        className="tile-media"
+        style={isStatic ? undefined : { y: mediaY }}
+        suppressHydrationWarning
+      >
+        <Image src={item.image} alt={item.title} fill sizes="(max-width: 1050px) 100vw, 360px" />
+      </motion.div>
       <div className="tile-label">
         <span>{String(index + 1).padStart(2, "0")}</span>
         <h3>{item.title}</h3>

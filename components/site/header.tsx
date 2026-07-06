@@ -20,14 +20,26 @@ type HeaderProps = {
 };
 
 export function Header({ locale, navigation, copy, language }: HeaderProps) {
-  const [menuOpen, setMenuOpen]   = useState(false);
-  const [scrolled, setScrolled]   = useState(false);
-  const { scrollY }               = useScroll();
-  const mobileNavId               = "mobile-navigation";
+  const [menuOpen, setMenuOpen]           = useState(false);
+  const [scrolled, setScrolled]           = useState(false);
+  const [activeSection, setActiveSection] = useState("");
+  const { scrollY }                       = useScroll();
+  const mobileNavId                       = "mobile-navigation";
 
   useMotionValueEvent(scrollY, "change", (v) => setScrolled(v > 40));
 
   useEffect(() => { setScrolled(window.scrollY > 40); }, []);
+
+  useEffect(() => {
+    setActiveSection(window.location.hash.slice(1));
+
+    const onSection = (event: Event) => {
+      setActiveSection((event as CustomEvent<string>).detail ?? "");
+    };
+
+    window.addEventListener("toleo:section", onSection);
+    return () => window.removeEventListener("toleo:section", onSection);
+  }, []);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -74,9 +86,23 @@ export function Header({ locale, navigation, copy, language }: HeaderProps) {
       </a>
 
       <nav className="desktop-nav" aria-label={copy.navAria}>
-        {navigation.map((item) => (
-          <a key={item.href} href={item.href}>{item.label}</a>
-        ))}
+        {navigation.map((item) => {
+          const isActive = item.href === `#${activeSection}`;
+
+          return (
+            <a key={item.href} href={item.href} data-active={isActive || undefined}>
+              {item.label}
+              {isActive && (
+                <motion.span
+                  className="nav-dot"
+                  layoutId="nav-dot"
+                  aria-hidden="true"
+                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                />
+              )}
+            </a>
+          );
+        })}
       </nav>
 
       <a className="header-cta" href="#kontakt">

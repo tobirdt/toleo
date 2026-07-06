@@ -54,6 +54,8 @@ function updateHashForSection(id: string | null) {
 
   if (nextUrl !== currentUrl) {
     window.history.replaceState(window.history.state, "", nextUrl);
+    // Let the header highlight the section that is currently in view
+    window.dispatchEvent(new CustomEvent<string>("toleo:section", { detail: id }));
   }
 }
 

@@ -292,11 +292,25 @@ h3 {
 }
 
 .desktop-nav a {
+  position: relative;
   border-radius: var(--r-sm);
   padding: 9px 11px;
   color: var(--muted);
   font-size: 0.9rem;
   transition: background 200ms var(--ease-out), color 200ms var(--ease-out);
+}
+
+.desktop-nav a[data-active] { color: var(--ink); }
+
+.nav-dot {
+  position: absolute;
+  bottom: 1px;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  margin-left: -2px;
+  border-radius: 50%;
+  background: var(--blue);
 }
 
 .desktop-nav a:hover,
@@ -1187,6 +1201,11 @@ h3 {
   will-change: transform, opacity;
 }
 
+.tile-media {
+  position: absolute;
+  inset: -26px 0;
+}
+
 .portfolio-h-tile img {
   object-fit: cover;
   filter: grayscale(0.15) saturate(0.88);
@@ -1275,11 +1294,30 @@ h3 {
 .investment-section {
   overflow: hidden;
   padding: 110px 0;
-  background:
-    radial-gradient(640px circle at 86% 12%, rgba(48, 96, 168, 0.28), transparent 62%),
-    radial-gradient(540px circle at 8% 95%, rgba(224, 8, 16, 0.16), transparent 60%),
-    var(--ink);
+  background: var(--ink);
   color: rgba(255, 255, 255, 0.92);
+}
+
+.investment-glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.investment-glow-blue {
+  top: -18%;
+  right: -6%;
+  width: 640px;
+  height: 640px;
+  background: radial-gradient(circle, rgba(48, 96, 168, 0.28), transparent 64%);
+}
+
+.investment-glow-red {
+  bottom: -22%;
+  left: -8%;
+  width: 540px;
+  height: 540px;
+  background: radial-gradient(circle, rgba(224, 8, 16, 0.16), transparent 62%);
 }
 
 .investment-section::before {
@@ -1301,9 +1339,9 @@ h3 {
 
 .investment-section cite { color: #8fb4ea; }
 
-.investment-section .investment-list svg { color: #8fb4ea; }
+.investment-section .investment-row svg { color: #8fb4ea; }
 
-.investment-section .investment-list p { color: rgba(255, 255, 255, 0.78); }
+.investment-section .investment-row p { color: rgba(255, 255, 255, 0.78); }
 
 .investment-grid {
   display: grid;
@@ -1352,7 +1390,7 @@ cite {
   border-top: 1px solid rgba(255, 255, 255, 0.14);
 }
 
-.investment-list div {
+.investment-row {
   display: grid;
   grid-template-columns: 24px 1fr;
   gap: 16px;
@@ -1362,10 +1400,10 @@ cite {
   transition: background var(--dur-1) var(--ease-out);
 }
 
-.investment-list div:hover { background: rgba(255, 255, 255, 0.045); }
+.investment-row:hover { background: rgba(255, 255, 255, 0.045); }
 
-.investment-list svg { color: var(--blue); margin-top: 2px; flex-shrink: 0; }
-.investment-list p { margin-bottom: 0; color: var(--muted); font-size: 0.98rem; line-height: 1.65; }
+.investment-row svg { color: var(--blue); margin-top: 2px; flex-shrink: 0; }
+.investment-row p { margin-bottom: 0; color: var(--muted); font-size: 0.98rem; line-height: 1.65; }
 .mobile-copy { display: none; }
 
 /* === CONTACT SECTION === */
