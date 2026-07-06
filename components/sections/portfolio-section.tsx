@@ -109,7 +109,7 @@ export function PortfolioSection({ content }: PortfolioSectionProps) {
   const isStatic = isMobile || !hasShift;
 
   return (
-    <section className="section portfolio-section" id="portfolio" data-num="02">
+    <section className="section portfolio-section" id="portfolio">
       <div
         className="portfolio-h-outer"
         ref={containerRef}

@@ -8,7 +8,7 @@ type ServicesSectionProps = {
 
 export function ServicesSection({ content }: ServicesSectionProps) {
   return (
-    <section className="section viewport-section services-section" id="leistungen" data-num="03">
+    <section className="section viewport-section services-section" id="leistungen">
       <div className="section-inner viewport-inner services-onepage">
         <Reveal className="services-intro">
           <div className="section-rule is-visible" />

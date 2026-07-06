@@ -13,7 +13,7 @@ export function ProcessSection({ content }: ProcessSectionProps) {
   const prefersReduced = useReducedMotion();
 
   return (
-    <section className="section process-section" id="prozess" data-num="05">
+    <section className="section process-section" id="prozess">
       <div className="section-inner process-layout">
         <Reveal className="process-copy">
           <p className="section-kicker">{content.kicker}</p>

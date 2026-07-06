@@ -9,7 +9,7 @@ type ProfileSectionProps = {
 
 export function ProfileSection({ content }: ProfileSectionProps) {
   return (
-    <section className="section profile-section" id="profil" data-num="01">
+    <section className="section profile-section" id="profil">
       <div className="section-inner profile-grid">
 
         <div>

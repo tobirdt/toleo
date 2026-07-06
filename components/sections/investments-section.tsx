@@ -9,7 +9,7 @@ type InvestmentsSectionProps = {
 
 export function InvestmentsSection({ content }: InvestmentsSectionProps) {
   return (
-    <section className="section investment-section" id="investitionen" data-num="06">
+    <section className="section investment-section" id="investitionen">
       <div className="section-inner investment-grid">
 
         <Reveal>

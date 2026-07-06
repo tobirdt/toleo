@@ -61,7 +61,7 @@ export function ContactSection({ content, locale }: ContactSectionProps) {
   }
 
   return (
-    <section className="section contact-section" id="kontakt" data-num="07">
+    <section className="section contact-section" id="kontakt">
       <div className="section-inner">
         <Reveal>
           <div className="contact-panel">
