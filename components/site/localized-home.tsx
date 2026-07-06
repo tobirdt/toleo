@@ -14,7 +14,6 @@ import {
 import { getSiteContent, type Locale } from "@/lib/site-content";
 import { Footer } from "./footer";
 import { Header } from "./header";
-import { Marquee } from "./marquee";
 import { ScrollManager } from "./scroll-manager";
 
 type LocalizedHomeProps = {
@@ -35,7 +34,6 @@ export function LocalizedHome({ locale }: LocalizedHomeProps) {
         language={content.language}
       />
       <HeroSection content={content.hero} />
-      <Marquee items={content.marquee} />
       <ProfileSection content={content.profile} />
       <PortfolioSection content={content.portfolio} />
       <ServicesSection content={content.services} />

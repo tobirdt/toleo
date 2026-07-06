@@ -27,30 +27,13 @@ export function HeroSection({ content }: HeroSectionProps) {
     offset: ["start start", "end start"],
   });
 
-  const logoY     = useTransform(scrollYProgress, [0, 1],    [0, 48]);
-  const copyY     = useTransform(scrollYProgress, [0, 1],    [0, -36]);
-  const copyOp    = useTransform(scrollYProgress, [0, 0.55], [1, 0]);
-  const glowScale = useTransform(scrollYProgress, [0, 1],    [1, 1.08]);
-  const glowOp    = useTransform(scrollYProgress, [0, 1],    [1, 0.45]);
+  const logoY  = useTransform(scrollYProgress, [0, 1],    [0, 48]);
+  const copyY  = useTransform(scrollYProgress, [0, 1],    [0, -36]);
+  const copyOp = useTransform(scrollYProgress, [0, 0.55], [1, 0]);
 
   return (
     <section className="hero" id="top" ref={sectionRef}>
-      {!prefersReduced && (
-        <>
-          <motion.div
-            className="hero-glow hero-glow-blue"
-            style={{ scale: glowScale, opacity: glowOp }}
-            aria-hidden="true"
-            suppressHydrationWarning
-          />
-          <motion.div
-            className="hero-glow hero-glow-red"
-            style={{ scale: glowScale, opacity: glowOp }}
-            aria-hidden="true"
-            suppressHydrationWarning
-          />
-        </>
-      )}
+      <div className="hero-aurora" aria-hidden="true" />
 
       <div className="hero-shell">
         <motion.div
