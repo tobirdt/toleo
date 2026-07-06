@@ -86,11 +86,20 @@ export function PortfolioSection({ content }: PortfolioSectionProps) {
     const measure = () => {
       const viewport = viewportRef.current;
       const track = trackRef.current;
-      if (!viewport || !track) return;
+      const container = containerRef.current;
+      if (!viewport || !track || !container) return;
 
       const shift = Math.max(0, track.scrollWidth - viewport.clientWidth);
       shiftRef.current = shift;
       setHasShift(shift > 0);
+
+      /* Pin only as long as there's horizontal distance to cover: the tall
+         scroll region equals one viewport plus the actual track travel (a
+         relaxed 1.25× so the gallery glides rather than races). A fixed
+         multiple of the viewport made wide screens pin forever while the
+         tiles barely moved. */
+      container.style.height =
+        shift > 0 ? `${window.innerHeight + shift * 1.25}px` : "";
     };
 
     measure();
@@ -98,7 +107,11 @@ export function PortfolioSection({ content }: PortfolioSectionProps) {
     const observer = new ResizeObserver(measure);
     if (viewportRef.current) observer.observe(viewportRef.current);
     if (trackRef.current) observer.observe(trackRef.current);
-    return () => observer.disconnect();
+    window.addEventListener("resize", measure);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", measure);
+    };
   }, []);
 
   const { scrollYProgress } = useScroll({

@@ -46,6 +46,26 @@ function activeSectionId() {
   return bestId;
 }
 
+/**
+ * Where to land when jumping to a section by link. Pinned scrollytelling
+ * stages reveal their content across the scrubbed scroll, so the very top of
+ * such a section is an (intentionally) empty frame. For those we return the
+ * scroll offset at ~90% progress, where the choreography has finished and the
+ * content reads as "already there" — no need to scrub through the animation.
+ * Ordinary sections just return their top.
+ */
+function targetScrollTop(section: HTMLElement) {
+  const top = section.getBoundingClientRect().top + window.scrollY;
+  const pinned = section.dataset.pinned === "true";
+
+  if (!pinned) {
+    return Math.max(0, top - 8);
+  }
+
+  const revealed = section.offsetHeight - window.innerHeight;
+  return top + Math.max(0, revealed) * 0.9;
+}
+
 function updateHashForSection(id: string | null) {
   if (!id) return;
 
@@ -69,7 +89,7 @@ function scheduleInitialPosition(initialHash: string) {
         }
 
         const target = document.getElementById(initialHash.slice(1));
-        target?.scrollIntoView({ block: "start", behavior: "auto" });
+        if (target) window.scrollTo({ top: targetScrollTop(target), behavior: "auto" });
       });
     });
   });
@@ -117,9 +137,26 @@ export function ScrollManager() {
       if (!hash || hash === "#") return;
 
       const id = hash.slice(1);
-      if (id && document.getElementById(id)) {
-        anchorNavigationUntil = Date.now() + anchorNavigationHoldMs;
-      }
+      const section = document.getElementById(id);
+      if (!section) return;
+
+      anchorNavigationUntil = Date.now() + anchorNavigationHoldMs;
+
+      /* Ordinary sections keep the browser's native (smooth) anchor jump.
+         Pinned scrollytelling stages reveal their content across the scrub,
+         so their top is an empty frame — for those we take over and jump
+         instantly to the fully-revealed position, so a nav click shows the
+         section already "loaded" instead of forcing the visitor to scrub
+         the animation open. */
+      if (section.dataset.pinned !== "true") return;
+
+      event.preventDefault();
+      setInstantScroll(() => {
+        window.scrollTo({ top: targetScrollTop(section), left: 0, behavior: "auto" });
+      });
+
+      window.history.replaceState(window.history.state, "", `${cleanPath()}#${id}`);
+      window.dispatchEvent(new CustomEvent<string>("toleo:section", { detail: id }));
     };
 
     const onHashChange = () => {
