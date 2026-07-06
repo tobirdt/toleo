@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Reveal } from "@/components/motion/reveal";
+import { SectionTitle } from "@/components/ui";
 import type { SiteContent } from "@/lib/site-content";
 
 type ProfileSectionProps = {
@@ -8,13 +9,13 @@ type ProfileSectionProps = {
 
 export function ProfileSection({ content }: ProfileSectionProps) {
   return (
-    <section className="section profile-section" id="profil">
+    <section className="section profile-section" id="profil" data-num="01">
       <div className="section-inner profile-grid">
 
         <div>
           <Reveal>
             <p className="section-kicker">{content.kicker}</p>
-            <h2>{content.title}</h2>
+            <SectionTitle title={content.title} tone="blue" />
           </Reveal>
 
           <Reveal delay={0.1}>

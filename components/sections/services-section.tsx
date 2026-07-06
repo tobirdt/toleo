@@ -1,6 +1,6 @@
 import { Reveal } from "@/components/motion/reveal";
 import type { SiteContent } from "@/lib/site-content";
-import { BrandDots } from "@/components/ui";
+import { BrandDots, SectionTitle } from "@/components/ui";
 
 type ServicesSectionProps = {
   content: SiteContent["services"];
@@ -8,12 +8,12 @@ type ServicesSectionProps = {
 
 export function ServicesSection({ content }: ServicesSectionProps) {
   return (
-    <section className="section viewport-section services-section" id="leistungen">
+    <section className="section viewport-section services-section" id="leistungen" data-num="03">
       <div className="section-inner viewport-inner services-onepage">
         <Reveal className="services-intro">
           <div className="section-rule is-visible" />
           <p className="section-kicker">{content.kicker}</p>
-          <h2>{content.title}</h2>
+          <SectionTitle title={content.title} tone="blue" />
           <p className="lead">{content.copy}</p>
           <BrandDots size={7} />
         </Reveal>

@@ -108,13 +108,16 @@ export function Header({ locale, navigation, copy, language }: HeaderProps) {
             exit={{ opacity: 0, y: -8, scale: 0.98 }}
             transition={{ duration: 0.22, ease: [0.23, 1, 0.32, 1] }}
           >
-            {navigation.map((item) => (
+            {navigation.map((item, index) => (
               <a
                 key={item.href}
                 href={item.href}
                 className={item.href === "#kontakt" ? "mobile-nav-cta" : undefined}
                 onClick={() => setMenuOpen(false)}
               >
+                <span className="mobile-nav-num" aria-hidden="true">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
                 {item.label}
               </a>
             ))}

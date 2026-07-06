@@ -11,6 +11,7 @@ import {
   type MotionValue,
 } from "framer-motion";
 import { Reveal } from "@/components/motion/reveal";
+import { SectionTitle } from "@/components/ui";
 import { useIsMobile } from "@/lib/hooks";
 import type { PortfolioItem, SiteContent } from "@/lib/site-content";
 
@@ -108,7 +109,7 @@ export function PortfolioSection({ content }: PortfolioSectionProps) {
   const isStatic = isMobile || !hasShift;
 
   return (
-    <section className="section portfolio-section" id="portfolio">
+    <section className="section portfolio-section" id="portfolio" data-num="02">
       <div
         className="portfolio-h-outer"
         ref={containerRef}
@@ -120,7 +121,7 @@ export function PortfolioSection({ content }: PortfolioSectionProps) {
             <Reveal>
               <div className="section-heading compact">
                 <p className="section-kicker">{content.kicker}</p>
-                <h2>{content.title}</h2>
+                <SectionTitle title={content.title} tone="red" />
                 <p>
                   {content.copy}
                 </p>

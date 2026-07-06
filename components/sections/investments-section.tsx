@@ -1,7 +1,7 @@
 import { CheckCircle2 } from "lucide-react";
 import { Reveal } from "@/components/motion/reveal";
 import type { SiteContent } from "@/lib/site-content";
-import { BrandDots } from "@/components/ui";
+import { BrandDots, SectionTitle } from "@/components/ui";
 
 type InvestmentsSectionProps = {
   content: SiteContent["investments"];
@@ -9,12 +9,12 @@ type InvestmentsSectionProps = {
 
 export function InvestmentsSection({ content }: InvestmentsSectionProps) {
   return (
-    <section className="section investment-section" id="investitionen">
+    <section className="section investment-section" id="investitionen" data-num="06">
       <div className="section-inner investment-grid">
 
         <Reveal>
           <p className="section-kicker">{content.kicker}</p>
-          <h2>{content.title}</h2>
+          <SectionTitle title={content.title} tone="red" />
           <blockquote>
             {content.quote}
             <cite>{content.cite}</cite>

@@ -59,6 +59,7 @@ export type SiteContent = {
     options: Record<Locale, string>;
   };
   navigation: NavigationItem[];
+  marquee: string[];
   header: {
     homeAria: string;
     navAria: string;
@@ -146,7 +147,7 @@ export const languages: Array<{ locale: Locale; href: string }> = [
 
 const portfolioImages = {
   defence: "/images/portfolio-defence.jpg",
-  marketing: "/images/portfolio-marketing.jpg",
+  marketing: "/images/portfolio-balloon.jpg",
   hospitality: "/images/portfolio-hospitality.jpg",
   franchise: "/images/portfolio-franchise.jpg"
 };
@@ -174,6 +175,16 @@ export const siteContent: Record<Locale, SiteContent> = {
       { label: "Projekte", href: "#projekte" },
       { label: "Prozess", href: "#prozess" },
       { label: "Kontakt", href: "#kontakt" }
+    ],
+    marquee: [
+      "Strategie",
+      "Markteintritt",
+      "Vertrieb & Marketing",
+      "Finanzen & Controlling",
+      "Recht & Compliance",
+      "Sicherheit & Verteidigung",
+      "Hospitality & Franchise",
+      "Langfristige Beteiligungen"
     ],
     header: {
       homeAria: "Toleo Startseite",
@@ -417,6 +428,16 @@ export const siteContent: Record<Locale, SiteContent> = {
       { label: "Projects", href: "#projekte" },
       { label: "Process", href: "#prozess" },
       { label: "Contact", href: "#kontakt" }
+    ],
+    marquee: [
+      "Strategy",
+      "Market Entry",
+      "Sales & Marketing",
+      "Finance & Controlling",
+      "Legal & Compliance",
+      "Security & Defence",
+      "Hospitality & Franchise",
+      "Long-term Investments"
     ],
     header: {
       homeAria: "Toleo home",

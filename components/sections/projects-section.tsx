@@ -1,4 +1,5 @@
 import { Reveal } from "@/components/motion/reveal";
+import { SectionTitle } from "@/components/ui";
 import type { SiteContent } from "@/lib/site-content";
 
 type ProjectsSectionProps = {
@@ -7,11 +8,11 @@ type ProjectsSectionProps = {
 
 export function ProjectsSection({ content }: ProjectsSectionProps) {
   return (
-    <section className="section project-section" id="projekte">
+    <section className="section project-section" id="projekte" data-num="04">
       <div className="section-inner project-layout">
         <Reveal className="project-intro">
           <p className="section-kicker">{content.kicker}</p>
-          <h2>{content.title}</h2>
+          <SectionTitle title={content.title} tone="red" />
           <p className="lead">{content.copy}</p>
         </Reveal>
 

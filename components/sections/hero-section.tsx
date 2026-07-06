@@ -63,7 +63,8 @@ export function HeroSection({ content }: HeroSectionProps) {
           </motion.p>
 
           <motion.h1 suppressHydrationWarning {...reveal(0.1)}>
-            {content.title}
+            {content.title.replace(/\.\s*$/, "")}
+            <span className="headline-dot headline-dot-red" aria-hidden="true">.</span>
           </motion.h1>
 
           <motion.p className="hero-copy" suppressHydrationWarning {...reveal(0.2)}>

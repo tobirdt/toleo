@@ -3,7 +3,7 @@
 import { type FormEvent, useState } from "react";
 import { AlertCircle, CheckCircle2, Mail, MapPin, Send } from "lucide-react";
 import { Reveal } from "@/components/motion/reveal";
-import { BrandDots } from "@/components/ui";
+import { BrandDots, SectionTitle } from "@/components/ui";
 import type { Locale, SiteContent } from "@/lib/site-content";
 
 type ContactStatus = "idle" | "loading" | "success" | "error";
@@ -61,7 +61,7 @@ export function ContactSection({ content, locale }: ContactSectionProps) {
   }
 
   return (
-    <section className="section contact-section" id="kontakt">
+    <section className="section contact-section" id="kontakt" data-num="07">
       <div className="section-inner">
         <Reveal>
           <div className="contact-panel">
@@ -70,9 +70,7 @@ export function ContactSection({ content, locale }: ContactSectionProps) {
               {/* LEFT — info */}
               <div>
                 <p className="section-kicker">{content.kicker}</p>
-                <h2 className="contact-heading">
-                  {content.title}
-                </h2>
+                <SectionTitle title={content.title} tone="blue" className="contact-heading" />
 
                 <div className="contact-links">
                   <a href="mailto:info@toleo.biz">
