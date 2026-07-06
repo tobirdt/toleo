@@ -5,15 +5,19 @@ React, Framer Motion und Resend.
 
 ## Struktur
 
-- `app/page.tsx` ist bewusst nur die Seiten-Komposition.
+- `app/(de)/*` und `app/en/*` sind die beiden Sprach-Roots (eigene Root-Layouts,
+  gemeinsame Komponenten). Es gibt bewusst kein `app/page.tsx` auf oberster Ebene.
+- `components/site/localized-home.tsx` komponiert den Onepager pro Sprache.
 - `components/sections/*` enthält die großen Onepager-Abschnitte.
-- `components/site/*` enthält wiederverwendbare Site-Bausteine wie Header, Footer und Ticker.
-- `components/motion/*` enthält Motion-Helfer.
+- `components/site/*` enthält Site-Bausteine wie Header, Footer und ScrollManager.
+- `components/motion/*` enthält Motion-Helfer (Reveal, ScrollProgress).
 - `components/brand/*` enthält markennahe Komponenten wie das animierte Toleo-Logo.
 - `components/legal/legal-shell.tsx` kapselt das Layout der rechtlichen Seiten.
-- `lib/site-content.ts` enthält Navigation, Leistungsdaten, Projektlisten und Portfolio-Inhalte.
+- `lib/site-content.ts` enthält sämtliche Texte und Inhalte für DE und EN.
 - `app/api/contact/route.ts` ist die serverseitige Resend-Route für das Kontaktformular.
 - `app/globals.css` enthält globale Design Tokens, Layout-Styles und responsive Regeln.
+- `app/sitemap.ts`, `app/robots.ts` und die `opengraph-image.tsx`-Dateien erzeugen
+  Sitemap, robots.txt und Social-Preview-Bilder zur Build-Zeit.
 
 ## Design Tokens
 
@@ -58,8 +62,8 @@ das Formular bewusst eine Konfigurationsmeldung an.
 
 ## Rechtliche Seiten
 
-- `/impressum`
-- `/datenschutz`
+- `/impressum` bzw. `/en/legal-notice`
+- `/datenschutz` bzw. `/en/privacy`
 
 Die Inhalte sind auf eine deutsche Website vorbereitet, sollten vor Livegang aber
 juristisch final geprüft werden.

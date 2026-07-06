@@ -345,7 +345,7 @@ export const siteContent: Record<Locale, SiteContent> = {
       kicker: "Investitionen",
       title: "Gezielte Investitionen. Langfristige Partnerschaften.",
       quote:
-        "„Man trifft sich immer zweimal im Leben. Deshalb ist es entscheidend, immer fair und freundlich miteinander umzugehen und mit Freude und Überzeugung dabei zu sein.\"",
+        "„Man trifft sich immer zweimal im Leben. Deshalb ist es entscheidend, immer fair und freundlich miteinander umzugehen und mit Freude und Überzeugung dabei zu sein.“",
       cite: "Holger Rumscheidt, Geschäftsführer der Toleo GmbH",
       points: [
         {
@@ -398,7 +398,7 @@ export const siteContent: Record<Locale, SiteContent> = {
   en: {
     locale: "en",
     meta: {
-      title: "Toleo GmbH | Smart Investments",
+      title: "Toleo GmbH | Advisory & Investments",
       description:
         "Family holding and advisory boutique for strategy, market entry, investments and operational execution.",
       ogLocale: "en_US"
@@ -588,7 +588,7 @@ export const siteContent: Record<Locale, SiteContent> = {
       kicker: "Investments",
       title: "Targeted investments. Long-term partnerships.",
       quote:
-        '"You always meet twice in life. That is why it is essential to treat people fairly and kindly, and to work with joy and conviction."',
+        "“You always meet twice in life. That is why it is essential to treat people fairly and kindly, and to work with joy and conviction.”",
       cite: "Holger Rumscheidt, Managing Director of Toleo GmbH",
       points: [
         {
