@@ -325,7 +325,7 @@ h3 {
   justify-content: center;
   justify-self: end;
   gap: 8px;
-  min-height: 38px;
+  min-height: 34px;
   padding: 0 16px;
   border-radius: var(--r-sm);
   color: var(--white);
@@ -924,16 +924,27 @@ h3 {
 }
 
 .service-index {
-  margin-top: 44px;
+  margin-top: 40px;
   border-top: 1px solid var(--line);
+}
+
+@media (min-width: 1051px) {
+  .service-index {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(3, auto);
+    grid-auto-flow: column;
+    column-gap: 56px;
+  }
 }
 
 .service-row {
   display: grid;
-  grid-template-columns: 52px minmax(0, 0.72fr) minmax(0, 1.28fr) 28px;
-  gap: 4px 36px;
-  align-items: center;
-  padding: 26px 6px;
+  grid-template-columns: 40px 1fr auto;
+  column-gap: 18px;
+  row-gap: 6px;
+  align-items: start;
+  padding: 22px 6px;
   border-bottom: 1px solid var(--line);
   transition: background var(--dur-1) var(--ease-out);
   will-change: opacity, transform;
@@ -942,6 +953,9 @@ h3 {
 .service-row:hover { background: rgba(48, 96, 168, 0.035); }
 
 .service-row-num {
+  grid-column: 1;
+  grid-row: 1;
+  padding-top: 3px;
   color: var(--muted);
   font-size: 0.78rem;
   font-weight: 700;
@@ -949,26 +963,32 @@ h3 {
 }
 
 .service-row h3 {
+  grid-column: 2;
+  grid-row: 1;
   margin: 0;
   font-family: var(--font-display);
-  font-size: 1.3rem;
+  font-size: 1.22rem;
   font-weight: 500;
-  line-height: 1.2;
+  line-height: 1.25;
   transition: color var(--dur-1) var(--ease-out);
 }
 
 .service-row:hover h3 { color: var(--blue); }
 
 .service-row p {
+  grid-column: 2 / 4;
+  grid-row: 2;
   margin: 0;
-  max-width: 46ch;
+  max-width: 48ch;
   color: var(--muted);
-  font-size: 0.94rem;
-  line-height: 1.6;
+  font-size: 0.9rem;
+  line-height: 1.55;
   text-wrap: pretty;
 }
 
 .service-row-icon {
+  grid-column: 3;
+  grid-row: 1;
   justify-self: end;
   color: var(--soft);
   transition: transform var(--dur-1) var(--ease-out), color var(--dur-1) var(--ease-out);
@@ -1236,8 +1256,8 @@ h3 {
 
 .portfolio-h-tile {
   position: relative;
-  flex: 0 0 min(440px, 82vw);
-  min-height: clamp(340px, 62svh, 540px);
+  flex: 0 0 min(380px, 76vw);
+  min-height: clamp(280px, 52svh, 440px);
   overflow: hidden;
   border: 1px solid var(--g-bd);
   border-radius: var(--r);
@@ -1894,12 +1914,14 @@ textarea {
   transform: translateY(calc((1 - var(--seg)) * 26px));
 }
 
-.services-section[data-pinned="true"] .service-index > div:nth-child(1) .service-row { --st: 0.16; }
-.services-section[data-pinned="true"] .service-index > div:nth-child(2) .service-row { --st: 0.27; }
-.services-section[data-pinned="true"] .service-index > div:nth-child(3) .service-row { --st: 0.38; }
-.services-section[data-pinned="true"] .service-index > div:nth-child(4) .service-row { --st: 0.49; }
-.services-section[data-pinned="true"] .service-index > div:nth-child(5) .service-row { --st: 0.60; }
-.services-section[data-pinned="true"] .service-index > div:nth-child(6) .service-row { --st: 0.71; }
+/* Two-column grid pairs child 1 with 4, 2 with 5, 3 with 6 (grid-auto-flow:
+   column) — reveal each visual row together instead of item-by-item. */
+.services-section[data-pinned="true"] .service-index > div:nth-child(1) .service-row,
+.services-section[data-pinned="true"] .service-index > div:nth-child(4) .service-row { --st: 0.16; }
+.services-section[data-pinned="true"] .service-index > div:nth-child(2) .service-row,
+.services-section[data-pinned="true"] .service-index > div:nth-child(5) .service-row { --st: 0.42; }
+.services-section[data-pinned="true"] .service-index > div:nth-child(3) .service-row,
+.services-section[data-pinned="true"] .service-index > div:nth-child(6) .service-row { --st: 0.68; }
 
 .services-section[data-pinned="true"] .service-row {
   --seg: clamp(0, calc((var(--p) - var(--st)) / 0.16), 1);
@@ -2189,17 +2211,13 @@ textarea {
     padding-top: 64px;
   }
 
-  /* Editorial index rows and columns stack on phones */
   .service-row {
-    grid-template-columns: 40px 1fr 24px;
     padding: 18px 2px;
   }
 
-  .service-row h3 { grid-column: 2; font-size: 1.12rem; }
+  .service-row h3 { font-size: 1.12rem; }
 
-  .service-row p { grid-column: 2 / 4; grid-row: 2; font-size: 0.88rem; }
-
-  .service-row-icon { grid-column: 3; grid-row: 1; }
+  .service-row p { font-size: 0.88rem; }
 
   .project-columns { grid-template-columns: 1fr; margin-top: 32px; }
 
@@ -2268,10 +2286,10 @@ textarea {
   .process-copy .lead { display: none; }
   .portfolio-h-tile {
     min-height: 0;
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 16 / 9;
   }
 
-  .tile-label { padding: 40px 16px 14px; }
+  .tile-label { padding: 32px 16px 14px; }
 
   .legal-content { padding: 22px; }
   .legal-top { align-items: flex-start; flex-direction: column; }

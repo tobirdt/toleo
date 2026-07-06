@@ -129,23 +129,40 @@ export function Header({ locale, navigation, copy, language }: HeaderProps) {
             id={mobileNavId}
             className="mobile-nav"
             aria-label={copy.mobileNavAria}
-            initial={{ opacity: 0, y: -8, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -8, scale: 0.98 }}
-            transition={{ duration: 0.22, ease: [0.23, 1, 0.32, 1] }}
+            initial="closed"
+            animate="open"
+            exit="closed"
+            variants={{
+              open: {
+                opacity: 1,
+                scale: 1,
+                transition: {
+                  duration: 0.2,
+                  ease: [0.23, 1, 0.32, 1],
+                  staggerChildren: 0.035,
+                  delayChildren: 0.05,
+                },
+              },
+              closed: { opacity: 0, scale: 0.98, transition: { duration: 0.16 } },
+            }}
           >
             {navigation.map((item, index) => (
-              <a
+              <motion.a
                 key={item.href}
                 href={item.href}
                 className={item.href === "#kontakt" ? "mobile-nav-cta" : undefined}
                 onClick={() => setMenuOpen(false)}
+                variants={{
+                  closed: { opacity: 0, y: -6 },
+                  open: { opacity: 1, y: 0 },
+                }}
+                transition={{ duration: 0.28, ease: [0.23, 1, 0.32, 1] }}
               >
                 <span className="mobile-nav-num" aria-hidden="true">
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 {item.label}
-              </a>
+              </motion.a>
             ))}
           </motion.nav>
         )}

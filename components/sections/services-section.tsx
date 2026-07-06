@@ -9,7 +9,7 @@ type ServicesSectionProps = {
 
 export function ServicesSection({ content }: ServicesSectionProps) {
   return (
-    <ScrollStage id="leistungen" className="services-section" extra={110}>
+    <ScrollStage id="leistungen" className="services-section" extra={75}>
       <div className="section-inner">
         <Reveal>
           <div className="section-heading compact">
