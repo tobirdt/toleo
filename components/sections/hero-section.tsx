@@ -33,7 +33,9 @@ export function HeroSection({ content }: HeroSectionProps) {
 
   return (
     <section className="hero" id="top" ref={sectionRef}>
-      <div className="hero-aurora" aria-hidden="true" />
+      <div className="hero-aurora" aria-hidden="true">
+        <span />
+      </div>
 
       <div className="hero-shell">
         <motion.div
