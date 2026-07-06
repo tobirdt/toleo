@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "../globals.css";
-import { inter } from "@/lib/fonts";
+import { fraunces, inter } from "@/lib/fonts";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://toleo.biz"),
@@ -20,7 +20,7 @@ export default function GermanRootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="de" className={inter.variable}>
+    <html lang="de" className={`${inter.variable} ${fraunces.variable}`}>
       <body className={inter.className}>
         <a href="#main-content" className="skip-link">
           Zum Inhalt
