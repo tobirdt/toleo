@@ -66,6 +66,12 @@ function targetScrollTop(section: HTMLElement) {
   return top + Math.max(0, revealed) * 0.9;
 }
 
+function jumpToRevealed(section: HTMLElement) {
+  setInstantScroll(() =>
+    window.scrollTo({ top: targetScrollTop(section), left: 0, behavior: "auto" })
+  );
+}
+
 function updateHashForSection(id: string | null) {
   if (!id) return;
 
@@ -79,20 +85,74 @@ function updateHashForSection(id: string | null) {
   }
 }
 
-function scheduleInitialPosition(initialHash: string) {
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      setInstantScroll(() => {
-        if (!initialHash) {
-          window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-          return;
-        }
+/**
+ * Position the page for the initial URL hash and keep re-asserting the target
+ * across the ~700ms settle window. A single early scroll is unreliable: the
+ * web-font swap, the pinned-stage height being applied via a state commit, and
+ * images loading all reflow the page *after* the first scroll, which would
+ * otherwise strand a deep link or a language switch far from its section.
+ * Re-computing and re-applying the target a few times (and again once fonts are
+ * ready) makes it land correctly regardless of timing. Any real user scroll
+ * cancels the re-asserts immediately. Returns a cleanup function.
+ */
+function positionForInitialHash(initialHash: string) {
+  if (!initialHash) {
+    requestAnimationFrame(() =>
+      requestAnimationFrame(() =>
+        setInstantScroll(() => window.scrollTo({ top: 0, left: 0, behavior: "auto" }))
+      )
+    );
+    return () => {};
+  }
 
-        const target = document.getElementById(initialHash.slice(1));
-        if (target) window.scrollTo({ top: targetScrollTop(target), behavior: "auto" });
-      });
-    });
-  });
+  const id = initialHash.slice(1);
+  const scrollKeys = ["ArrowDown", "ArrowUp", "PageDown", "PageUp", "Home", "End", " "];
+  const settleMs = 900;
+  const start = performance.now();
+  let cancelled = false;
+  let raf = 0;
+
+  const stop = () => {
+    if (cancelled) return;
+    cancelled = true;
+    if (raf) window.cancelAnimationFrame(raf);
+    window.removeEventListener("wheel", onWheel);
+    window.removeEventListener("touchmove", onWheel);
+    window.removeEventListener("keydown", onKey);
+  };
+
+  const onWheel = () => stop();
+  const onKey = (event: KeyboardEvent) => {
+    if (scrollKeys.includes(event.key)) stop();
+  };
+
+  /* Re-assert the target every frame through the settle window, reading fresh
+     geometry each time. Early frames may land at the section top (the pinned
+     height / web font not applied yet); later frames self-correct to the
+     revealed position and hold it against reflow. A single scroll can't get
+     stranded because we keep pulling it back until layout settles. */
+  const tick = () => {
+    if (cancelled) return;
+    const target = document.getElementById(id);
+    if (target) {
+      const desired = targetScrollTop(target);
+      if (Math.abs(window.scrollY - desired) > 1) {
+        setInstantScroll(() => window.scrollTo({ top: desired, behavior: "auto" }));
+      }
+    }
+    if (performance.now() - start < settleMs) {
+      raf = window.requestAnimationFrame(tick);
+    } else {
+      stop();
+    }
+  };
+
+  window.addEventListener("wheel", onWheel, { passive: true });
+  window.addEventListener("touchmove", onWheel, { passive: true });
+  window.addEventListener("keydown", onKey);
+  raf = window.requestAnimationFrame(tick);
+
+  return stop;
 }
 
 export function ScrollManager() {
@@ -103,6 +163,7 @@ export function ScrollManager() {
     let frame = 0;
     let anchorNavigationUntil = 0;
     let delayedSync: number | null = null;
+    let cancelInitialPosition = () => {};
     const initialHash = window.location.hash;
 
     if (initialHash) {
@@ -140,6 +201,8 @@ export function ScrollManager() {
       const section = document.getElementById(id);
       if (!section) return;
 
+      // A deliberate nav click supersedes any in-flight initial positioning.
+      cancelInitialPosition();
       anchorNavigationUntil = Date.now() + anchorNavigationHoldMs;
 
       /* Ordinary sections keep the browser's native (smooth) anchor jump.
@@ -151,9 +214,7 @@ export function ScrollManager() {
       if (section.dataset.pinned !== "true") return;
 
       event.preventDefault();
-      setInstantScroll(() => {
-        window.scrollTo({ top: targetScrollTop(section), left: 0, behavior: "auto" });
-      });
+      jumpToRevealed(section);
 
       window.history.replaceState(window.history.state, "", `${cleanPath()}#${id}`);
       window.dispatchEvent(new CustomEvent<string>("toleo:section", { detail: id }));
@@ -161,10 +222,19 @@ export function ScrollManager() {
 
     const onHashChange = () => {
       anchorNavigationUntil = Date.now() + anchorNavigationHoldMs;
+
+      // Back/forward or a URL-bar hash edit lands on a pinned stage at its
+      // empty top otherwise — pull it to the revealed frame like a nav click.
+      const id = window.location.hash.slice(1);
+      const section = id ? document.getElementById(id) : null;
+      if (section && section.dataset.pinned === "true") {
+        jumpToRevealed(section);
+      }
+
       scheduleSync();
     };
 
-    scheduleInitialPosition(initialHash);
+    cancelInitialPosition = positionForInitialHash(initialHash);
 
     const initialSync = window.setTimeout(
       scheduleSync,
@@ -178,6 +248,7 @@ export function ScrollManager() {
 
     return () => {
       window.history.scrollRestoration = previousScrollRestoration;
+      cancelInitialPosition();
       window.clearTimeout(initialSync);
       if (delayedSync) window.clearTimeout(delayedSync);
       if (frame) window.cancelAnimationFrame(frame);
