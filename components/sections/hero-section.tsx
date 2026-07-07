@@ -27,9 +27,11 @@ export function HeroSection({ content }: HeroSectionProps) {
     offset: ["start start", "end start"],
   });
 
-  const logoY  = useTransform(scrollYProgress, [0, 1],    [0, 48]);
-  const copyY  = useTransform(scrollYProgress, [0, 1],    [0, -36]);
-  const copyOp = useTransform(scrollYProgress, [0, 0.55], [1, 0]);
+  const logoY  = useTransform(scrollYProgress, [0, 1],        [0, 48]);
+  const copyY  = useTransform(scrollYProgress, [0, 1],        [0, -36]);
+  // Explicit third stop keeps it pinned at 0 once faded — a 2-point range
+  // reflected back up past its end, making the text re-appear on the way out.
+  const copyOp = useTransform(scrollYProgress, [0, 0.5, 1],   [1, 0, 0]);
 
   return (
     <section className="hero" id="top" ref={sectionRef}>

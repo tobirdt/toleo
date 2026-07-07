@@ -19,19 +19,25 @@ export function ProjectsSection({ content }: ProjectsSectionProps) {
           </div>
         </Reveal>
 
-        <div className="project-columns" aria-label={content.title}>
-          {content.pillars.map((pillar, index) => (
-            <Reveal key={pillar.title} className="project-col" delay={index * 0.06}>
-              <span className="project-col-num">{pillar.number}</span>
-              <h3>{pillar.title}</h3>
-              <ul>
-                {pillar.items.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </Reveal>
-          ))}
-        </div>
+        {/* One Reveal wraps the group for the flowing (mobile / reduced-motion)
+            entrance; on the desktop pin the per-column reveal is driven from
+            CSS, so each column keeps its own plain element the choreography can
+            fade in together with its hairline. */}
+        <Reveal>
+          <div className="project-columns" aria-label={content.title}>
+            {content.pillars.map((pillar) => (
+              <div className="project-col" key={pillar.title}>
+                <span className="project-col-num">{pillar.number}</span>
+                <h3>{pillar.title}</h3>
+                <ul>
+                  {pillar.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </Reveal>
       </div>
     </ScrollStage>
   );
