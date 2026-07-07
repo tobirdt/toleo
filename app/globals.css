@@ -279,10 +279,10 @@ h3 {
 .brand {
   display: inline-flex;
   align-items: center;
-  width: 62px;
+  width: 56px;
 }
 
-.brand img { width: 62px; height: auto; }
+.brand img { width: 56px; height: auto; }
 
 .desktop-nav {
   display: flex;
@@ -1685,7 +1685,7 @@ textarea {
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  margin-bottom: 36px;
+  margin-bottom: 8px;
 }
 
 .footer-top img {
@@ -1721,18 +1721,6 @@ textarea {
 }
 
 .footer-cta:hover svg { transform: translate(2px, -2px); }
-
-.footer-claim {
-  max-width: 26ch;
-  margin: 0 0 56px;
-  color: var(--white);
-  font-family: var(--font-display);
-  font-size: clamp(1.7rem, 1.1rem + 1.8vw, 2.4rem);
-  font-weight: 500;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  text-wrap: balance;
-}
 
 .footer-grid {
   display: grid;
@@ -2105,7 +2093,7 @@ textarea {
 
 /* === RESPONSIVE 700px === */
 @media (max-width: 700px) {
-  :root { --inner: min(1120px, calc(100% - 32px)); }
+  :root { --inner: min(1120px, calc(100% - 44px)); }
 
   .site-header {
     top: 10px;
@@ -2117,8 +2105,8 @@ textarea {
     overflow: visible;
   }
 
-  .brand { width: 52px; }
-  .brand img { width: 52px; }
+  .brand { width: 48px; }
+  .brand img { width: 48px; }
 
   .header-cta { display: none; }
 
@@ -2145,16 +2133,16 @@ textarea {
   .hero {
     display: grid;
     align-content: center;
-    min-height: 100svh;
+    min-height: 106svh;
     padding-top: 84px;
-    padding-bottom: 36px;
+    padding-bottom: 40px;
   }
 
   .hero-shell {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 26px;
+    gap: 38px;
     width: 100%;
     min-height: 0;
     text-align: center;
@@ -2175,7 +2163,7 @@ textarea {
   .hero-copy { display: none; }
 
   .hero h1 {
-    margin-bottom: 26px;
+    margin-bottom: 42px;
     font-size: clamp(1.9rem, 8vw, 2.5rem);
     text-align: center;
   }
@@ -2260,8 +2248,6 @@ textarea {
   .footer-grid { grid-template-columns: 1fr; gap: 28px; }
 
   .footer-top { flex-direction: row; }
-
-  .footer-claim { margin-bottom: 40px; }
 
   .contact-grid { grid-template-columns: 1fr; }
 
@@ -2387,8 +2373,8 @@ textarea {
   h1 { font-size: 1.85rem; line-height: 1; }
   h2 { font-size: 1.42rem; }
 
-  .brand { width: 52px; }
-  .brand img { width: 52px; }
+  .brand { width: 48px; }
+  .brand img { width: 48px; }
 
   .language-switch {
     min-height: 38px;

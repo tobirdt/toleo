@@ -132,7 +132,6 @@ export type SiteContent = {
     error: string;
   };
   footer: {
-    claim: string;
     cta: string;
     navHeading: string;
     contactHeading: string;
@@ -202,11 +201,10 @@ export const siteContent: Record<Locale, SiteContent> = {
       kicker: "Firmenprofil",
       title: "Eine Holding für Wachstum, Marktzugang und belastbare Umsetzung.",
       paragraphs: [
-        "Toleo ist die Familienholding von Nicole und Holger Rumscheidt – gegründet 2019 in Taufkirchen bei München.",
         "Wir gründen, erwerben, verwalten und beraten Beteiligungen im In- und Ausland. Immer mit klaren Strukturen, belastbarer Umsetzung und Blick auf nachhaltiges Wachstum."
       ],
       summaryMobile:
-        "Familienholding von Nicole und Holger Rumscheidt, gegründet 2019 in Taufkirchen bei München.",
+        "Wir gründen, erwerben, verwalten und beraten Beteiligungen im In- und Ausland.",
       fieldsLabel: "Tätigkeitsfelder",
       fields: [
         { label: "Neugründung", note: "Gesellschaften und Strukturen aufsetzen" },
@@ -407,7 +405,6 @@ export const siteContent: Record<Locale, SiteContent> = {
       error: "Die Nachricht konnte nicht gesendet werden."
     },
     footer: {
-      claim: "Sprechen wir über Markt, Struktur und Wachstum.",
       cta: "Gespräch starten",
       navHeading: "Navigation",
       contactHeading: "Kontakt",
@@ -463,11 +460,10 @@ export const siteContent: Record<Locale, SiteContent> = {
       kicker: "Company Profile",
       title: "A holding company for growth, market access and reliable execution.",
       paragraphs: [
-        "Toleo is the family holding of Nicole and Holger Rumscheidt — founded in 2019 in Taufkirchen near Munich.",
         "We establish, acquire, manage and advise investments in Germany and abroad. Always with clear structures, reliable execution and an eye on sustainable growth."
       ],
       summaryMobile:
-        "Family holding of Nicole and Holger Rumscheidt, founded in 2019 near Munich.",
+        "We establish, acquire, manage and advise investments in Germany and abroad.",
       fieldsLabel: "Fields of activity",
       fields: [
         { label: "Formation", note: "Setting up companies and structures" },
@@ -667,7 +663,6 @@ export const siteContent: Record<Locale, SiteContent> = {
       error: "The message could not be sent."
     },
     footer: {
-      claim: "Let us talk about market access, structure and growth.",
       cta: "Start a conversation",
       navHeading: "Navigation",
       contactHeading: "Contact",

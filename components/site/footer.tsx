@@ -28,8 +28,6 @@ export function Footer({ locale, navigation, content }: FooterProps) {
           </a>
         </div>
 
-        <p className="footer-claim">{content.claim}</p>
-
         <div className="footer-grid">
           <nav aria-label={content.navAria}>
             <h4>{content.navHeading}</h4>
