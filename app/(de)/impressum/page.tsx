@@ -1,10 +1,14 @@
-import type { Metadata } from "next";
 import { LegalShell } from "@/components/legal/legal-shell";
+import { createLocalizedMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = createLocalizedMetadata({
   title: "Impressum | Toleo GmbH",
-  description: "Anbieterkennzeichnung der Toleo GmbH gemäß § 5 DDG."
-};
+  description: "Anbieterkennzeichnung der Toleo GmbH gemäß § 5 DDG.",
+  path: "/impressum",
+  locale: "de_DE",
+  germanPath: "/impressum",
+  englishPath: "/en/legal-notice",
+});
 
 export default function ImpressumPage() {
   return (
@@ -24,7 +28,10 @@ export default function ImpressumPage() {
       </p>
 
       <h2>Vertreten durch</h2>
-      <p>Holger Rumscheidt und Nicole Rumscheidt, Geschäftsführer</p>
+      <p>
+        <a href="/holger-rumscheidt">Holger Rumscheidt</a> und Nicole Rumscheidt,
+        Geschäftsführer
+      </p>
 
       <h2>Kontakt</h2>
       <p>

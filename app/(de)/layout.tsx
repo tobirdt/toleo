@@ -1,12 +1,23 @@
 import type { Metadata } from "next";
 import "../globals.css";
 import { fraunces, inter } from "@/lib/fonts";
+import { SITE_NAME, SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://toleo.biz"),
+  metadataBase: new URL(SITE_URL),
+  applicationName: SITE_NAME,
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
   robots: {
     index: true,
-    follow: true
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
   icons: {
     icon: "/images/favicon.png",

@@ -1,30 +1,23 @@
-import type { Metadata } from "next";
 import { LocalizedHome } from "@/components/site/localized-home";
-import { getSiteContent } from "@/lib/site-content";
+import { JsonLd } from "@/components/seo/json-ld";
+import { createLocalizedMetadata, organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 
-const content = getSiteContent("de");
-
-export const metadata: Metadata = {
-  title: content.meta.title,
-  description: content.meta.description,
-  alternates: {
-    canonical: "/",
-    languages: {
-      de: "/",
-      en: "/en",
-      "x-default": "/"
-    }
-  },
-  openGraph: {
-    title: content.meta.title,
-    description: content.meta.description,
-    url: "https://toleo.biz",
-    siteName: "Toleo GmbH",
-    locale: content.meta.ogLocale,
-    type: "website"
-  }
-};
+export const metadata = createLocalizedMetadata({
+  title: "Toleo GmbH | Beratung, Beteiligungen & Markteintritt",
+  description:
+    "Toleo GmbH mit den Geschäftsführern Holger Rumscheidt und Nicole Rumscheidt: Beratung, Beteiligungen, Markteintritt und operative Umsetzung.",
+  path: "/",
+  locale: "de_DE",
+  germanPath: "/",
+  englishPath: "/en",
+});
 
 export default function Home() {
-  return <LocalizedHome locale="de" />;
+  return (
+    <>
+      <JsonLd data={organizationJsonLd} />
+      <JsonLd data={websiteJsonLd} />
+      <LocalizedHome locale="de" />
+    </>
+  );
 }

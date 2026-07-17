@@ -1,10 +1,14 @@
-import type { Metadata } from "next";
 import { LegalShell } from "@/components/legal/legal-shell";
+import { createLocalizedMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = createLocalizedMetadata({
   title: "Legal Notice | Toleo GmbH",
-  description: "Legal provider information for Toleo GmbH."
-};
+  description: "Legal provider information for Toleo GmbH.",
+  path: "/en/legal-notice",
+  locale: "en_US",
+  germanPath: "/impressum",
+  englishPath: "/en/legal-notice",
+});
 
 export default function LegalNoticePage() {
   return (
@@ -24,7 +28,10 @@ export default function LegalNoticePage() {
       </p>
 
       <h2>Represented by</h2>
-      <p>Holger Rumscheidt and Nicole Rumscheidt, Managing Directors</p>
+      <p>
+        <a href="/en/holger-rumscheidt">Holger Rumscheidt</a> and Nicole Rumscheidt,
+        Managing Directors
+      </p>
 
       <h2>Contact</h2>
       <p>

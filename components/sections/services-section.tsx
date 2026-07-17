@@ -40,6 +40,9 @@ export function ServicesSection({ content }: ServicesSectionProps) {
             );
           })}
         </div>
+        <a className="section-more-link" href={content.moreHref}>
+          {content.moreLink}
+        </a>
       </div>
     </ScrollStage>
   );

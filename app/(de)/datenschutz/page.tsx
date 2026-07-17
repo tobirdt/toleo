@@ -1,10 +1,14 @@
-import type { Metadata } from "next";
 import { LegalShell } from "@/components/legal/legal-shell";
+import { createLocalizedMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = createLocalizedMetadata({
   title: "Datenschutzerklärung | Toleo GmbH",
-  description: "Datenschutzhinweise der Toleo GmbH gemäß Art. 13 DSGVO."
-};
+  description: "Datenschutzhinweise der Toleo GmbH gemäß Art. 13 DSGVO.",
+  path: "/datenschutz",
+  locale: "de_DE",
+  germanPath: "/datenschutz",
+  englishPath: "/en/privacy",
+});
 
 export default function DatenschutzPage() {
   return (

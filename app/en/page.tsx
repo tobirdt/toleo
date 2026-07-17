@@ -1,30 +1,23 @@
-import type { Metadata } from "next";
 import { LocalizedHome } from "@/components/site/localized-home";
-import { getSiteContent } from "@/lib/site-content";
+import { JsonLd } from "@/components/seo/json-ld";
+import { createLocalizedMetadata, organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 
-const content = getSiteContent("en");
-
-export const metadata: Metadata = {
-  title: content.meta.title,
-  description: content.meta.description,
-  alternates: {
-    canonical: "/en",
-    languages: {
-      de: "/",
-      en: "/en",
-      "x-default": "/"
-    }
-  },
-  openGraph: {
-    title: content.meta.title,
-    description: content.meta.description,
-    url: "https://toleo.biz/en",
-    siteName: "Toleo GmbH",
-    locale: content.meta.ogLocale,
-    type: "website"
-  }
-};
+export const metadata = createLocalizedMetadata({
+  title: "Toleo GmbH | Advisory, Investments & Market Entry",
+  description:
+    "Toleo GmbH, managed by Holger Rumscheidt and Nicole Rumscheidt: advisory, investments, market entry and operational execution.",
+  path: "/en",
+  locale: "en_US",
+  germanPath: "/",
+  englishPath: "/en",
+});
 
 export default function EnglishHome() {
-  return <LocalizedHome locale="en" />;
+  return (
+    <>
+      <JsonLd data={organizationJsonLd} />
+      <JsonLd data={websiteJsonLd} />
+      <LocalizedHome locale="en" />
+    </>
+  );
 }

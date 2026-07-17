@@ -7,6 +7,8 @@ React, Framer Motion und Resend.
 
 - `app/(de)/*` und `app/en/*` sind die beiden Sprach-Roots (eigene Root-Layouts,
   gemeinsame Komponenten). Es gibt bewusst kein `app/page.tsx` auf oberster Ebene.
+- `/unternehmen`, `/holger-rumscheidt` und `/leistungen` sowie die entsprechenden
+  englischen Routen sind eigenständige, indexierbare Inhaltsseiten.
 - `components/site/localized-home.tsx` komponiert den Onepager pro Sprache.
 - `components/sections/*` enthält die großen Onepager-Abschnitte.
 - `components/site/*` enthält Site-Bausteine wie Header, Footer und ScrollManager.
@@ -18,6 +20,9 @@ React, Framer Motion und Resend.
 - `app/globals.css` enthält globale Design Tokens, Layout-Styles und responsive Regeln.
 - `app/sitemap.ts`, `app/robots.ts` und die `opengraph-image.tsx`-Dateien erzeugen
   Sitemap, robots.txt und Social-Preview-Bilder zur Build-Zeit.
+- `lib/seo.ts` bündelt die kanonische Domain `https://www.toleo.biz`, lokalisierte
+  Metadaten und strukturierte Unternehmensdaten. Die `.at`-Domains werden über
+  `next.config.ts` pfaderhaltend auf die kanonische `.biz`-Domain weitergeleitet.
 
 ## Design Tokens
 

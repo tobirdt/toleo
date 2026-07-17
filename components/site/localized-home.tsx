@@ -1,5 +1,3 @@
-"use client";
-
 import { ScrollProgress } from "@/components/motion";
 import {
   ContactSection,
@@ -41,7 +39,7 @@ export function LocalizedHome({ locale }: LocalizedHomeProps) {
       <ProcessSection content={content.process} />
       <InvestmentsSection content={content.investments} />
       <ContactSection content={content.contact} locale={locale} />
-      <Footer locale={locale} navigation={content.navigation} content={content.footer} />
+      <Footer locale={locale} content={content.footer} />
     </main>
   );
 }

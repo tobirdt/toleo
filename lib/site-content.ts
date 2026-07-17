@@ -83,6 +83,10 @@ export type SiteContent = {
     fieldsLabel: string;
     fields: Array<{ label: string; note: string }>;
     imageAlt: string;
+    companyLink: string;
+    companyHref: string;
+    personLink: string;
+    personHref: string;
   };
   services: {
     kicker: string;
@@ -90,6 +94,8 @@ export type SiteContent = {
     copy: string;
     navAria: string;
     items: Service[];
+    moreLink: string;
+    moreHref: string;
   };
   projects: {
     kicker: string;
@@ -143,6 +149,7 @@ export type SiteContent = {
     privacyHref: string;
     noTracking: string;
     navAria: string;
+    links: NavigationItem[];
   };
 };
 
@@ -212,7 +219,11 @@ export const siteContent: Record<Locale, SiteContent> = {
         { label: "Verwaltung", note: "Portfolios aktiv steuern" },
         { label: "Beratung", note: "Strategie bis zur Umsetzung" }
       ],
-      imageAlt: "Handschlag in einem Besprechungsraum"
+      imageAlt: "Handschlag in einem Besprechungsraum",
+      companyLink: "Mehr über die Toleo GmbH",
+      companyHref: "/unternehmen",
+      personLink: "Holger Rumscheidt",
+      personHref: "/holger-rumscheidt"
     },
     services: {
       kicker: "Dienstleistungen",
@@ -257,7 +268,9 @@ export const siteContent: Record<Locale, SiteContent> = {
           textMobile: "Restaurant-Expansion und Franchise-Aufbau.",
           icon: Utensils
         }
-      ]
+      ],
+      moreLink: "Alle Leistungen im Überblick",
+      moreHref: "/leistungen"
     },
     projects: {
       kicker: "Projekte",
@@ -415,7 +428,13 @@ export const siteContent: Record<Locale, SiteContent> = {
       privacy: "Datenschutz",
       privacyHref: "/datenschutz",
       noTracking: "Keine Tracking-Cookies. Kein Analysepixel.",
-      navAria: "Footer Navigation"
+      navAria: "Footer Navigation",
+      links: [
+        { label: "Unternehmen", href: "/unternehmen" },
+        { label: "Holger Rumscheidt", href: "/holger-rumscheidt" },
+        { label: "Leistungen", href: "/leistungen" },
+        { label: "Kontakt", href: "/#kontakt" }
+      ]
     }
   },
   en: {
@@ -471,7 +490,11 @@ export const siteContent: Record<Locale, SiteContent> = {
         { label: "Management", note: "Actively steering portfolios" },
         { label: "Advisory", note: "Strategy through to execution" }
       ],
-      imageAlt: "Handshake in a meeting room"
+      imageAlt: "Handshake in a meeting room",
+      companyLink: "Learn more about Toleo GmbH",
+      companyHref: "/en/company",
+      personLink: "Holger Rumscheidt",
+      personHref: "/en/holger-rumscheidt"
     },
     services: {
       kicker: "Services",
@@ -516,7 +539,9 @@ export const siteContent: Record<Locale, SiteContent> = {
           textMobile: "Restaurant expansion and franchise development.",
           icon: Utensils
         }
-      ]
+      ],
+      moreLink: "Explore all services",
+      moreHref: "/en/services"
     },
     projects: {
       kicker: "Projects",
@@ -673,7 +698,13 @@ export const siteContent: Record<Locale, SiteContent> = {
       privacy: "Privacy Policy",
       privacyHref: "/en/privacy",
       noTracking: "No tracking cookies. No analytics pixels.",
-      navAria: "Footer navigation"
+      navAria: "Footer navigation",
+      links: [
+        { label: "Company", href: "/en/company" },
+        { label: "Holger Rumscheidt", href: "/en/holger-rumscheidt" },
+        { label: "Services", href: "/en/services" },
+        { label: "Contact", href: "/en#kontakt" }
+      ]
     }
   }
 };

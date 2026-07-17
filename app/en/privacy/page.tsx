@@ -1,10 +1,14 @@
-import type { Metadata } from "next";
 import { LegalShell } from "@/components/legal/legal-shell";
+import { createLocalizedMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = createLocalizedMetadata({
   title: "Privacy Policy | Toleo GmbH",
-  description: "Privacy information for Toleo GmbH pursuant to Art. 13 GDPR."
-};
+  description: "Privacy information for Toleo GmbH pursuant to Art. 13 GDPR.",
+  path: "/en/privacy",
+  locale: "en_US",
+  germanPath: "/datenschutz",
+  englishPath: "/en/privacy",
+});
 
 export default function PrivacyPage() {
   return (

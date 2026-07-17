@@ -1,15 +1,14 @@
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
-import type { Locale, NavigationItem, SiteContent } from "@/lib/site-content";
+import type { Locale, SiteContent } from "@/lib/site-content";
 import { BrandDots } from "@/components/ui";
 
 type FooterProps = {
   locale: Locale;
-  navigation: NavigationItem[];
   content: SiteContent["footer"];
 };
 
-export function Footer({ locale, navigation, content }: FooterProps) {
+export function Footer({ locale, content }: FooterProps) {
   const year = new Date().getFullYear();
 
   return (
@@ -32,7 +31,7 @@ export function Footer({ locale, navigation, content }: FooterProps) {
           <nav aria-label={content.navAria}>
             <h4>{content.navHeading}</h4>
             <ul>
-              {navigation.map((item) => (
+              {content.links.map((item) => (
                 <li key={item.href}>
                   <a href={item.href}>{item.label}</a>
                 </li>

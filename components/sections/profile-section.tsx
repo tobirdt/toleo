@@ -26,6 +26,10 @@ export function ProfileSection({ content }: ProfileSectionProps) {
               ))}
               <p className="m-only">{content.summaryMobile}</p>
             </div>
+            <div className="content-links">
+              <a href={content.companyHref}>{content.companyLink}</a>
+              <a href={content.personHref}>{content.personLink}</a>
+            </div>
           </Reveal>
 
           <Reveal delay={0.18}>
