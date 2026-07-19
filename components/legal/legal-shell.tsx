@@ -15,7 +15,7 @@ export function LegalShell({
   backLabel = "Zur Startseite",
 }: LegalShellProps) {
   return (
-    <main id="main-content" className="legal-main">
+    <main id="main-content" className="legal-main" tabIndex={-1}>
       <div className="legal-shell">
         <div className="legal-top">
           <a href={homeHref} aria-label={logoAria}>

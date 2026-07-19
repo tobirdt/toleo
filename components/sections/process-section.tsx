@@ -9,7 +9,7 @@ type ProcessSectionProps = {
 
 export function ProcessSection({ content }: ProcessSectionProps) {
   return (
-    <ScrollStage id="prozess" className="process-section" extra={90}>
+    <ScrollStage id="prozess" className="process-section" extra={110}>
       <div className="section-inner process-layout">
         <Reveal className="process-copy">
           <p className="section-kicker">{content.kicker}</p>
@@ -18,10 +18,9 @@ export function ProcessSection({ content }: ProcessSectionProps) {
         </Reveal>
 
         <ol className="process-steps" aria-label={content.title}>
-          <span className="process-line" aria-hidden="true" />
-          {content.phases.map((phase, index) => (
+          {content.phases.map((phase) => (
             <li key={phase.number} className="process-step">
-              <Reveal className="process-step-inner" delay={index * 0.045}>
+              <Reveal className="process-step-inner">
                 <span className="process-card-number">{phase.number}</span>
                 <div>
                   <h3>{phase.title}</h3>

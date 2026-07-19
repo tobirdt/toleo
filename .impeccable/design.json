@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-19T00:00:00.000Z",
+  "title": "Design System: Toleo Website",
+  "extensions": {
+    "colorMeta": {
+      "ink": { "role": "neutral", "displayName": "Toleo Ink", "canonical": "#181716", "tonalRamp": ["#181716", "#2f2d2b", "#4a4744", "#6b6865", "#8f8b88", "#b5b1ae", "#d9d6d3", "#f4f3f2"] },
+      "brand-blue": { "role": "primary", "displayName": "Toleo Blue", "canonical": "#3060a8", "tonalRamp": ["#101d33", "#1b345b", "#264b83", "#3060a8", "#5b82bd", "#8fa9d2", "#c3d2e7", "#edf3ff"] },
+      "brand-red": { "role": "secondary", "displayName": "Toleo Red", "canonical": "#e00810", "tonalRamp": ["#3d0306", "#710408", "#a7050c", "#e00810", "#e94d52", "#f08387", "#f7babc", "#fff1f2"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero headlines and defining statements." },
+      "headline": { "displayName": "Headline", "purpose": "Section titles with a branded closing dot." },
+      "body": { "displayName": "Body", "purpose": "Readable advisory and company content." },
+      "label": { "displayName": "Label", "purpose": "Navigation, breadcrumbs and restrained kickers." }
+    },
+    "shadows": [
+      { "name": "quiet", "value": "0 2px 8px rgba(24,23,22,0.05), 0 8px 24px rgba(24,23,22,0.04)", "purpose": "Floating navigation and small state changes." },
+      { "name": "raised", "value": "0 16px 40px rgba(24,23,22,0.07), 0 48px 96px rgba(24,23,22,0.05)", "purpose": "Decisive photography only." }
+    ],
+    "motion": [
+      { "name": "micro", "value": "140ms cubic-bezier(0.23, 1, 0.32, 1)", "purpose": "Hover, press and focus feedback." },
+      { "name": "layout", "value": "260ms cubic-bezier(0.22, 1, 0.36, 1)", "purpose": "Menus and component state changes." },
+      { "name": "desktop-scroll-stage", "value": "85-110svh additional distance", "purpose": "Measured main-page scrollytelling with a readable final hold." }
+    ],
+    "breakpoints": [
+      { "name": "mobile", "value": "700px" },
+      { "name": "tablet", "value": "1050px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Decisive primary action with restrained blue hover.",
+      "html": "<a class=\"ds-primary\" href=\"#\">Gespräch starten ↗</a>",
+      "css": ".ds-primary{display:inline-flex;align-items:center;min-height:48px;padding:0 22px;border-radius:8px;background:#181716;color:#fff;font:700 15px Inter,sans-serif;text-decoration:none;transition:background 140ms,transform 140ms}.ds-primary:hover{background:#3060a8;transform:translateY(-2px)}.ds-primary:focus-visible{outline:2px solid #3060a8;outline-offset:4px}"
+    },
+    {
+      "name": "Glass Header",
+      "kind": "nav",
+      "refersTo": "glass-header",
+      "description": "The only persistently elevated glass surface.",
+      "html": "<nav class=\"ds-header\"><strong>toleo</strong><a href=\"#\">Unternehmen</a><a href=\"#\">Leistungen</a></nav>",
+      "css": ".ds-header{display:flex;align-items:center;gap:20px;min-height:60px;padding:8px 14px;border:1px solid rgba(24,23,22,.09);border-radius:12px;background:rgba(255,255,255,.78);box-shadow:0 2px 8px rgba(24,23,22,.05);font:600 14px Inter,sans-serif;color:#181716}.ds-header strong{margin-right:auto}.ds-header a{color:#6b6966;text-decoration:none}.ds-header a:hover,.ds-header a:focus-visible{color:#3060a8}.ds-header a:focus-visible{outline:2px solid #3060a8;outline-offset:4px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Strategic Signature",
+    "overview": "Die Toleo-Website wirkt wie eine präzise persönliche Unterschrift: charakteristisch, kontrolliert und unverwechselbar. Inhaltsseiten übernehmen diese Präsenz, bleiben aber lesefokussiert.",
+    "keyCharacteristics": ["Weißer Grund mit gezielter blau-roter Aurora", "Fraunces für Überschriften, Inter für Information", "Linien, Markenpunkte und Nummern statt Kartenraster"],
+    "rules": [
+      { "name": "The Two-Dot Rule", "body": "Blau und Rot treten gemeinsam als Markenabschluss auf.", "section": "colors" },
+      { "name": "The White-Ground Rule", "body": "Inhaltsseiten stehen auf echtem Weiß.", "section": "colors" },
+      { "name": "The Visible-Content Rule", "body": "Motion darf Inhalt unterstützen, niemals freischalten.", "section": "typography" }
+    ],
+    "dos": ["Do echte Markenkomponenten verwenden.", "Do Inhalte initial sichtbar halten."],
+    "donts": ["Don't generische Corporate-Kartenraster verwenden.", "Don't Inhalte durch Scroll-Reveals ausblenden."]
+  }
+}

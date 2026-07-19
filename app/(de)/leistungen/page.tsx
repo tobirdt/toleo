@@ -1,5 +1,7 @@
 import { ContentShell } from "@/components/content/content-shell";
+import { PageCta } from "@/components/content/page-cta";
 import { JsonLd } from "@/components/seo/json-ld";
+import { SectionTitle } from "@/components/ui";
 import { breadcrumbJsonLd, createLocalizedMetadata } from "@/lib/seo";
 import { getSiteContent } from "@/lib/site-content";
 
@@ -28,41 +30,57 @@ export default function LeistungenPage() {
         locale="de"
         breadcrumbs={[{ label: "Startseite", href: "/" }, { label: "Leistungen" }]}
         alternateHref="/en/services"
-        alternateLabel="EN"
+        activeHref="/leistungen"
+        hero={{
+          variant: "services",
+          kicker: "Leistungen",
+          title: "Strategische Beratung mit operativer Bodenhaftung",
+          lead: "Toleo verbindet Strategie mit Umsetzung – von Markteintritt und Positionierung bis zu Vertrieb, Finanzen und Compliance.",
+        }}
       >
-        <p className="section-kicker">Leistungen</p>
-        <h1>Strategische Beratung mit operativer Bodenhaftung</h1>
-        <p className="content-intro">
-          Toleo verbindet Strategie mit Umsetzung – von Markteintritt und Positionierung bis zu
-          Vertrieb, Finanzen und Compliance.
-        </p>
+        <section className="content-section services-index-section">
+          <div className="content-services-index">
+            {content.services.items.map((service, index) => {
+              const Icon = service.icon;
 
-        <div className="service-detail-list">
-          {content.services.items.map((service, index) => (
-            <section key={service.title}>
-              <span>{String(index + 1).padStart(2, "0")}</span>
-              <div>
-                <h2>{service.title}</h2>
-                <p>{service.text}</p>
-              </div>
-            </section>
-          ))}
-        </div>
+              return (
+                <section key={service.title}>
+                  <span className="content-service-number">{String(index + 1).padStart(2, "0")}</span>
+                  <div>
+                    <h2>{service.title}</h2>
+                    <p>{service.text}</p>
+                  </div>
+                  <Icon className="content-service-icon" size={22} strokeWidth={1.7} aria-hidden="true" />
+                </section>
+              );
+            })}
+          </div>
+        </section>
 
-        <section>
-          <h2>Von der Analyse bis zur Umsetzung</h2>
-          <p>
+        <section className="content-section content-process-section services-process-section">
+          <SectionTitle title="Von der Analyse bis zur Umsetzung" tone="blue" animated={false} />
+          <p className="content-process-lead">
             Projekte folgen einem klaren Ablauf: Markt und Rahmenbedingungen analysieren,
             Positionierung und Geschäftsmodell entwickeln, den Markteintritt vorbereiten und die
             operative Umsetzung mit Management, Vertrieb, Marketing und Controlling verbinden.
           </p>
+          <ol className="content-process-list">
+            {content.process.phases.map((phase) => (
+              <li key={phase.number}>
+                <strong>{phase.title}</strong>
+                <span>{phase.text}</span>
+              </li>
+            ))}
+          </ol>
         </section>
 
-        <div className="content-cta">
-          <a href="/unternehmen">Über Toleo</a>
-          <a href="/holger-rumscheidt">Holger Rumscheidt</a>
-          <a href="/#kontakt">Leistung anfragen</a>
-        </div>
+        <PageCta
+          primary={{ label: "Leistung anfragen", href: "/#kontakt" }}
+          secondary={[
+            { label: "Über Toleo", href: "/unternehmen" },
+            { label: "Holger Rumscheidt", href: "/holger-rumscheidt" },
+          ]}
+        />
       </ContentShell>
     </>
   );

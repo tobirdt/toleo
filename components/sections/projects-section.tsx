@@ -9,7 +9,7 @@ type ProjectsSectionProps = {
 
 export function ProjectsSection({ content }: ProjectsSectionProps) {
   return (
-    <ScrollStage id="projekte" className="project-section" extra={90}>
+    <ScrollStage id="projekte" className="project-section" extra={105}>
       <div className="section-inner">
         <Reveal>
           <div className="section-heading compact">
@@ -19,10 +19,9 @@ export function ProjectsSection({ content }: ProjectsSectionProps) {
           </div>
         </Reveal>
 
-        {/* One Reveal wraps the group for the flowing (mobile / reduced-motion)
-            entrance; on the desktop pin the per-column reveal is driven from
-            CSS, so each column keeps its own plain element the choreography can
-            fade in together with its hairline. */}
+        {/* The wrapper preserves the shared section structure; desktop motion
+            is driven by the pinned stage so the content remains visible in
+            static, mobile and reduced-motion rendering. */}
         <Reveal>
           <div className="project-columns" aria-label={content.title}>
             {content.pillars.map((pillar) => (

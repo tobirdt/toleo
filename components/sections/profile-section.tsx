@@ -10,7 +10,7 @@ type ProfileSectionProps = {
 
 export function ProfileSection({ content }: ProfileSectionProps) {
   return (
-    <ScrollStage id="profil" className="profile-section" extra={70}>
+    <ScrollStage id="profil" className="profile-section" extra={85}>
       <div className="section-inner profile-grid">
 
         <div>
@@ -19,7 +19,7 @@ export function ProfileSection({ content }: ProfileSectionProps) {
             <SectionTitle title={content.title} tone="blue" />
           </Reveal>
 
-          <Reveal delay={0.1}>
+          <Reveal>
             <div className="profile-copy">
               {content.paragraphs.map((paragraph) => (
                 <p key={paragraph} className="m-hide">{paragraph}</p>
@@ -32,7 +32,7 @@ export function ProfileSection({ content }: ProfileSectionProps) {
             </div>
           </Reveal>
 
-          <Reveal delay={0.18}>
+          <Reveal>
             <div className="capabilities">
               <p className="capabilities-label">{content.fieldsLabel}</p>
               <div className="capabilities-grid">
@@ -48,7 +48,7 @@ export function ProfileSection({ content }: ProfileSectionProps) {
           </Reveal>
         </div>
 
-        <Reveal className="profile-visual" delay={0.12}>
+        <Reveal className="profile-visual">
           <div className="image-frame">
             <Image
               src="/images/firm-profile.jpg"

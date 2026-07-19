@@ -1,19 +1,21 @@
-import Image from "next/image";
 import type { ReactNode } from "react";
 import { Footer } from "@/components/site/footer";
+import { Header } from "@/components/site/header";
 import { getSiteContent, type Locale } from "@/lib/site-content";
-
-type Breadcrumb = {
-  label: string;
-  href?: string;
-};
+import { PageHero, type Breadcrumb } from "./page-hero";
 
 type ContentShellProps = {
   children: ReactNode;
   locale: Locale;
   breadcrumbs: Breadcrumb[];
   alternateHref: string;
-  alternateLabel: string;
+  activeHref: string;
+  hero: {
+    variant: "company" | "profile" | "services";
+    kicker: string;
+    title: string;
+    lead: string;
+  };
 };
 
 const navigation = {
@@ -36,51 +38,33 @@ export function ContentShell({
   locale,
   breadcrumbs,
   alternateHref,
-  alternateLabel,
+  activeHref,
+  hero,
 }: ContentShellProps) {
   const content = getSiteContent(locale);
   const homeHref = locale === "de" ? "/" : "/en";
+  const contactHref = locale === "de" ? "/#kontakt" : "/en#kontakt";
+  const languageHrefs = locale === "de" ? { en: alternateHref } : { de: alternateHref };
 
   return (
     <>
-      <main id="main-content" className="content-main">
+      <Header
+        locale={locale}
+        navigation={navigation[locale]}
+        copy={content.header}
+        language={content.language}
+        homeHref={homeHref}
+        contactHref={contactHref}
+        activeHref={activeHref}
+        languageHrefs={languageHrefs}
+      />
+      <main id="main-content" className="content-main" tabIndex={-1}>
+        <PageHero locale={locale} breadcrumbs={breadcrumbs} {...hero} />
         <div className="content-shell">
-          <header className="content-top">
-            <a href={homeHref} aria-label={locale === "de" ? "Zur Startseite" : "Back to home"}>
-              <Image
-                src="/images/toleo-logo.png"
-                alt="Toleo GmbH"
-                width={96}
-                height={61}
-                priority
-              />
-            </a>
-            <nav aria-label={locale === "de" ? "Seitennavigation" : "Page navigation"}>
-              {navigation[locale].map((item) => (
-                <a key={item.href} href={item.href}>
-                  {item.label}
-                </a>
-              ))}
-              <a href={alternateHref} hrefLang={locale === "de" ? "en" : "de"}>
-                {alternateLabel}
-              </a>
-            </nav>
-          </header>
-
-          <nav className="breadcrumbs" aria-label={locale === "de" ? "Brotkrumen" : "Breadcrumb"}>
-            <ol>
-              {breadcrumbs.map((item, index) => (
-                <li key={`${item.label}-${index}`}>
-                  {item.href ? <a href={item.href}>{item.label}</a> : <span aria-current="page">{item.label}</span>}
-                </li>
-              ))}
-            </ol>
-          </nav>
-
           <article className="content-article">{children}</article>
         </div>
       </main>
-      <Footer locale={locale} content={content.footer} />
+      <Footer locale={locale} content={content.footer} contactHref={contactHref} />
     </>
   );
 }

@@ -6,9 +6,10 @@ import { BrandDots } from "@/components/ui";
 type FooterProps = {
   locale: Locale;
   content: SiteContent["footer"];
+  contactHref?: string;
 };
 
-export function Footer({ locale, content }: FooterProps) {
+export function Footer({ locale, content, contactHref = "#kontakt" }: FooterProps) {
   const year = new Date().getFullYear();
 
   return (
@@ -21,7 +22,7 @@ export function Footer({ locale, content }: FooterProps) {
             width={132}
             height={83}
           />
-          <a className="footer-cta" href="#kontakt">
+          <a className="footer-cta" href={contactHref}>
             {content.cta}
             <ArrowUpRight size={16} aria-hidden="true" />
           </a>
@@ -29,7 +30,7 @@ export function Footer({ locale, content }: FooterProps) {
 
         <div className="footer-grid">
           <nav aria-label={content.navAria}>
-            <h4>{content.navHeading}</h4>
+            <h3>{content.navHeading}</h3>
             <ul>
               {content.links.map((item) => (
                 <li key={item.href}>
@@ -40,7 +41,7 @@ export function Footer({ locale, content }: FooterProps) {
           </nav>
 
           <div>
-            <h4>{content.contactHeading}</h4>
+            <h3>{content.contactHeading}</h3>
             <ul>
               <li>
                 <a href="mailto:info@toleo.biz">info@toleo.biz</a>
@@ -56,7 +57,7 @@ export function Footer({ locale, content }: FooterProps) {
           </div>
 
           <div>
-            <h4>{content.legalHeading}</h4>
+            <h3>{content.legalHeading}</h3>
             <ul>
               <li>
                 <a href={content.legalHref}>{content.legal}</a>

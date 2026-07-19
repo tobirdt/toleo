@@ -41,7 +41,7 @@ export function ContactSection({ content, locale }: ContactSectionProps) {
         body: JSON.stringify(payload),
       });
 
-      const data = (await response.json()) as { error?: string };
+      const data = (await response.json().catch(() => ({}))) as { error?: string };
 
       if (!response.ok) {
         throw new Error(data.error ?? content.error);

@@ -7,3 +7,5 @@ previews
 .env*.local
 *.log
 .DS_Store
+.playwright-cli/
+/output/playwright/

@@ -1,5 +1,7 @@
 import { ContentShell } from "@/components/content/content-shell";
+import { PageCta } from "@/components/content/page-cta";
 import { JsonLd } from "@/components/seo/json-ld";
+import { BrandDots, SectionTitle } from "@/components/ui";
 import {
   SITE_URL,
   breadcrumbJsonLd,
@@ -53,55 +55,54 @@ export default function HolgerRumscheidtPage() {
           { label: "Holger Rumscheidt" },
         ]}
         alternateHref="/en/holger-rumscheidt"
-        alternateLabel="EN"
+        activeHref="/holger-rumscheidt"
+        hero={{
+          variant: "profile",
+          kicker: "Geschäftsführung",
+          title: "Holger Rumscheidt",
+          lead: "Geschäftsführer der Toleo GmbH in Taufkirchen.",
+        }}
       >
-        <p className="section-kicker">Geschäftsführung</p>
-        <h1>Holger Rumscheidt</h1>
-        <p className="content-intro">Geschäftsführer der Toleo GmbH in Taufkirchen.</p>
-
-        <section>
-          <h2>Holger Rumscheidt und die Toleo GmbH</h2>
-          <p>
-            Holger Rumscheidt ist Geschäftsführer der Toleo GmbH. Gemeinsam mit Nicole
-            Rumscheidt vertritt er die Gesellschaft. Die Toleo GmbH ist eine seit 2019 bestehende
-            Familienholding und Beratungsboutique mit Sitz in Taufkirchen bei München.
-          </p>
-          <p>
-            Das Unternehmen verbindet strategische Beratung, Marktzugang und operative Umsetzung
-            mit dem Erwerb, dem Halten und der Verwaltung von Beteiligungen im In- und Ausland.
-          </p>
-        </section>
-
-        <section>
-          <h2>Tätigkeitsfelder der Toleo GmbH</h2>
-          <div className="content-card-grid">
-            <div className="content-card">
-              <h3>Markteintritt &amp; Strategie</h3>
-              <p>Analyse, Positionierung und Begleitung nationaler und internationaler Markteintritte.</p>
-            </div>
-            <div className="content-card">
-              <h3>Vertrieb &amp; Marketing</h3>
-              <p>Vertriebsunterstützung, Markenführung, Marketingplanung und Audits.</p>
-            </div>
-            <div className="content-card">
-              <h3>Beteiligungen &amp; Umsetzung</h3>
-              <p>Aufbau, Erwerb und aktive Begleitung von Beteiligungen und Projekten.</p>
-            </div>
-            <div className="content-card">
-              <h3>Finanzen &amp; Regulierung</h3>
-              <p>Geschäftsplanung, Controlling und Unterstützung in regulierten Märkten.</p>
-            </div>
+        <section className="content-section profile-overview">
+          <SectionTitle title="Holger Rumscheidt und die Toleo GmbH" tone="blue" animated={false} />
+          <div className="content-prose">
+            <p>
+              Holger Rumscheidt ist Geschäftsführer der Toleo GmbH. Gemeinsam mit Nicole
+              Rumscheidt vertritt er die Gesellschaft. Die Toleo GmbH ist eine seit 2019 bestehende
+              Familienholding und Beratungsboutique mit Sitz in Taufkirchen bei München.
+            </p>
+            <p>
+              Das Unternehmen verbindet strategische Beratung, Marktzugang und operative Umsetzung
+              mit dem Erwerb, dem Halten und der Verwaltung von Beteiligungen im In- und Ausland.
+            </p>
           </div>
         </section>
 
-        <blockquote className="content-quote">
-          „Man trifft sich immer zweimal im Leben. Deshalb ist es entscheidend, immer fair und
-          freundlich miteinander umzugehen und mit Freude und Überzeugung dabei zu sein.“
-          <cite>Holger Rumscheidt, Geschäftsführer der Toleo GmbH</cite>
-        </blockquote>
+        <section className="content-section profile-fields-section">
+          <SectionTitle title="Tätigkeitsfelder der Toleo GmbH" animated={false} />
+          <div className="profile-fields">
+            <div><span className="profile-field-dot" /><h3>Markteintritt &amp; Strategie</h3><p>Analyse, Positionierung und Begleitung nationaler und internationaler Markteintritte.</p></div>
+            <div><span className="profile-field-dot" /><h3>Vertrieb &amp; Marketing</h3><p>Vertriebsunterstützung, Markenführung, Marketingplanung und Audits.</p></div>
+            <div><span className="profile-field-dot" /><h3>Beteiligungen &amp; Umsetzung</h3><p>Aufbau, Erwerb und aktive Begleitung von Beteiligungen und Projekten.</p></div>
+            <div><span className="profile-field-dot" /><h3>Finanzen &amp; Regulierung</h3><p>Geschäftsplanung, Controlling und Unterstützung in regulierten Märkten.</p></div>
+          </div>
+        </section>
 
-        <section>
-          <h2>Unternehmensangaben</h2>
+        <aside className="profile-quote-section">
+          <div className="profile-quote-glow profile-quote-glow-blue" aria-hidden="true" />
+          <div className="profile-quote-glow profile-quote-glow-red" aria-hidden="true" />
+          <div className="profile-quote-inner">
+            <BrandDots mode="signature" size={9} />
+            <blockquote>
+              „Man trifft sich immer zweimal im Leben. Deshalb ist es entscheidend, immer fair und
+              freundlich miteinander umzugehen und mit Freude und Überzeugung dabei zu sein.“
+              <cite>Holger Rumscheidt, Geschäftsführer der Toleo GmbH</cite>
+            </blockquote>
+          </div>
+        </aside>
+
+        <section className="content-section facts-section">
+          <SectionTitle title="Unternehmensangaben" tone="blue" animated={false} />
           <dl className="fact-list">
             <div><dt>Unternehmen</dt><dd>Toleo GmbH</dd></div>
             <div><dt>Funktion</dt><dd>Geschäftsführer</dd></div>
@@ -110,11 +111,13 @@ export default function HolgerRumscheidtPage() {
           </dl>
         </section>
 
-        <div className="content-cta">
-          <a href="/unternehmen">Mehr über die Toleo GmbH</a>
-          <a href="/leistungen">Leistungen der Toleo GmbH</a>
-          <a href="/#kontakt">Kontakt aufnehmen</a>
-        </div>
+        <PageCta
+          primary={{ label: "Kontakt aufnehmen", href: "/#kontakt" }}
+          secondary={[
+            { label: "Mehr über die Toleo GmbH", href: "/unternehmen" },
+            { label: "Leistungen der Toleo GmbH", href: "/leistungen" },
+          ]}
+        />
       </ContentShell>
     </>
   );

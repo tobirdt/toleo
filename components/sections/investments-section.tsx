@@ -15,25 +15,29 @@ export function InvestmentsSection({ content }: InvestmentsSectionProps) {
   const prefersReduced = useReducedMotion();
 
   return (
-    <ScrollStage id="investitionen" className="investment-section" extra={80}>
-      {!prefersReduced && (
-        <>
-          <motion.div
-            className="investment-glow investment-glow-blue"
-            aria-hidden="true"
-            animate={{ x: [0, 34, 0], y: [0, 20, 0] }}
-            transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-            suppressHydrationWarning
-          />
-          <motion.div
-            className="investment-glow investment-glow-red"
-            aria-hidden="true"
-            animate={{ x: [0, -26, 0], y: [0, -16, 0] }}
-            transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
-            suppressHydrationWarning
-          />
-        </>
-      )}
+    <ScrollStage id="investitionen" className="investment-section" extra={105}>
+      <motion.div
+        className="investment-glow investment-glow-blue"
+        aria-hidden="true"
+        animate={prefersReduced ? { x: 0, y: 0 } : { x: [0, 34, 0], y: [0, 20, 0] }}
+        transition={
+          prefersReduced
+            ? { duration: 0 }
+            : { duration: 18, repeat: Infinity, ease: "easeInOut" }
+        }
+        suppressHydrationWarning
+      />
+      <motion.div
+        className="investment-glow investment-glow-red"
+        aria-hidden="true"
+        animate={prefersReduced ? { x: 0, y: 0 } : { x: [0, -26, 0], y: [0, -16, 0] }}
+        transition={
+          prefersReduced
+            ? { duration: 0 }
+            : { duration: 22, repeat: Infinity, ease: "easeInOut" }
+        }
+        suppressHydrationWarning
+      />
 
       <div className="section-inner investment-grid">
 
@@ -44,14 +48,14 @@ export function InvestmentsSection({ content }: InvestmentsSectionProps) {
             {content.quote}
             <cite>{content.cite}</cite>
           </blockquote>
-          <div style={{ marginTop: 28 }}>
+          <div className="investment-signature">
             <BrandDots mode="signature" size={9} />
           </div>
         </Reveal>
 
         <div className="investment-list">
-          {content.points.map((point, index) => (
-            <Reveal key={point.desktop} delay={index * 0.06}>
+          {content.points.map((point) => (
+            <Reveal key={point.desktop}>
               <div className="investment-row">
                 <CheckCircle2 size={20} aria-hidden="true" />
                 <p>

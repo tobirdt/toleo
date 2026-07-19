@@ -1,5 +1,8 @@
 import { ContentShell } from "@/components/content/content-shell";
+import { PageCta } from "@/components/content/page-cta";
 import { JsonLd } from "@/components/seo/json-ld";
+import { BrandDots, SectionTitle } from "@/components/ui";
+import { ArrowUpRight } from "lucide-react";
 import {
   SITE_URL,
   breadcrumbJsonLd,
@@ -42,36 +45,44 @@ export default function CompanyPage() {
         locale="en"
         breadcrumbs={[{ label: "Home", href: "/en" }, { label: "Company" }]}
         alternateHref="/unternehmen"
-        alternateLabel="DE"
+        activeHref="/en/company"
+        hero={{
+          variant: "company",
+          kicker: "Company",
+          title: "Toleo GmbH",
+          lead: "A family holding and advisory boutique for growth, market access and reliable execution.",
+        }}
       >
-        <p className="section-kicker">Company</p>
-        <h1>Toleo GmbH</h1>
-        <p className="content-intro">
-          A family holding and advisory boutique for growth, market access and reliable execution.
-        </p>
-
-        <section>
-          <h2>Advisory and investments since 2019</h2>
-          <p>
-            Toleo GmbH establishes, acquires, holds, manages and advises investments in Germany and
-            abroad. Its work is built around clear structures, operational execution and sustainable
-            growth in specialized markets.
-          </p>
-          <p>
-            Services range from analysis, positioning and market entry to sales, marketing, finance,
-            controlling and regulatory matters.
-          </p>
+        <section className="content-section company-overview">
+          <SectionTitle title="Advisory and investments since 2019" tone="blue" animated={false} />
+          <div className="content-prose">
+            <p>
+              Toleo GmbH establishes, acquires, holds, manages and advises investments in Germany and
+              abroad. Its work is built around clear structures, operational execution and sustainable
+              growth in specialized markets.
+            </p>
+            <p>
+              Services range from analysis, positioning and market entry to sales, marketing, finance,
+              controlling and regulatory matters.
+            </p>
+          </div>
         </section>
 
-        <section>
-          <h2>Management</h2>
-          <p>Toleo GmbH is represented by Managing Directors Holger Rumscheidt and Nicole Rumscheidt.</p>
-          <p><a className="text-link" href="/en/holger-rumscheidt">Company profile of Holger Rumscheidt</a></p>
+        <section className="content-section management-highlight">
+          <div className="management-mark"><BrandDots mode="signature" size={9} /></div>
+          <div>
+            <SectionTitle title="Management" animated={false} />
+            <p>Toleo GmbH is represented by Managing Directors Holger Rumscheidt and Nicole Rumscheidt.</p>
+            <a className="content-arrow-link" href="/en/holger-rumscheidt">
+              Company profile of Holger Rumscheidt
+              <ArrowUpRight size={16} aria-hidden="true" />
+            </a>
+          </div>
         </section>
 
-        <section>
-          <h2>Approach</h2>
-          <ol className="process-list">
+        <section className="content-section content-process-section">
+          <SectionTitle title="Approach" tone="blue" animated={false} />
+          <ol className="content-process-list">
             <li><strong>Analysis</strong><span>Assess market potential, competition and regulation.</span></li>
             <li><strong>Strategy</strong><span>Develop positioning, business model and market access.</span></li>
             <li><strong>Market Entry</strong><span>Connect networks, compliance knowledge and local expertise.</span></li>
@@ -80,11 +91,13 @@ export default function CompanyPage() {
           </ol>
         </section>
 
-        <div className="content-cta">
-          <a href="/en/services">Explore services</a>
-          <a href="/en/holger-rumscheidt">Holger Rumscheidt</a>
-          <a href="/en#kontakt">Start a conversation</a>
-        </div>
+        <PageCta
+          primary={{ label: "Start a conversation", href: "/en#kontakt" }}
+          secondary={[
+            { label: "Explore services", href: "/en/services" },
+            { label: "Holger Rumscheidt", href: "/en/holger-rumscheidt" },
+          ]}
+        />
       </ContentShell>
     </>
   );

@@ -5,6 +5,7 @@ import { useLayoutEffect, useRef, useState } from "react";
 import {
   motion,
   useMotionValueEvent,
+  useReducedMotion,
   useScroll,
   useSpring,
   useTransform,
@@ -69,6 +70,10 @@ type PortfolioSectionProps = {
   content: SiteContent["portfolio"];
 };
 
+const scrollDistanceFactor = 1.75;
+const movementStart = 0.06;
+const movementEnd = 0.88;
+
 export function PortfolioSection({ content }: PortfolioSectionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const viewportRef  = useRef<HTMLDivElement>(null);
@@ -77,6 +82,7 @@ export function PortfolioSection({ content }: PortfolioSectionProps) {
   const [activeStep, setActiveStep] = useState(1);
   const [hasShift, setHasShift]     = useState(false);
   const isMobile = useIsMobile();
+  const prefersReducedMotion = useReducedMotion();
   const items = content.items;
 
   /* Measure how far the track actually needs to travel so the last tile
@@ -93,13 +99,14 @@ export function PortfolioSection({ content }: PortfolioSectionProps) {
       shiftRef.current = shift;
       setHasShift(shift > 0);
 
-      /* Pin only as long as there's horizontal distance to cover: the tall
-         scroll region equals one viewport plus the actual track travel (a
-         relaxed 1.25× so the gallery glides rather than races). A fixed
-         multiple of the viewport made wide screens pin forever while the
-         tiles barely moved. */
+      /* Translate the real horizontal distance into a deliberately longer
+         vertical scrub. The track also holds briefly at both ends (see
+         galleryProgress below), so the first and last tiles can be read
+         before the section releases. */
       container.style.height =
-        shift > 0 ? `${window.innerHeight + shift * 1.25}px` : "";
+        shift > 0 && !isMobile && !prefersReducedMotion
+          ? `${window.innerHeight + shift * scrollDistanceFactor}px`
+          : "";
     };
 
     measure();
@@ -112,7 +119,7 @@ export function PortfolioSection({ content }: PortfolioSectionProps) {
       observer.disconnect();
       window.removeEventListener("resize", measure);
     };
-  }, []);
+  }, [isMobile, prefersReducedMotion]);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -125,15 +132,19 @@ export function PortfolioSection({ content }: PortfolioSectionProps) {
     mass: 0.6,
   });
 
-  const trackX       = useTransform(smoothProgress, (v) => v * -shiftRef.current);
-  const progressFill = useTransform(smoothProgress, [0, 1], [0, 1]);
+  const galleryProgress = useTransform(
+    smoothProgress,
+    [0, movementStart, movementEnd, 1],
+    [0, 0, 1, 1]
+  );
+  const trackX = useTransform(galleryProgress, (v) => v * -shiftRef.current);
 
-  useMotionValueEvent(smoothProgress, "change", (v) => {
+  useMotionValueEvent(galleryProgress, "change", (v) => {
     const step = Math.round(v * (items.length - 1)) + 1;
     setActiveStep(Math.min(items.length, Math.max(1, step)));
   });
 
-  const isStatic = isMobile || !hasShift;
+  const isStatic = isMobile || prefersReducedMotion || !hasShift;
 
   return (
     <section className="section portfolio-section" id="portfolio">
@@ -169,7 +180,7 @@ export function PortfolioSection({ content }: PortfolioSectionProps) {
                   item={item}
                   index={index}
                   total={items.length}
-                  progress={smoothProgress}
+                  progress={galleryProgress}
                   isStatic={isStatic}
                 />
               ))}
@@ -183,7 +194,7 @@ export function PortfolioSection({ content }: PortfolioSectionProps) {
               <div className="portfolio-h-progress-bar">
                 <motion.div
                   className="portfolio-h-progress-fill"
-                  style={{ scaleX: progressFill }}
+                  style={{ scaleX: galleryProgress }}
                   suppressHydrationWarning
                 />
               </div>

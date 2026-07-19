@@ -22,7 +22,7 @@ export function LocalizedHome({ locale }: LocalizedHomeProps) {
   const content = getSiteContent(locale);
 
   return (
-    <main id="main-content">
+    <>
       <ScrollManager />
       <ScrollProgress />
       <Header
@@ -31,15 +31,17 @@ export function LocalizedHome({ locale }: LocalizedHomeProps) {
         copy={content.header}
         language={content.language}
       />
-      <HeroSection content={content.hero} />
-      <ProfileSection content={content.profile} />
-      <PortfolioSection content={content.portfolio} />
-      <ServicesSection content={content.services} />
-      <ProjectsSection content={content.projects} />
-      <ProcessSection content={content.process} />
-      <InvestmentsSection content={content.investments} />
-      <ContactSection content={content.contact} locale={locale} />
+      <main id="main-content" tabIndex={-1}>
+        <HeroSection content={content.hero} />
+        <ProfileSection content={content.profile} />
+        <PortfolioSection content={content.portfolio} />
+        <ServicesSection content={content.services} />
+        <ProjectsSection content={content.projects} />
+        <ProcessSection content={content.process} />
+        <InvestmentsSection content={content.investments} />
+        <ContactSection content={content.contact} locale={locale} />
+      </main>
       <Footer locale={locale} content={content.footer} />
-    </main>
+    </>
   );
 }

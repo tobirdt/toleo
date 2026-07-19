@@ -9,7 +9,7 @@ type ServicesSectionProps = {
 
 export function ServicesSection({ content }: ServicesSectionProps) {
   return (
-    <ScrollStage id="leistungen" className="services-section" extra={75}>
+    <ScrollStage id="leistungen" className="services-section" extra={90}>
       <div className="section-inner">
         <Reveal>
           <div className="section-heading compact">
@@ -24,7 +24,7 @@ export function ServicesSection({ content }: ServicesSectionProps) {
             const Icon = service.icon;
 
             return (
-              <Reveal key={service.title} delay={index * 0.04}>
+              <Reveal key={service.title}>
                 <article className="service-row">
                   <span className="service-row-num">
                     {String(index + 1).padStart(2, "0")}
