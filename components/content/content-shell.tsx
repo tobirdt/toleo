@@ -18,21 +18,6 @@ type ContentShellProps = {
   };
 };
 
-const navigation = {
-  de: [
-    { label: "Unternehmen", href: "/unternehmen" },
-    { label: "Holger Rumscheidt", href: "/holger-rumscheidt" },
-    { label: "Leistungen", href: "/leistungen" },
-    { label: "Kontakt", href: "/#kontakt" },
-  ],
-  en: [
-    { label: "Company", href: "/en/company" },
-    { label: "Holger Rumscheidt", href: "/en/holger-rumscheidt" },
-    { label: "Services", href: "/en/services" },
-    { label: "Contact", href: "/en#kontakt" },
-  ],
-} satisfies Record<Locale, Array<{ label: string; href: string }>>;
-
 export function ContentShell({
   children,
   locale,
@@ -45,12 +30,16 @@ export function ContentShell({
   const homeHref = locale === "de" ? "/" : "/en";
   const contactHref = locale === "de" ? "/#kontakt" : "/en#kontakt";
   const languageHrefs = locale === "de" ? { en: alternateHref } : { de: alternateHref };
+  const sectionNavigation = content.navigation.map((item) => ({
+    ...item,
+    href: `${homeHref}${item.href}`,
+  }));
 
   return (
     <>
       <Header
         locale={locale}
-        navigation={navigation[locale]}
+        navigation={sectionNavigation}
         copy={content.header}
         language={content.language}
         homeHref={homeHref}

@@ -70,9 +70,9 @@ type PortfolioSectionProps = {
   content: SiteContent["portfolio"];
 };
 
-const scrollDistanceFactor = 1.75;
-const movementStart = 0.06;
-const movementEnd = 0.88;
+const scrollDistanceFactor = 2;
+const movementStart = 0.08;
+const movementEnd = 0.84;
 
 export function PortfolioSection({ content }: PortfolioSectionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
