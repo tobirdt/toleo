@@ -241,6 +241,36 @@ h3 {
 }
 
 /* === NAVIGATION === */
+.header-focus-layer {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: calc(var(--z-header) - 1);
+  height: calc(136px + env(safe-area-inset-top, 0px));
+  opacity: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0.7) 58%,
+    rgba(255, 255, 255, 0.38) 78%,
+    transparent 100%
+  );
+  -webkit-backdrop-filter: blur(0) saturate(1);
+  backdrop-filter: blur(0) saturate(1);
+  -webkit-mask-image: linear-gradient(#000 0 82%, transparent 100%);
+  mask-image: linear-gradient(#000 0 82%, transparent 100%);
+  transition:
+    opacity 320ms var(--ease),
+    backdrop-filter 320ms var(--ease),
+    -webkit-backdrop-filter 320ms var(--ease);
+}
+
+.header-focus-layer[data-active="true"] {
+  opacity: 1;
+  -webkit-backdrop-filter: blur(18px) saturate(0.74) brightness(1.04);
+  backdrop-filter: blur(18px) saturate(0.74) brightness(1.04);
+}
+
 .site-header {
   position: fixed;
   top: 16px;
@@ -2670,6 +2700,20 @@ textarea {
     grid-template-columns: auto 1fr auto auto;
   }
 
+  .site-header .brand { min-height: 44px; }
+
+  .site-header .language-switch {
+    width: 96px;
+    min-height: 48px;
+    padding: 2px;
+  }
+
+  .site-header .language-switch .language-option {
+    min-width: 44px;
+    height: 44px;
+    font-size: 0.875rem;
+  }
+
   .desktop-nav { display: none; }
 
   .menu-button {
@@ -2680,6 +2724,7 @@ textarea {
 
   .header-cta {
     flex-shrink: 0;
+    min-height: 44px;
     padding: 0 14px;
     font-size: 0.86rem;
   }
@@ -2776,6 +2821,38 @@ textarea {
 /* === RESPONSIVE 700px === */
 @media (max-width: 700px) {
   :root { --inner: min(1120px, calc(100% - 44px)); }
+
+  .header-focus-layer {
+    height: calc(142px + env(safe-area-inset-top, 0px));
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.985) 0%,
+      rgba(255, 255, 255, 0.96) 58%,
+      rgba(255, 255, 255, 0.7) 80%,
+      transparent 100%
+    );
+  }
+
+  .header-focus-layer[data-active="true"] {
+    -webkit-backdrop-filter: blur(28px) saturate(0.62) brightness(1.07);
+    backdrop-filter: blur(28px) saturate(0.62) brightness(1.07);
+  }
+
+  html.home-mobile-experience {
+    scroll-padding-top: calc(var(--header-offset) + 20px);
+    scroll-snap-type: y proximity;
+  }
+
+  html.home-mobile-experience .home-main > :is(.hero, .section) {
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+  }
+
+  html.home-mobile-experience .home-main > .section {
+    /* scroll-padding already reserves the floating header; a second margin
+       would double the gap for direct anchor navigation. */
+    scroll-margin-top: 0;
+  }
 
   .site-header {
     top: 10px;
@@ -2964,6 +3041,143 @@ textarea {
 
   .section-heading { grid-template-columns: 1fr; gap: 16px; }
 
+}
+
+/* Mobile chapter motion: headings introduce each chapter, while the actual
+   rows, tiles and media trigger independently. Long sections therefore keep
+   moving as the visitor reaches deeper content instead of finishing offscreen. */
+@media (max-width: 700px) and (prefers-reduced-motion: no-preference) {
+  html.home-mobile-experience .home-main > section .section-kicker,
+  html.home-mobile-experience .home-main > section h2 .headline-line,
+  html.home-mobile-experience .home-main > section h2 .headline-dot {
+    transition:
+      opacity 560ms var(--ease),
+      transform 560ms var(--ease);
+  }
+
+  html.home-mobile-experience .home-main > section h2 .headline-dot {
+    display: inline-block;
+    transform-origin: center bottom;
+  }
+
+  html.home-mobile-experience .home-main > section:not([data-mobile-revealed]) .section-kicker {
+    opacity: 0.62;
+    transform: translateY(6px);
+  }
+
+  html.home-mobile-experience .home-main > section:not([data-mobile-revealed]) h2 .headline-line {
+    opacity: 0.86;
+    transform: translateX(-9px);
+  }
+
+  html.home-mobile-experience .home-main > section:not([data-mobile-revealed]) h2 .headline-dot {
+    opacity: 0.45;
+    transform: scale(0.55);
+  }
+
+  html.home-mobile-experience [data-mobile-motion-item] {
+    transition:
+      opacity 640ms var(--ease),
+      transform 640ms var(--ease);
+  }
+
+  html.home-mobile-experience .profile-section :is(.profile-copy, .content-links, .capabilities)[data-mobile-motion-item="pending"] {
+    opacity: 0.84;
+    transform: translateY(9px);
+  }
+
+  html.home-mobile-experience .profile-section .image-frame[data-mobile-motion-item] {
+    clip-path: inset(0 0 0 0 round var(--r));
+    transform: scale(1);
+    transition:
+      clip-path 720ms var(--ease),
+      transform 720ms var(--ease);
+  }
+
+  html.home-mobile-experience .profile-section .image-frame[data-mobile-motion-item="pending"] {
+    clip-path: inset(0 0 8% 0 round var(--r));
+    transform: scale(1.018);
+  }
+
+  html.home-mobile-experience .portfolio-section .portfolio-h-tile[data-mobile-motion-item] .tile-media,
+  html.home-mobile-experience .portfolio-section .portfolio-h-tile[data-mobile-motion-item] .tile-label {
+    transition:
+      clip-path 720ms var(--ease),
+      opacity 640ms var(--ease),
+      transform 720ms var(--ease);
+  }
+
+  html.home-mobile-experience .portfolio-section .portfolio-h-tile[data-mobile-motion-item] .tile-media {
+    clip-path: inset(0);
+    transform: scale(1);
+  }
+
+  html.home-mobile-experience .portfolio-section .portfolio-h-tile[data-mobile-motion-item="pending"] .tile-media {
+    clip-path: inset(0 0 14% 0);
+    transform: scale(1.045);
+  }
+
+  html.home-mobile-experience .portfolio-section .portfolio-h-tile[data-mobile-motion-item="pending"] .tile-label {
+    opacity: 0.46;
+    transform: translateY(16px);
+  }
+
+  html.home-mobile-experience .services-section .service-index > div[data-mobile-motion-item="pending"] {
+    opacity: 0.54;
+    transform: translateY(17px);
+  }
+
+  html.home-mobile-experience .services-section .section-more-link[data-mobile-motion-item="pending"] {
+    opacity: 0.48;
+    transform: translateX(-14px);
+  }
+
+  html.home-mobile-experience .project-section .project-col[data-mobile-motion-item="pending"] {
+    opacity: 0.56;
+    transform: translateX(-17px);
+  }
+
+  html.home-mobile-experience .process-section .process-steps[data-mobile-motion-item]::before {
+    transition: transform 900ms var(--ease);
+  }
+
+  html.home-mobile-experience .process-section .process-steps[data-mobile-motion-item="pending"]::before {
+    transform: scaleY(0.08);
+  }
+
+  html.home-mobile-experience .process-section .process-step[data-mobile-motion-item="pending"] {
+    opacity: 0.52;
+    transform: translateX(-18px);
+  }
+
+  html.home-mobile-experience .investment-section .investment-grid > div:first-child[data-mobile-motion-item="pending"] {
+    opacity: 0.6;
+    transform: translateY(18px);
+  }
+
+  html.home-mobile-experience .investment-section .investment-list > div[data-mobile-motion-item="pending"] {
+    opacity: 0.5;
+    transform: translateX(18px);
+  }
+
+  html.home-mobile-experience .contact-section .contact-panel[data-mobile-motion-item] {
+    clip-path: inset(0 0 0 0 round var(--r));
+    transition:
+      clip-path 760ms var(--ease),
+      opacity 680ms var(--ease),
+      transform 760ms var(--ease);
+  }
+
+  html.home-mobile-experience .contact-section .contact-panel[data-mobile-motion-item="pending"] {
+    clip-path: inset(0 0 8% 0 round var(--r));
+    opacity: 0.58;
+    transform: translateY(20px);
+  }
+}
+
+/* A short landscape phone needs free scrolling more than chapter snapping. */
+@media (max-height: 500px) and (orientation: landscape) {
+  html.home-mobile-experience { scroll-snap-type: none; }
 }
 
 @media (max-width: 700px) {
@@ -3276,6 +3490,8 @@ textarea {
 
 /* === REDUCED MOTION === */
 @media (prefers-reduced-motion: reduce) {
+
+  html.home-mobile-experience { scroll-snap-type: none; }
 
   *, *::before, *::after {
     scroll-behavior: auto !important;

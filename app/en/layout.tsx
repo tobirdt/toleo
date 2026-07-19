@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "../globals.css";
 import { fraunces, inter } from "@/lib/fonts";
 import { SITE_NAME, SITE_URL } from "@/lib/seo";
@@ -23,6 +23,11 @@ export const metadata: Metadata = {
     icon: "/images/favicon.png",
     apple: "/images/favicon.png"
   }
+};
+
+export const viewport: Viewport = {
+  colorScheme: "light",
+  themeColor: "#ffffff",
 };
 
 export default function EnglishRootLayout({

@@ -114,6 +114,12 @@ export function Header({
         )}
       </AnimatePresence>
 
+      <div
+        className="header-focus-layer"
+        data-active={scrolled || menuOpen ? "true" : "false"}
+        aria-hidden="true"
+      />
+
       <header
         className="site-header"
         data-scrolled={scrolled ? "true" : "false"}

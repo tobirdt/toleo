@@ -1,4 +1,4 @@
-import { ScrollProgress } from "@/components/motion";
+import { MobileExperience, ScrollProgress } from "@/components/motion";
 import {
   ContactSection,
   HeroSection,
@@ -24,6 +24,7 @@ export function LocalizedHome({ locale }: LocalizedHomeProps) {
   return (
     <>
       <ScrollManager />
+      <MobileExperience />
       <ScrollProgress />
       <Header
         locale={locale}
@@ -31,7 +32,7 @@ export function LocalizedHome({ locale }: LocalizedHomeProps) {
         copy={content.header}
         language={content.language}
       />
-      <main id="main-content" tabIndex={-1}>
+      <main id="main-content" className="home-main" tabIndex={-1}>
         <HeroSection content={content.hero} />
         <ProfileSection content={content.profile} />
         <PortfolioSection content={content.portfolio} />

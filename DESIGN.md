@@ -161,7 +161,7 @@ Das System ist flach und tonal geschichtet. Tiefe entsteht durch Aurora, Linien,
 
 ### Navigation
 
-Der schwebende Glas-Header ist auf allen Marken- und SEO-Seiten identisch. Aktive Ziele werden durch Textkontrast und einen blauen Punkt markiert. Mobil öffnet ein kompaktes Overlay-Menü mit Escape-Schließen und Body-Lock. Der Sprachwechsel führt auf die äquivalente Route.
+Der schwebende Glas-Header ist auf allen Marken- und SEO-Seiten identisch. Aktive Ziele werden durch Textkontrast und einen blauen Punkt markiert. Beim Scrollen legt sich hinter dem Header eine bis in die mobile Safe Area reichende Fokus-Linse über den Seiteninhalt: auf Mobilgeräten 28px Blur, reduzierte Sättigung und eine fast deckende weiße Statusleisten-Zone halten Uhrzeit, Browser-Chrome und Navigation klar vom vorbeiziehenden Inhalt getrennt; Desktop bleibt mit 18px zurückhaltender. Mobil öffnet ein kompaktes Overlay-Menü mit Escape-Schließen und Body-Lock. Der Sprachwechsel führt auf die äquivalente Route.
 
 ### Page Hero
 
@@ -174,6 +174,10 @@ Fünf nummerierte Phasen werden durch eine blau-rote Linie verbunden. Auf Inhalt
 ### Main-page Scrollytelling
 
 Die Hauptseite nutzt auf Desktop gemessene, gepinnte Scroll-Stages mit 85–110svh aktiver Animationsstrecke. Einheitliche Haltephasen von 8 % am Anfang und 16 % am Ende erweitern die gesamte Zusatzstrecke auf rund 112–145svh, ohne die eigentliche Choreografie zu beschleunigen; die Dienstleistungs-Stage hält ihr vollständiges Abschlussbild gezielt 22 %. Das Portfolio übersetzt die reale horizontale Trackbreite mit einem Faktor von 2 in vertikalen Scrollweg und verwendet die regulären Haltephasen. Unter 1051px und bei `prefers-reduced-motion` bleiben alle Abschnitte statisch und sofort sichtbar.
+
+### Mobile Chapter Motion
+
+Bis 700px strukturiert ein weiches `scroll-snap: proximity` die Hauptseite in Kapitel, ohne längere Abschnitte festzuhalten. Die Kapitel bleiben normal hoch und vollständig responsiv; kurze Landscape-Viewports und `prefers-reduced-motion` schalten das Snapping ab. Kapitelüberschriften reagieren auf ihren Abschnitt, die tieferen Portfolio-Kacheln, Leistungszeilen, Projektspalten, Prozessschritte, Investitionspunkte und die Kontaktfläche jedoch jeweils auf ihr eigenes Sichtfeld. Dadurch bleibt die Choreografie auch in langen Abschnitten sichtbar. Text bleibt selbst im vorbereiteten Zustand lesbar; ohne JavaScript wird die unveränderte Endfassung ausgeliefert.
 
 ## Do's and Don'ts
 
