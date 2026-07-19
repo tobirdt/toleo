@@ -22,11 +22,11 @@ const motionItemSelector = [
 ].join(",");
 
 /**
- * Progressively enhances the homepage on phones. The class enables a gentle
- * proximity snap on the document scroller. Chapter headings and their actual
- * content elements are observed separately, so long sections do not finish
- * animating before their deeper rows enter the viewport. All content remains
- * fully visible in the server-rendered, no-JS and reduced-motion versions.
+ * Progressively enhances the homepage on phones while preserving native touch
+ * momentum. Chapter headings and their actual content elements are observed
+ * separately, so long sections do not finish animating before their deeper
+ * rows enter the viewport. All content remains fully visible in the server-
+ * rendered, no-JS and reduced-motion versions.
  */
 export function MobileExperience() {
   useEffect(() => {

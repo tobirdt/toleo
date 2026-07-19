@@ -59,7 +59,10 @@ function targetScrollTop(section: HTMLElement) {
   const pinned = section.dataset.pinned === "true";
 
   if (!pinned) {
-    return Math.max(0, top - 8);
+    const scrollPadding = Number.parseFloat(
+      window.getComputedStyle(document.documentElement).scrollPaddingTop
+    );
+    return Math.max(0, top - (Number.isFinite(scrollPadding) ? scrollPadding : 8));
   }
 
   const revealed = section.offsetHeight - window.innerHeight;

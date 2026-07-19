@@ -161,7 +161,7 @@ Das System ist flach und tonal geschichtet. Tiefe entsteht durch Aurora, Linien,
 
 ### Navigation
 
-Der schwebende Glas-Header ist auf allen Marken- und SEO-Seiten identisch. Aktive Ziele werden durch Textkontrast und einen blauen Punkt markiert. Beim Scrollen legt sich hinter dem Header eine bis in die mobile Safe Area reichende Fokus-Linse über den Seiteninhalt: auf Mobilgeräten 28px Blur, reduzierte Sättigung und eine fast deckende weiße Statusleisten-Zone halten Uhrzeit, Browser-Chrome und Navigation klar vom vorbeiziehenden Inhalt getrennt; Desktop bleibt mit 18px zurückhaltender. Mobil öffnet ein kompaktes Overlay-Menü mit Escape-Schließen und Body-Lock. Der Sprachwechsel führt auf die äquivalente Route.
+Der schwebende Glas-Header ist auf allen Marken- und SEO-Seiten identisch. Aktive Ziele werden durch Textkontrast und einen blauen Punkt markiert. Beim Scrollen legt sich hinter dem Header eine bis in die mobile Safe Area reichende Fokus-Linse über den Seiteninhalt. Mobil endet sie mit 96px knapp unter der Headerkante und läuft über mehrere Transparenzstufen weich aus; ein auf 16px begrenzter Blur hält Uhrzeit, Browser-Chrome und Navigation getrennt, ohne den nachfolgenden Inhalt abzudecken oder die Scroll-Performance unnötig zu belasten. Desktop bleibt bei 18px. Mobil öffnet ein kompaktes Overlay-Menü mit Escape-Schließen und Body-Lock. Der Sprachwechsel führt auf die äquivalente Route.
 
 ### Page Hero
 
@@ -177,7 +177,7 @@ Die Hauptseite nutzt auf Desktop gemessene, gepinnte Scroll-Stages mit 85–110s
 
 ### Mobile Chapter Motion
 
-Bis 700px strukturiert ein weiches `scroll-snap: proximity` die Hauptseite in Kapitel, ohne längere Abschnitte festzuhalten. Die Kapitel bleiben normal hoch und vollständig responsiv; kurze Landscape-Viewports und `prefers-reduced-motion` schalten das Snapping ab. Kapitelüberschriften reagieren auf ihren Abschnitt, die tieferen Portfolio-Kacheln, Leistungszeilen, Projektspalten, Prozessschritte, Investitionspunkte und die Kontaktfläche jedoch jeweils auf ihr eigenes Sichtfeld. Dadurch bleibt die Choreografie auch in langen Abschnitten sichtbar. Text bleibt selbst im vorbereiteten Zustand lesbar; ohne JavaScript wird die unveränderte Endfassung ausgeliefert.
+Bis 700px verwendet die Hauptseite wieder natives Touch-Momentum ohne dauerhaftes Root-Snapping. Die visuelle Kapitelstruktur entsteht durch die unabhängig beobachteten Überschriften, Portfolio-Kacheln, Leistungszeilen, Projektspalten, Prozessschritte, Investitionspunkte und die Kontaktfläche. Dadurch bleibt die Choreografie auch in langen Abschnitten sichtbar, während Richtungswechsel und kurze Scrollgesten unmittelbar reagieren. Direkte Kapitelaufrufe berücksichtigen weiterhin den Header-Abstand. Text bleibt selbst im vorbereiteten Zustand lesbar; ohne JavaScript wird die unveränderte Endfassung ausgeliefert.
 
 ## Do's and Don'ts
 
