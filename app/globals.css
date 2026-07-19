@@ -960,6 +960,7 @@ h3 {
 }
 
 .service-index {
+  position: relative;
   margin-top: 40px;
   border-top: 1px solid var(--line);
 }
@@ -2547,6 +2548,21 @@ textarea {
   transform: translateY(calc((1 - var(--seg)) * 26px));
 }
 
+.services-section[data-pinned="true"] .service-index {
+  border-top-color: transparent;
+}
+
+.services-section[data-pinned="true"] .service-index::before {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 1px;
+  background: var(--line);
+  content: "";
+  transform: scaleX(clamp(0, calc((var(--p) - 0.12) / 0.18), 1));
+  transform-origin: left;
+  will-change: transform;
+}
+
 /* Two-column grid pairs child 1 with 4, 2 with 5, 3 with 6 (grid-auto-flow:
    column) — reveal each visual row together instead of item-by-item. */
 .services-section[data-pinned="true"] .service-index > div:nth-child(1) .service-row,
@@ -2560,6 +2576,13 @@ textarea {
   --seg: clamp(0, calc((var(--p) - var(--st)) / 0.16), 1);
   opacity: var(--seg);
   transform: translateY(calc((1 - var(--seg)) * 26px));
+}
+
+.services-section[data-pinned="true"] .section-more-link {
+  --seg: clamp(0, calc((var(--p) - 0.86) / 0.1), 1);
+  opacity: var(--seg);
+  transform: translateY(calc((1 - var(--seg)) * 14px));
+  will-change: opacity, transform;
 }
 
 /* Projekte: heading reveals with the scroll like every other stage, then each

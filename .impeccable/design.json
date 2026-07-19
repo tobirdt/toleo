@@ -21,7 +21,7 @@
     "motion": [
       { "name": "micro", "value": "140ms cubic-bezier(0.23, 1, 0.32, 1)", "purpose": "Hover, press and focus feedback." },
       { "name": "layout", "value": "260ms cubic-bezier(0.22, 1, 0.36, 1)", "purpose": "Menus and component state changes." },
-      { "name": "desktop-scroll-stage", "value": "85-110svh active distance plus 8%/16% holds", "purpose": "Measured main-page scrollytelling with readable opening and closing frames." }
+      { "name": "desktop-scroll-stage", "value": "85-110svh active distance plus 8%/16% holds; services end hold 22%", "purpose": "Measured main-page scrollytelling with readable opening and closing frames." }
     ],
     "breakpoints": [
       { "name": "mobile", "value": "700px" },

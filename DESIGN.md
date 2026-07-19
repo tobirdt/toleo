@@ -173,7 +173,7 @@ Fünf nummerierte Phasen werden durch eine blau-rote Linie verbunden. Auf Inhalt
 
 ### Main-page Scrollytelling
 
-Die Hauptseite nutzt auf Desktop gemessene, gepinnte Scroll-Stages mit 85–110svh aktiver Animationsstrecke. Einheitliche Haltephasen von 8 % am Anfang und 16 % am Ende erweitern die gesamte Zusatzstrecke auf rund 112–145svh, ohne die eigentliche Choreografie zu beschleunigen. Das Portfolio übersetzt die reale horizontale Trackbreite mit einem Faktor von 2 in vertikalen Scrollweg und verwendet dieselben Haltephasen. Unter 1051px und bei `prefers-reduced-motion` bleiben alle Abschnitte statisch und sofort sichtbar.
+Die Hauptseite nutzt auf Desktop gemessene, gepinnte Scroll-Stages mit 85–110svh aktiver Animationsstrecke. Einheitliche Haltephasen von 8 % am Anfang und 16 % am Ende erweitern die gesamte Zusatzstrecke auf rund 112–145svh, ohne die eigentliche Choreografie zu beschleunigen; die Dienstleistungs-Stage hält ihr vollständiges Abschlussbild gezielt 22 %. Das Portfolio übersetzt die reale horizontale Trackbreite mit einem Faktor von 2 in vertikalen Scrollweg und verwendet die regulären Haltephasen. Unter 1051px und bei `prefers-reduced-motion` bleiben alle Abschnitte statisch und sofort sichtbar.
 
 ## Do's and Don'ts
 
